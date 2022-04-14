@@ -4,7 +4,7 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-public class User {
+public abstract class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @NotNull
