@@ -1,13 +1,12 @@
-package com.braiso_22.upkeep_app.vo;
+package com.braiso_22.upkeep_app.model.vo;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-@Entity(tableName = "boat")
-public class Boat {
-
+@Entity(tableName = "service")
+public class Service {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -15,15 +14,11 @@ public class Boat {
     private String code;
     @NotNull
     private String name;
-    @NotNull
-    private String registration;
 
 
-
-    public Boat(@NotNull String code, @NotNull String name, @NotNull String registration) {
+    public Service(@NotNull String code, @NotNull String name) {
         this.code = code;
         this.name = name;
-        this.registration = registration;
     }
 
     public void setId(int id) {
@@ -42,12 +37,8 @@ public class Boat {
         return name;
     }
 
-    public String getRegistration() {
-        return registration;
-    }
-
     @Override
     public String toString() {
-        return String.format("Boat{id=%d, code=%s, name=%s, registration=%s}",id,code,name,registration);
+        return String.format("Service{id=%d, code=%s, name=%s}", id, code, name);
     }
 }

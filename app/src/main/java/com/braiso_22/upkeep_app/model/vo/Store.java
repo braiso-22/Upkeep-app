@@ -1,12 +1,12 @@
-package com.braiso_22.upkeep_app.vo;
+package com.braiso_22.upkeep_app.model.vo;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-@Entity(tableName = "component")
-public class Component {
+@Entity(tableName = "store")
+public class Store {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -14,18 +14,28 @@ public class Component {
     private String code;
     @NotNull
     private String name;
+    @NotNull
     private String brand;
+    @NotNull
     private String model;
+    @NotNull
     private String serialNumber;
+    @NotNull
     private String observations;
+    @NotNull
+    private int numStock;
+    @NotNull
+    private int minStock;
 
-    public Component(@NotNull String code, @NotNull String name, String brand, String model, String serialNumber, String observations) {
+    public Store(@NotNull String code, @NotNull String name, @NotNull String brand, @NotNull String model, @NotNull String serialNumber, @NotNull String observations, @NotNull int numStock, @NotNull int minStock) {
         this.code = code;
         this.name = name;
         this.brand = brand;
         this.model = model;
         this.serialNumber = serialNumber;
         this.observations = observations;
+        this.numStock = numStock;
+        this.minStock = minStock;
     }
 
     public void setId(int id) {
@@ -60,8 +70,16 @@ public class Component {
         return observations;
     }
 
+    public int getNumStock() {
+        return numStock;
+    }
+
+    public int getMinStock() {
+        return minStock;
+    }
+
     @Override
     public String toString() {
-        return String.format("Component{id=%d, code=%s, name=%s, brand=%s, model=%s, serialNumber=%s, observations=%s}");
+        return String.format("Store{id=%d }",id,code,name,brand,model,serialNumber,observations,numStock,minStock);
     }
 }

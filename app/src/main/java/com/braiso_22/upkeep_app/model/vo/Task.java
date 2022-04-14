@@ -1,4 +1,4 @@
-package com.braiso_22.upkeep_app.vo;
+package com.braiso_22.upkeep_app.model.vo;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

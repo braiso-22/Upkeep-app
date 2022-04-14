@@ -1,4 +1,4 @@
-package com.braiso_22.upkeep_app.vo.users;
+package com.braiso_22.upkeep_app.model.vo.users;
 
 import androidx.room.Entity;
 
