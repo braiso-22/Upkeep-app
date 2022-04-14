@@ -91,6 +91,13 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 Boat boat = new Boat("1", "Santa catalina", "123");
                 boatDao.insert(boat);
 
+                // Manager
+                ManagerDao managerDao = INSTANCE.managerDao();
+                managerDao.deleteAll();
+
+                Manager manager = new Manager("1","54157612F","Adrian","Fernadez", "adrianfv07@gmail.com");
+                managerDao.insert(manager);
+
                 // Service
                 ServiceDao serviceDao = INSTANCE.serviceDao();
                 serviceDao.deleteAll();
