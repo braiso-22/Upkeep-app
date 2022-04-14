@@ -14,11 +14,14 @@ public class Service {
     private String code;
     @NotNull
     private String name;
+    @NotNull
+    private int boat;
 
 
-    public Service(@NotNull String code, @NotNull String name) {
+    public Service(@NotNull String code, @NotNull String name, @NotNull int boat) {
         this.code = code;
         this.name = name;
+        this.boat = boat;
     }
 
     public void setId(int id) {
@@ -35,6 +38,10 @@ public class Service {
 
     public String getName() {
         return name;
+    }
+
+    public int getBoat() {
+        return boat;
     }
 
     @Override

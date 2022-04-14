@@ -19,13 +19,17 @@ public class Component {
     private String serialNumber;
     private String observations;
 
-    public Component(@NotNull String code, @NotNull String name, String brand, String model, String serialNumber, String observations) {
+    @NotNull
+    private int service;
+
+    public Component(@NotNull String code, @NotNull String name, String brand, String model, String serialNumber, String observations, @NotNull int service) {
         this.code = code;
         this.name = name;
         this.brand = brand;
         this.model = model;
         this.serialNumber = serialNumber;
         this.observations = observations;
+        this.service = service;
     }
 
     public void setId(int id) {
@@ -58,6 +62,10 @@ public class Component {
 
     public String getObservations() {
         return observations;
+    }
+
+    public int getService() {
+        return service;
     }
 
     @Override

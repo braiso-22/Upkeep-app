@@ -27,7 +27,12 @@ public class Store {
     @NotNull
     private int minStock;
 
-    public Store(@NotNull String code, @NotNull String name, @NotNull String brand, @NotNull String model, @NotNull String serialNumber, @NotNull String observations, @NotNull int numStock, @NotNull int minStock) {
+    @NotNull
+    private int task;
+
+    public Store(@NotNull String code, @NotNull String name, @NotNull String brand,
+                 @NotNull String model, @NotNull String serialNumber, @NotNull String observations,
+                 @NotNull int numStock, @NotNull int minStock, @NotNull int task) {
         this.code = code;
         this.name = name;
         this.brand = brand;
@@ -76,6 +81,10 @@ public class Store {
 
     public int getMinStock() {
         return minStock;
+    }
+
+    public int getTask() {
+        return task;
     }
 
     @Override

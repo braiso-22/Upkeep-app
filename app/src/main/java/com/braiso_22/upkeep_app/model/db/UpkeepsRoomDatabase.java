@@ -81,50 +81,50 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 FleetDao fleetDao = INSTANCE.fleetDao();
                 fleetDao.deleteAll();
 
-                Fleet fleet = new Fleet("Flota Carlos");
+                Fleet fleet = new Fleet("Flota Carlos", 0);
                 fleetDao.insert(fleet);
 
                 // Boat
                 BoatDao boatDao = INSTANCE.boatDao();
                 boatDao.deleteAll();
 
-                Boat boat = new Boat("1", "Santa catalina", "123");
+                Boat boat = new Boat("1", "Santa catalina", "123", 0);
                 boatDao.insert(boat);
-
-                // Manager
-                ManagerDao managerDao = INSTANCE.managerDao();
-                managerDao.deleteAll();
-
-                Manager manager = new Manager("1","54157612F","Adrian","Fernadez", "adrianfv07@gmail.com");
-                managerDao.insert(manager);
 
                 // Service
                 ServiceDao serviceDao = INSTANCE.serviceDao();
                 serviceDao.deleteAll();
 
-                Service service = new Service("123", "motores");
+                Service service = new Service("123", "motores",0);
                 serviceDao.insert(service);
+
+                // Manager
+                ManagerDao managerDao = INSTANCE.managerDao();
+                managerDao.deleteAll();
+
+                Manager manager = new Manager("1","54157612F","Adrian","Fernadez", "adrianfv07@gmail.com", 0);
+                managerDao.insert(manager);
 
                 // Component
                 ComponentDao componentDao = INSTANCE.componentDao();
                 componentDao.deleteAll();
 
                 Component component = new Component("1", "motor principal", "rambeirg",
-                        "14j", "1324", "buen estado");
+                        "14j", "1324", "buen estado", 0);
                 componentDao.insert(component);
 
                 // Upkeep
                 UpkeepDao upkeepDao = INSTANCE.upkeepDao();
                 upkeepDao.deleteAll();
 
-                Upkeep upkeep = new Upkeep("2022-02-24", "20:31");
+                Upkeep upkeep = new Upkeep("2022-02-24", "20:31", 0);
                 upkeepDao.insert(upkeep);
 
                 // Task
                 TaskDao taskDao = INSTANCE.taskDao();
                 taskDao.deleteAll();
 
-                Task task = new Task(20, "Cambio de gomas");
+                Task task = new Task(20, "Cambio de gomas", 0, 0);
                 taskDao.insert(task);
 
                 // Operator
@@ -132,14 +132,15 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 operatorDao.deleteAll();
 
                 Operator operator = new Operator("1", "54347643K", "Brais",
-                        "Fernandez", "braisfv22@gmail.com");
+                        "Fernandez", "braisfv22@gmail.com",0);
                 operatorDao.insert(operator);
 
                 // Store
                 StoreDao storeDao = INSTANCE.storeDao();
                 storeDao.deleteAll();
 
-                Store store = new Store("1", "tornillo", "bosch", "2N", "12", "tornillos de estrella", 20, 10);
+                Store store = new Store("1", "tornillo", "bosch", "2N",
+                        "12", "tornillos de estrella", 20, 10, 0);
                 storeDao.insert(store);
             });
         }

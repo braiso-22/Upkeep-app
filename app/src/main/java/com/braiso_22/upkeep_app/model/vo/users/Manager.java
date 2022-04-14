@@ -7,8 +7,16 @@ import org.jetbrains.annotations.NotNull;
 @Entity(tableName = "manager")
 public class Manager extends User {
 
-    public Manager(@NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email) {
+    @NotNull
+    private int service;
+
+    public Manager(@NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull int service) {
         super(code, identification, name, surnames, email);
+        this.service = service;
+    }
+
+    public int getService() {
+        return service;
     }
 
     @Override

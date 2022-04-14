@@ -14,9 +14,13 @@ public class Upkeep {
     @NotNull
     private String hour;
 
-    public Upkeep(@NotNull String date, @NotNull String hour) {
+    @NotNull
+    private int component;
+
+    public Upkeep(@NotNull String date, @NotNull String hour, @NotNull int component) {
         this.date = date;
         this.hour = hour;
+        this.component = component;
     }
 
     public void setId(int id) {
@@ -33,6 +37,10 @@ public class Upkeep {
 
     public String getHour() {
         return hour;
+    }
+
+    public int getComponent() {
+        return component;
     }
 
     @Override

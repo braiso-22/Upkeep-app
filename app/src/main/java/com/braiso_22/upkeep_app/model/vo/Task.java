@@ -16,9 +16,16 @@ public class Task {
     @NotNull
     private String description;
 
-    public Task(@NotNull int length, @NotNull String description) {
+    @NotNull
+    private int upkeep;
+    @NotNull
+    private int operator;
+
+    public Task(@NotNull int length, @NotNull String description, @NotNull int upkeep, @NotNull int operator) {
         this.length = length;
         this.description = description;
+        this.upkeep = upkeep;
+        this.operator = operator;
     }
 
     public void setId(int id) {
@@ -39,6 +46,14 @@ public class Task {
     @NotNull
     public String getDescription() {
         return description;
+    }
+
+    public int getUpkeep() {
+        return upkeep;
+    }
+
+    public int getOperator() {
+        return operator;
     }
 
     @Override

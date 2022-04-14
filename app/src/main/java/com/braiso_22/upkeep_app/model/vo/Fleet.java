@@ -12,9 +12,12 @@ public class Fleet {
     private int id;
     @NotNull
     private String name;
+    @NotNull
+    private int onwer;
 
-    public Fleet(@NotNull String name) {
+    public Fleet(@NotNull String name, int onwer) {
         this.name = name;
+        this.onwer = onwer;
     }
 
     public void setId(int id) {
@@ -27,6 +30,14 @@ public class Fleet {
 
     public String getName() {
         return this.name;
+    }
+
+    public int getOnwer() {
+        return onwer;
+    }
+
+    public void setOnwer(int onwer) {
+        this.onwer = onwer;
     }
 
     @Override
