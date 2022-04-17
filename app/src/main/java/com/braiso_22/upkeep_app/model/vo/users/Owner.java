@@ -1,12 +1,20 @@
 package com.braiso_22.upkeep_app.model.vo.users;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 
 import org.jetbrains.annotations.NotNull;
 
 @Entity(tableName = "owner")
 public class Owner extends User {
 
+    @Ignore
+    public Owner() {
+    }
+    @Ignore
+    public Owner(int id, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email) {
+        super(id, code, identification, name, surnames, email);
+    }
 
     public Owner(@NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email) {
         super(code, identification, name, surnames, email);

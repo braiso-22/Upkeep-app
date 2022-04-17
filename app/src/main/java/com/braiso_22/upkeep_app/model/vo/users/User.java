@@ -1,5 +1,6 @@
 package com.braiso_22.upkeep_app.model.vo.users;
 
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
@@ -17,8 +18,23 @@ public abstract class User {
     private String surnames;
     @NotNull
     private String email;
+    @Ignore
+    public User() {
 
-    public User(@NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email) {
+    }
+    @Ignore
+    public User(int id, @NotNull String code, @NotNull String identification, @NotNull String name,
+                @NotNull String surnames, @NotNull String email) {
+        this.id = id;
+        this.code = code;
+        this.identification = identification;
+        this.name = name;
+        this.surnames = surnames;
+        this.email = email;
+    }
+
+    public User(@NotNull String code, @NotNull String identification, @NotNull String name,
+                @NotNull String surnames, @NotNull String email) {
         this.code = code;
         this.identification = identification;
         this.name = name;
@@ -52,6 +68,26 @@ public abstract class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurnames(String surnames) {
+        this.surnames = surnames;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

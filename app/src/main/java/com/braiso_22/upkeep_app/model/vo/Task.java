@@ -1,6 +1,7 @@
 package com.braiso_22.upkeep_app.model.vo;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,6 +21,17 @@ public class Task {
     private int upkeep;
     @NotNull
     private int operator;
+
+    @Ignore
+    public Task(){}
+    @Ignore
+    public Task(int id, @NotNull int length, @NotNull String description, @NotNull int upkeep, @NotNull int operator) {
+        this.id = id;
+        this.length = length;
+        this.description = description;
+        this.upkeep = upkeep;
+        this.operator = operator;
+    }
 
     public Task(@NotNull int length, @NotNull String description, @NotNull int upkeep, @NotNull int operator) {
         this.length = length;
@@ -54,6 +66,18 @@ public class Task {
 
     public int getOperator() {
         return operator;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUpkeep(int upkeep) {
+        this.upkeep = upkeep;
+    }
+
+    public void setOperator(int operator) {
+        this.operator = operator;
     }
 
     @Override

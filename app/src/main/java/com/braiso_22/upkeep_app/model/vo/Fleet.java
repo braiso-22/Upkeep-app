@@ -1,6 +1,7 @@
 package com.braiso_22.upkeep_app.model.vo;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
@@ -14,6 +15,17 @@ public class Fleet {
     private String name;
     @NotNull
     private int onwer;
+
+    @Ignore
+    public Fleet(){
+
+    }
+    @Ignore
+    public Fleet(int id, @NotNull String name, @NotNull int onwer) {
+        this.id = id;
+        this.name = name;
+        this.onwer = onwer;
+    }
 
     public Fleet(@NotNull String name, int onwer) {
         this.name = name;
@@ -38,6 +50,10 @@ public class Fleet {
 
     public void setOnwer(int onwer) {
         this.onwer = onwer;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
