@@ -22,6 +22,9 @@ public interface FleetDao {
     @Query("SELECT * FROM fleet")
     LiveData<List<Fleet>> getAll();
 
+    @Query("SELECT * FROM fleet where id = :id")
+    LiveData<Fleet> getById(int id);
+
     @Update
     void update(Fleet fleet);
 }

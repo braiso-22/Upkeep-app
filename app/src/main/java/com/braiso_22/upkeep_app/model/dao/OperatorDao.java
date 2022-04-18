@@ -22,6 +22,9 @@ public interface OperatorDao {
     @Query("SELECT * FROM operator")
     LiveData<List<Operator>> getAll();
 
+    @Query("SELECT * FROM operator where id = :id")
+    LiveData<Operator> getById(int id);
+
     @Update
     void update(Operator operator);
 }

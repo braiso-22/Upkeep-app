@@ -10,6 +10,7 @@ import androidx.room.Update;
 import com.braiso_22.upkeep_app.model.vo.Boat;
 
 import java.util.List;
+
 @Dao
 public interface BoatDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -20,6 +21,9 @@ public interface BoatDao {
 
     @Query("SELECT * FROM boat")
     LiveData<List<Boat>> getAll();
+
+    @Query("SELECT * FROM boat where id = :id")
+    LiveData<Boat> getById(int id);
 
     @Update
     void update(Boat boats);

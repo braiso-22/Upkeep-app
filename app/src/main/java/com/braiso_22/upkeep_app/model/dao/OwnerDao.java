@@ -22,6 +22,9 @@ public interface OwnerDao {
     @Query("SELECT * FROM owner")
     LiveData<List<Owner>> getAll();
 
+    @Query("SELECT * FROM owner where id = :id")
+    LiveData<Owner> getById(int id);
+
     @Update
     void update(Owner owner);
 }

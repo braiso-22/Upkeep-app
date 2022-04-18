@@ -22,6 +22,9 @@ public interface ComponentDao {
     @Query("SELECT * FROM component")
     LiveData<List<Component>> getAll();
 
+    @Query("SELECT * FROM component where id = :id")
+    LiveData<Component> getById(int id);
+
     @Update
     void update(Component component);
 }

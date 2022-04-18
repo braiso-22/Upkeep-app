@@ -22,6 +22,9 @@ public interface UpkeepDao {
     @Query("SELECT * FROM upkeep")
     LiveData<List<Upkeep>> getAll();
 
+    @Query("SELECT * FROM upkeep where id = :id")
+    LiveData<Upkeep> getById(int id);
+
     @Update
     void update(Upkeep upkeep);
 }

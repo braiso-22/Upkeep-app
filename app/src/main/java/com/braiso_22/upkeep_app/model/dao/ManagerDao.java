@@ -22,6 +22,9 @@ public interface ManagerDao {
     @Query("SELECT * FROM manager")
     LiveData<List<Manager>> getAll();
 
+    @Query("SELECT * FROM manager where id = :id")
+    LiveData<Manager> getById(int id);
+
     @Update
     void update(Manager manager);
 }

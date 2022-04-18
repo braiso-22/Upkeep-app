@@ -22,6 +22,9 @@ public interface StoreDao {
     @Query("SELECT * FROM store")
     LiveData<List<Store>> getAll();
 
+    @Query("SELECT * FROM store where id = :id")
+    LiveData<Store> getById(int id);
+
     @Update
     void update(Store store);
 }

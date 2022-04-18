@@ -22,6 +22,9 @@ public interface ServiceDao {
     @Query("SELECT * FROM service")
     LiveData<List<Service>> getAll();
 
+    @Query("SELECT * FROM service where id = :id")
+    LiveData<Service> getById(int id);
+
     @Update
     void update(Service service);
 }
