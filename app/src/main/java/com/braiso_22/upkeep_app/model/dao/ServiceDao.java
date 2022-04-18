@@ -19,6 +19,9 @@ public interface ServiceDao {
     @Query("DELETE FROM service")
     void deleteAll();
 
+    @Query("DELETE FROM service where id = :id")
+    void deleteById(int id);
+
     @Query("SELECT * FROM service")
     LiveData<List<Service>> getAll();
 

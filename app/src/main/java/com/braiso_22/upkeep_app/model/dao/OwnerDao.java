@@ -19,6 +19,9 @@ public interface OwnerDao {
     @Query("DELETE FROM owner")
     void deleteAll();
 
+    @Query("DELETE FROM owner where id = :id")
+    void deleteById(int id);
+
     @Query("SELECT * FROM owner")
     LiveData<List<Owner>> getAll();
 

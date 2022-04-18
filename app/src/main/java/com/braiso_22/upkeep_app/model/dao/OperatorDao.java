@@ -19,6 +19,9 @@ public interface OperatorDao {
     @Query("DELETE FROM operator")
     void deleteAll();
 
+    @Query("DELETE FROM operator where id = :id")
+    void deleteById(int id);
+
     @Query("SELECT * FROM operator")
     LiveData<List<Operator>> getAll();
 

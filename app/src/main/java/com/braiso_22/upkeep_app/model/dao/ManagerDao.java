@@ -19,6 +19,9 @@ public interface ManagerDao {
     @Query("DELETE FROM manager")
     void deleteAll();
 
+    @Query("DELETE FROM manager where id = :id")
+    void deleteById(int id);
+
     @Query("SELECT * FROM manager")
     LiveData<List<Manager>> getAll();
 

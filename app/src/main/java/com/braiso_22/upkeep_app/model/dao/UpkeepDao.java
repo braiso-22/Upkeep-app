@@ -19,6 +19,9 @@ public interface UpkeepDao {
     @Query("DELETE FROM upkeep")
     void deleteAll();
 
+    @Query("DELETE FROM upkeep where id = :id")
+    void deleteById(int id);
+
     @Query("SELECT * FROM upkeep")
     LiveData<List<Upkeep>> getAll();
 

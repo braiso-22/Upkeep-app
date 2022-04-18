@@ -19,6 +19,9 @@ public interface FleetDao {
     @Query("DELETE FROM fleet")
     void deleteAll();
 
+    @Query("DELETE FROM fleet where id = :id")
+    void deleteById(int id);
+
     @Query("SELECT * FROM fleet")
     LiveData<List<Fleet>> getAll();
 

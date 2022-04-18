@@ -19,6 +19,9 @@ public interface StoreDao {
     @Query("DELETE FROM store")
     void deleteAll();
 
+    @Query("DELETE FROM store where id = :id")
+    void deleteById(int id);
+
     @Query("SELECT * FROM store")
     LiveData<List<Store>> getAll();
 
