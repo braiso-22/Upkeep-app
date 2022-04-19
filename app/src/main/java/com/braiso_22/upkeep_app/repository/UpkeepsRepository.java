@@ -62,6 +62,8 @@ public class UpkeepsRepository {
 
     public LiveData<List<Owner>> getAllOwners(){return allOwners;}
 
+    public LiveData<List<Owner>> getByLogin(String login){return ownerDao.getByLogin(login);}
+
     public void insert(Owner owner){
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() ->{
             ownerDao.insert(owner);
@@ -83,6 +85,8 @@ public class UpkeepsRepository {
     public LiveData<List<Fleet>> getAllFleets() {
         return allFleets;
     }
+
+
 
     public void insert(Fleet fleet) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
