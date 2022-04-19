@@ -13,14 +13,14 @@ public class Manager extends User {
     @Ignore
     public Manager(){}
     @Ignore
-    public Manager(int id, @NotNull String code, @NotNull String identification, @NotNull String name,
+    public Manager(int id,@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
                    @NotNull String surnames, @NotNull String email, @NotNull int service) {
-        super(id, code, identification, name, surnames, email);
+        super(id,login, code, identification, name, surnames, email);
         this.service = service;
     }
 
-    public Manager(@NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull int service) {
-        super(code, identification, name, surnames, email);
+    public Manager(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull int service) {
+        super(login, code, identification, name, surnames, email);
         this.service = service;
     }
 

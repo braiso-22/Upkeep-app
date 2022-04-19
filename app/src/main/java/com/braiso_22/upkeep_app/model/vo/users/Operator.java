@@ -16,14 +16,14 @@ public class Operator extends User {
     @Ignore
     public Operator(){}
     @Ignore
-    public Operator(int id, @NotNull String code, @NotNull String identification, @NotNull String name,
+    public Operator(int id,@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
                     @NotNull String surnames, @NotNull String email, @NotNull int service) {
-        super(id, code, identification, name, surnames, email);
+        super(id, login, code, identification, name, surnames, email);
         this.service = service;
     }
 
-    public Operator(@NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull int service) {
-        super(code, identification, name, surnames, email);
+    public Operator(@NotNull String login,@NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull int service) {
+        super(login, code, identification, name, surnames, email);
         this.service= service;
     }
 

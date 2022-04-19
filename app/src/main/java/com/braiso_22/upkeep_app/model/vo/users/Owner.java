@@ -12,12 +12,12 @@ public class Owner extends User {
     public Owner() {
     }
     @Ignore
-    public Owner(int id, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email) {
-        super(id, code, identification, name, surnames, email);
+    public Owner(int id,@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email) {
+        super(id,login, code, identification, name, surnames, email);
     }
 
-    public Owner(@NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email) {
-        super(code, identification, name, surnames, email);
+    public Owner(@NotNull String login,@NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email) {
+        super(login, code, identification, name, surnames, email);
     }
 
     @Override

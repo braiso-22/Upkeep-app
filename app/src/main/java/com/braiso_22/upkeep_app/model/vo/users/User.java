@@ -8,6 +8,9 @@ import org.jetbrains.annotations.NotNull;
 public abstract class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @NotNull
+    private String login;
     @NotNull
     private String code;
     @NotNull
@@ -23,7 +26,7 @@ public abstract class User {
 
     }
     @Ignore
-    public User(int id, @NotNull String code, @NotNull String identification, @NotNull String name,
+    public User(int id, @NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
                 @NotNull String surnames, @NotNull String email) {
         this.id = id;
         this.code = code;
@@ -33,7 +36,7 @@ public abstract class User {
         this.email = email;
     }
 
-    public User(@NotNull String code, @NotNull String identification, @NotNull String name,
+    public User(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
                 @NotNull String surnames, @NotNull String email) {
         this.code = code;
         this.identification = identification;
@@ -88,6 +91,14 @@ public abstract class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     @Override
