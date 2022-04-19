@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.model.vo.Store;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface StoreDao {
 
     @Query("SELECT * FROM store where id = :id")
     LiveData<Store> getById(int id);
+
+    @Query("SELECT * FROM store WHERE task = :task")
+    LiveData<List<Store>> getByTask(int task);
 
     @Update
     void update(Store store);

@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.model.vo.Component;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface ComponentDao {
 
     @Query("SELECT * FROM component where id = :id")
     LiveData<Component> getById(int id);
+
+    @Query("SELECT * FROM component WHERE service = :service")
+    LiveData<List<Component>> getByComponent(int service);
 
     @Update
     void update(Component component);

@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.model.vo.users.Operator;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface OperatorDao {
 
     @Query("SELECT * FROM operator where id = :id")
     LiveData<Operator> getById(int id);
+
+    @Query("SELECT * FROM operator WHERE login = :login")
+    LiveData<List<Operator>> getByLogin(String login);
 
     @Update
     void update(Operator operator);

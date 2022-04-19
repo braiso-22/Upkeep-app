@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.model.vo.Fleet;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface FleetDao {
 
     @Query("SELECT * FROM fleet where id = :id")
     LiveData<Fleet> getById(int id);
+
+    @Query("SELECT * FROM fleet WHERE owner = :owner")
+    LiveData<List<Fleet>> getByOwner(int owner);
 
     @Update
     void update(Fleet fleet);

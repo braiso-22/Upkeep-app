@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.model.vo.users.Manager;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface ManagerDao {
 
     @Query("SELECT * FROM manager where id = :id")
     LiveData<Manager> getById(int id);
+
+    @Query("SELECT * FROM manager WHERE login = :login")
+    LiveData<List<Manager>> getByLogin(String login);
 
     @Update
     void update(Manager manager);

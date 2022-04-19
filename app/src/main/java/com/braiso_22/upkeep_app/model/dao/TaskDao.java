@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.model.vo.Task;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface TaskDao {
 
     @Query("SELECT * FROM task where id = :id")
     LiveData<Task> getById(int id);
+
+    @Query("SELECT * FROM task WHERE upkeep = :upkeep")
+    LiveData<List<Task>> getByUpkeep(int upkeep);
 
     @Update
     void update(Task task);

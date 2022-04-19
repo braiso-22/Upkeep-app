@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.model.vo.Service;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface ServiceDao {
 
     @Query("SELECT * FROM service where id = :id")
     LiveData<Service> getById(int id);
+
+    @Query("SELECT * FROM service WHERE boat = :boat")
+    LiveData<List<Service>> getByBoat(int boat);
 
     @Update
     void update(Service service);

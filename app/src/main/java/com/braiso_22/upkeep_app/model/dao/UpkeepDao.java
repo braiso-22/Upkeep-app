@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.braiso_22.upkeep_app.model.vo.Task;
 import com.braiso_22.upkeep_app.model.vo.Upkeep;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface UpkeepDao {
 
     @Query("SELECT * FROM upkeep where id = :id")
     LiveData<Upkeep> getById(int id);
+
+    @Query("SELECT * FROM upkeep WHERE component = :component")
+    LiveData<List<Upkeep>> getByComponent(int component);
 
     @Update
     void update(Upkeep upkeep);

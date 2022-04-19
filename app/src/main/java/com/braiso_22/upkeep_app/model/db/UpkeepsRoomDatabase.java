@@ -74,7 +74,7 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 OwnerDao ownerDao = INSTANCE.ownerDao();
                 ownerDao.deleteAll();
 
-                Owner owner = new Owner("1", "54157611V","Brais","Fernandez","braisfv22@gmail.com");
+                Owner owner = new Owner("brais","1", "54157611V","Brais","Fernandez","braisfv22@gmail.com");
                 ownerDao.insert(owner);
 
                 // Fleet
@@ -102,7 +102,7 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 ManagerDao managerDao = INSTANCE.managerDao();
                 managerDao.deleteAll();
 
-                Manager manager = new Manager("1","54157612F","Adrian","Fernadez", "adrianfv07@gmail.com", 0);
+                Manager manager = new Manager("adrian","1","54157612F","Adrian","Fernadez", "adrianfv07@gmail.com", 0);
                 managerDao.insert(manager);
 
                 // Component
@@ -131,7 +131,7 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 OperatorDao operatorDao = INSTANCE.operatorDao();
                 operatorDao.deleteAll();
 
-                Operator operator = new Operator("1", "54347643K", "Brais",
+                Operator operator = new Operator("brais1","1", "54347643K", "Brais",
                         "Fernandez", "braisfv22@gmail.com",0);
                 operatorDao.insert(operator);
 
