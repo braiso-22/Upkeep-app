@@ -8,7 +8,7 @@ import com.braiso_22.upkeep_app.model.vo.users.Owner;
 
 import java.util.List;
 
-public class OwnerWithFloats {
+public class OwnerWithFleets {
     @Embedded
     public Owner owner;
     @Relation(

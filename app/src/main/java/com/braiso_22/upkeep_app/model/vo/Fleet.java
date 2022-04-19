@@ -14,22 +14,22 @@ public class Fleet {
     @NotNull
     private String name;
     @NotNull
-    private int onwer;
+    private int owner;
 
     @Ignore
     public Fleet(){
 
     }
     @Ignore
-    public Fleet(int id, @NotNull String name, @NotNull int onwer) {
+    public Fleet(int id, @NotNull String name, @NotNull int owner) {
         this.id = id;
         this.name = name;
-        this.onwer = onwer;
+        this.owner = owner;
     }
 
-    public Fleet(@NotNull String name, int onwer) {
+    public Fleet(@NotNull String name, int owner) {
         this.name = name;
-        this.onwer = onwer;
+        this.owner = owner;
     }
 
     public void setId(int id) {
@@ -44,12 +44,12 @@ public class Fleet {
         return this.name;
     }
 
-    public int getOnwer() {
-        return onwer;
+    public int getOwner() {
+        return owner;
     }
 
-    public void setOnwer(int onwer) {
-        this.onwer = onwer;
+    public void setOwner(int owner) {
+        this.owner = owner;
     }
 
     public void setName(String name) {
