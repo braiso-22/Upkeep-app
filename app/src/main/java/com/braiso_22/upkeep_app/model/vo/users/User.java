@@ -1,11 +1,12 @@
 package com.braiso_22.upkeep_app.model.vo.users;
 
+import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
-
-public abstract class User {
+@Entity(tableName = "user")
+public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
 

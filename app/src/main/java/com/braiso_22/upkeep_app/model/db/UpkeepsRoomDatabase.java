@@ -17,11 +17,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {Owner.class, Fleet.class, Boat.class, Service.class,
+@Database(entities = {User.class, Owner.class, Fleet.class, Boat.class, Service.class,
         Component.class, Upkeep.class, Task.class, Manager.class,
         Operator.class, Store.class},
         version = 1, exportSchema = false)
 public abstract class UpkeepsRoomDatabase extends RoomDatabase {
+
+    public abstract UserDao userDao();
 
     public abstract OwnerDao ownerDao();
 
@@ -69,6 +71,13 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
 
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background
+
+                // User
+                UserDao userDao = INSTANCE.userDao();
+                userDao.deleteAll();
+
+                User user = new User();
+                userDao.insert(user);
 
                 // Owner
                 OwnerDao ownerDao = INSTANCE.ownerDao();
