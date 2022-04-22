@@ -60,24 +60,28 @@ public class UpkeepsRepository {
         allStores = storeDao.getAll();
     }
 
-    public LiveData<List<Owner>> getAllOwners(){return allOwners;}
+    public LiveData<List<Owner>> getAllOwners() {
+        return allOwners;
+    }
 
-    public LiveData<List<Owner>> getByLogin(String login){return ownerDao.getByLogin(login);}
+    public LiveData<List<Owner>> getOwnerByLogin(String login) {
+        return ownerDao.getByLogin(login);
+    }
 
-    public void insert(Owner owner){
-        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() ->{
+    public void insert(Owner owner) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             ownerDao.insert(owner);
         });
     }
 
-    public void deleteAllOwners(){
-        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() ->{
+    public void deleteAllOwners() {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             ownerDao.deleteAll();
         });
     }
 
-    public void update(Owner owner){
-        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() ->{
+    public void update(Owner owner) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             ownerDao.update(owner);
         });
     }
@@ -86,7 +90,9 @@ public class UpkeepsRepository {
         return allFleets;
     }
 
-
+    public LiveData<List<Fleet>> getFleetByOwner(int id) {
+        return fleetDao.getByOwner(id);
+    }
 
     public void insert(Fleet fleet) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
@@ -108,6 +114,10 @@ public class UpkeepsRepository {
 
     public LiveData<List<Boat>> getAllBoats() {
         return allBoats;
+    }
+
+    public LiveData<List<Boat>> getBoatByFleet(int id) {
+        return boatDao.getByFleet(id);
     }
 
     public void insert(Boat boat) {
@@ -132,6 +142,10 @@ public class UpkeepsRepository {
         return allServices;
     }
 
+    public LiveData<List<Service>> getServiceByBoat(int id) {
+        return serviceDao.getByBoat(id);
+    }
+
     public void insert(Service service) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             serviceDao.insert(service);
@@ -150,28 +164,38 @@ public class UpkeepsRepository {
         });
     }
 
-    public LiveData<List<Manager>> getAllManagers(){return allManagers;}
+    public LiveData<List<Manager>> getAllManagers() {
+        return allManagers;
+    }
 
-    public void insert(Manager manager){
-        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() ->{
+    public LiveData<List<Manager>> getManagerByLogin(String login) {
+        return managerDao.getByLogin(login);
+    }
+
+    public void insert(Manager manager) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             managerDao.insert(manager);
         });
     }
 
-    public void deleteAllManagers(){
-        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() ->{
+    public void deleteAllManagers() {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             managerDao.deleteAll();
         });
     }
 
-    public void update(Manager manager){
-        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() ->{
+    public void update(Manager manager) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             managerDao.update(manager);
         });
     }
 
     public LiveData<List<Component>> getAllComponents() {
         return allComponents;
+    }
+
+    public LiveData<List<Component>> getComponentByService(int id) {
+        return componentDao.getByService(id);
     }
 
     public void insert(Component component) {
@@ -196,6 +220,10 @@ public class UpkeepsRepository {
         return allUpkeeps;
     }
 
+    public LiveData<List<Upkeep>> getUpkeepByComponent(int id) {
+        return upkeepDao.getByComponent(id);
+    }
+
     public void insert(Upkeep upkeep) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             upkeepDao.insert(upkeep);
@@ -216,6 +244,14 @@ public class UpkeepsRepository {
 
     public LiveData<List<Task>> getAllTasks() {
         return allTasks;
+    }
+
+    public LiveData<List<Task>> getTaskByUpkeep(int id) {
+        return taskDao.getByUpkeep(id);
+    }
+
+    public LiveData<List<Task>> getTaskByOperator(int id) {
+        return taskDao.getByOperator(id);
     }
 
     public void insert(Task task) {
@@ -240,6 +276,10 @@ public class UpkeepsRepository {
         return allOperators;
     }
 
+    public LiveData<List<Operator>> getOperatorByLogin(String login) {
+        return operatorDao.getByLogin(login);
+    }
+
     public void insert(Operator operator) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             operatorDao.insert(operator);
@@ -260,6 +300,10 @@ public class UpkeepsRepository {
 
     public LiveData<List<Store>> getAllStores() {
         return allStores;
+    }
+
+    public LiveData<List<Store>> getStoreByTask(int id) {
+        return storeDao.getByTask(id);
     }
 
     public void insert(Store store) {
