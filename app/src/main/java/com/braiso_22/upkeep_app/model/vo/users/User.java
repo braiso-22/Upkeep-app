@@ -29,6 +29,7 @@ public abstract class User {
     public User(int id, @NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
                 @NotNull String surnames, @NotNull String email) {
         this.id = id;
+        this.login = login;
         this.code = code;
         this.identification = identification;
         this.name = name;
@@ -38,6 +39,7 @@ public abstract class User {
 
     public User(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
                 @NotNull String surnames, @NotNull String email) {
+        this.login = login;
         this.code = code;
         this.identification = identification;
         this.name = name;
@@ -103,6 +105,6 @@ public abstract class User {
 
     @Override
     public String toString() {
-        return String.format("{id=%d, code=%s, identification=%s, name=%s, surnames=%s, email=%s }", id, code, identification, name, surnames, email);
+        return String.format("{id=%d, login=%s,code=%s, identification=%s, name=%s, surnames=%s, email=%s }", id, login, code, identification, name, surnames, email);
     }
 }
