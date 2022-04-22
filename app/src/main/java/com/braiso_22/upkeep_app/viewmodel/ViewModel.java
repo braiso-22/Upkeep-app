@@ -44,6 +44,10 @@ public class ViewModel extends AndroidViewModel {
         return allOwners;
     }
 
+    public LiveData<List<Owner>> getOwnerByLogin(String login) {
+        return repository.getOwnerByLogin(login);
+    }
+
     public void insert(Owner owner) {
         repository.insert(owner);
     }
@@ -76,6 +80,10 @@ public class ViewModel extends AndroidViewModel {
         return allBoats;
     }
 
+    public LiveData<List<Boat>> getBoatByFleet(int fleet) {
+        return repository.getBoatByFleet(fleet);
+    }
+
     public void insert(Boat boat) {
         repository.insert(boat);
     }
@@ -90,6 +98,10 @@ public class ViewModel extends AndroidViewModel {
 
     public LiveData<List<Service>> getAllServices() {
         return allServices;
+    }
+
+    public LiveData<List<Service>> getServiceByBoat(int boat) {
+        return repository.getServiceByBoat(boat);
     }
 
     public void insert(Service service) {
@@ -108,6 +120,10 @@ public class ViewModel extends AndroidViewModel {
         return allManagers;
     }
 
+    public LiveData<List<Manager>> getManagerByLogin(String login) {
+        return repository.getManagerByLogin(login);
+    }
+
     public void insert(Manager manager) {
         repository.insert(manager);
     }
@@ -122,6 +138,10 @@ public class ViewModel extends AndroidViewModel {
 
     public LiveData<List<Component>> getAllComponents() {
         return allComponents;
+    }
+
+    public LiveData<List<Component>> getComponentByService(int service) {
+        return repository.getComponentByService(service);
     }
 
     public void insert(Component component) {
@@ -140,6 +160,10 @@ public class ViewModel extends AndroidViewModel {
         return allUpkeeps;
     }
 
+    public LiveData<List<Upkeep>> getUpkeepByComponent(int component) {
+        return repository.getUpkeepByComponent(component);
+    }
+
     public void insert(Upkeep upkeep) {
         repository.insert(upkeep);
     }
@@ -154,6 +178,14 @@ public class ViewModel extends AndroidViewModel {
 
     public LiveData<List<Task>> getAllTasks() {
         return allTasks;
+    }
+
+    public LiveData<List<Task>> getTaskByUpkeep(int upkeep) {
+        return repository.getTaskByUpkeep(upkeep);
+    }
+
+    public LiveData<List<Task>> getTaskByOperator(int operator) {
+        return repository.getTaskByOperator(operator);
     }
 
     public void insert(Task task) {
@@ -172,6 +204,10 @@ public class ViewModel extends AndroidViewModel {
         return allOperators;
     }
 
+    public LiveData<List<Operator>> getOperatorByLogin(String login) {
+        return repository.getOperatorByLogin(login);
+    }
+
     public void insert(Operator operator) {
         repository.insert(operator);
     }
@@ -186,6 +222,10 @@ public class ViewModel extends AndroidViewModel {
 
     public LiveData<List<Store>> getAllStores() {
         return allStores;
+    }
+
+    public LiveData<List<Store>> getStoreByTask(int task) {
+        return repository.getStoreByTask(task);
     }
 
     public void insert(Store store) {
