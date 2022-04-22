@@ -32,6 +32,9 @@ public interface TaskDao {
     @Query("SELECT * FROM task WHERE upkeep = :upkeep")
     LiveData<List<Task>> getByUpkeep(int upkeep);
 
+    @Query("SELECT * FROM task WHERE operator = :operator")
+    LiveData<List<Task>> getByOperator(int operator);
+
     @Update
     void update(Task task);
 }

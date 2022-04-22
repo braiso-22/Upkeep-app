@@ -30,7 +30,7 @@ public interface ComponentDao {
     LiveData<Component> getById(int id);
 
     @Query("SELECT * FROM component WHERE service = :service")
-    LiveData<List<Component>> getByComponent(int service);
+    LiveData<List<Component>> getByService(int service);
 
     @Update
     void update(Component component);
