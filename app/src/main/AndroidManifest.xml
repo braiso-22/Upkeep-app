@@ -10,7 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Upkeepapp">
         <activity
-            android:name=".MainActivity"
+            android:name=".usecases.home.owner.OwnerHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.onboarding.OnBoardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.splashscreen.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
