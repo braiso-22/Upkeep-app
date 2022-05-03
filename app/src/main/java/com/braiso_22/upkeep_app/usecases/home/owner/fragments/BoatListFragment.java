@@ -13,41 +13,38 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
+import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.model.vo.Fleet;
+import com.braiso_22.upkeep_app.usecases.home.owner.adapters.BoatAdapter;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.FleetAdapter;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
-public class FleetsListFragment extends Fragment {
+public class BoatListFragment extends Fragment {
 
-    public FleetsListFragment() {
+    public BoatListFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_fleets_list, container, false);
+        return inflater.inflate(R.layout.fragment_boat_list, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recycler = this.getView().findViewById(R.id.fleetsRecyclerView);
+        RecyclerView recycler = this.getView().findViewById(R.id.boatsRecyclerView);
 
         ViewModel vm = new ViewModel(this.getActivity().getApplication());
-        vm.getAllFleets().observe(this.getActivity(), fleets -> {
-            recycler.setAdapter(new FleetAdapter(fleets, this.getActivity(), new FleetAdapter.OnFleetClickListener() {
+        vm.getAllBoats().observe(this.getActivity(), boats -> {
+            recycler.setAdapter(new BoatAdapter(boats, this.getActivity(), new BoatAdapter.OnBoatClickListener() {
                 @Override
-                public void onFleetClick(Fleet fleet) {
-                    goToBoatList(fleet);
+                public void onBoatClick(Boat boat) {
+
                 }
             }));
         });
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-    }
-    public void goToBoatList(Fleet fleet){
-        BoatListFragment fragment = new BoatListFragment();
-        //fragment.setFleet(fleet);
-        this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
     }
 }
