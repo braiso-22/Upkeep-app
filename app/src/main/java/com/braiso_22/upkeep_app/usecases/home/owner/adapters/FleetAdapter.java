@@ -18,11 +18,17 @@ public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.FleetViewHol
     private final List<Fleet> values;
     private LayoutInflater inflater;
     private final Context context;
+    final FleetAdapter.OnFleetClickListener listener;
 
-    public FleetAdapter(List<Fleet> values, Context context) {
+    public interface OnFleetClickListener {
+        void onFleetClick(Fleet fleet);
+    }
+
+    public FleetAdapter(List<Fleet> values, Context context, FleetAdapter.OnFleetClickListener listener) {
         this.inflater= LayoutInflater.from(context);
         this.values = values;
         this.context = context;
+        this.listener = listener;
     }
 
    @Override
@@ -58,11 +64,17 @@ public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.FleetViewHol
             this.fleet = fleet;
             fleetId.setText(String.valueOf(fleet.getId()));
             fleetName.setText(fleet.getName());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onFleetClick(fleet);
+                }
+            });
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + fleetId.getText() + "'";
+            return super.toString() + " '" + fleetName.getText() + "'";
         }
     }
 }
