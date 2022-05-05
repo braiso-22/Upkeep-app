@@ -14,20 +14,18 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Boat;
-import com.braiso_22.upkeep_app.model.vo.Fleet;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.BoatAdapter;
-import com.braiso_22.upkeep_app.usecases.home.owner.adapters.FleetAdapter;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
-public class BoatListFragment extends Fragment {
+public class BoatsListFragment extends Fragment {
 
-    public BoatListFragment() {
+    public BoatsListFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_boat_list, container, false);
+        return inflater.inflate(R.layout.fragment_boats_list, container, false);
     }
 
     @Override

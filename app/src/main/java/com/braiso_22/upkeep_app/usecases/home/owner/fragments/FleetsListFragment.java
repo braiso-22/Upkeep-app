@@ -45,8 +45,9 @@ public class FleetsListFragment extends Fragment {
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
-    public void goToBoatList(Fleet fleet){
-        BoatListFragment fragment = new BoatListFragment();
+
+    public void goToBoatList(Fleet fleet) {
+        BoatsListFragment fragment = new BoatsListFragment();
         //fragment.setFleet(fleet);
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
     }
