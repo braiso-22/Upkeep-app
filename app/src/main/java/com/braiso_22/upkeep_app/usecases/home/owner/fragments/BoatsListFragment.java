@@ -38,11 +38,16 @@ public class BoatsListFragment extends Fragment {
             recycler.setAdapter(new BoatAdapter(boats, this.getActivity(), new BoatAdapter.OnBoatClickListener() {
                 @Override
                 public void onBoatClick(Boat boat) {
-
+                    goToServicesList(boat);
                 }
             }));
         });
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+    }
+    // method to change the fragment to services list fragment
+    public void goToServicesList(Boat boat){
+        ServicesListFragment fragment = new ServicesListFragment();
+        this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
     }
 }

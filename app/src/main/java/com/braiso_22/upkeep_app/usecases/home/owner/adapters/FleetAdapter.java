@@ -20,34 +20,32 @@ public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.FleetViewHol
     private final Context context;
     final FleetAdapter.OnFleetClickListener listener;
 
-    public interface OnFleetClickListener {
-        void onFleetClick(Fleet fleet);
-    }
-
     public FleetAdapter(List<Fleet> values, Context context, FleetAdapter.OnFleetClickListener listener) {
-        this.inflater= LayoutInflater.from(context);
+        this.inflater = LayoutInflater.from(context);
         this.values = values;
         this.context = context;
         this.listener = listener;
     }
 
-   @Override
-   public int getItemCount() {
-       return values.size();
-   }
+    @Override
+    public int getItemCount() {
+        return values.size();
+    }
 
-   @Override
-   public FleetAdapter.FleetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View view = inflater.inflate(R.layout.fleet_item, parent, false);
-    return new FleetAdapter.FleetViewHolder(view);
-   }
+    @Override
+    public FleetAdapter.FleetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.fleet_item, parent, false);
+        return new FleetAdapter.FleetViewHolder(view);
+    }
 
-   @Override
-   public void onBindViewHolder(final FleetAdapter.FleetViewHolder holder, final int position) {
+    @Override
+    public void onBindViewHolder(final FleetAdapter.FleetViewHolder holder, final int position) {
         holder.bindData(values.get(position));
-   }
+    }
 
-
+    public interface OnFleetClickListener {
+        void onFleetClick(Fleet fleet);
+    }
 
     public class FleetViewHolder extends RecyclerView.ViewHolder {
         public final TextView fleetId;

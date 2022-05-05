@@ -20,10 +20,6 @@ public class BoatAdapter extends RecyclerView.Adapter<BoatAdapter.BoatViewHolder
     private Context context;
     private OnBoatClickListener listener;
 
-    public interface OnBoatClickListener {
-        void onBoatClick(Boat boat);
-    }
-
     public BoatAdapter(List<Boat> values, Context context, OnBoatClickListener listener) {
         inflater = LayoutInflater.from(context);
         this.values = values;
@@ -47,6 +43,9 @@ public class BoatAdapter extends RecyclerView.Adapter<BoatAdapter.BoatViewHolder
         holder.bindData(values.get(position));
     }
 
+    public interface OnBoatClickListener {
+        void onBoatClick(Boat boat);
+    }
 
     public class BoatViewHolder extends RecyclerView.ViewHolder {
         // Atributes declaration
