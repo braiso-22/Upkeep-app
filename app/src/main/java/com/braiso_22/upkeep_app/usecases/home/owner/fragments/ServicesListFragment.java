@@ -32,7 +32,7 @@ public class ServicesListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recycler = this.getView().findViewById(R.id.serviceRecyclerView);
+        RecyclerView recycler = this.getView().findViewById(R.id.servicesRecyclerView);
 
         ViewModel vm = new ViewModel(this.getActivity().getApplication());
         vm.getAllServices().observe(this.getActivity(), services -> {
