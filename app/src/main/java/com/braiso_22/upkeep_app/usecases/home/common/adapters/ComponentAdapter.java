@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Component;
 
@@ -33,6 +36,7 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.Comp
     public int getItemCount() {
         return values.size();
     }
+
     // OnCreateViewHolder with inflater and parent
     @Override
     public ComponentAdapter.ComponentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -53,6 +57,9 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.Comp
 
     // Inner Class ComponentViewHolder
     public class ComponentViewHolder extends RecyclerView.ViewHolder {
+        // TextViews for id , name, brand, model, serialNumber, observation, code
+        TextView id, name, brand, model, serialNumber, observation, code;
+
         // Component
         private Component component;
 
@@ -60,17 +67,30 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.Comp
         // Constructor with view
         public ComponentViewHolder(View view) {
             super(view);
+            id = view.findViewById(R.id.componentIdText);
+            name = view.findViewById(R.id.componentNameText);
+            brand = view.findViewById(R.id.componentBrandText);
+            model = view.findViewById(R.id.componentModelText);
+            serialNumber = view.findViewById(R.id.componentSerialNumberText);
+            observation = view.findViewById(R.id.componentObservationsText);
+            code = view.findViewById(R.id.componentCodeText);
         }
 
         // BindData with component
         public void bindData(Component component) {
             this.component = component;
-
+            id.setText(String.valueOf(component.getId()));
+            name.setText(component.getName());
+            brand.setText(component.getBrand());
+            model.setText(component.getModel());
+            serialNumber.setText(component.getSerialNumber());
+            observation.setText(component.getObservations());
+            code.setText(component.getCode());
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" +  ""+ "'";
+            return super.toString() + " '" + name.getText() + "'";
         }
     }
 

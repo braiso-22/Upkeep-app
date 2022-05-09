@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Service;
+import com.braiso_22.upkeep_app.usecases.home.common.fragments.ComponentListFragment;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.ServiceAdapter;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
@@ -38,12 +39,19 @@ public class ServicesListFragment extends Fragment {
             recycler.setAdapter(new ServiceAdapter(services, this.getActivity(), new ServiceAdapter.OnServiceClickListener() {
                 @Override
                 public void onServiceClick(Service service) {
-
+                    goToComponentList(service);
                 }
             }));
         });
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
+
+    public void goToComponentList(Service service) {
+        ComponentListFragment fragment = new ComponentListFragment();
+        this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
+
+    }
+
 
 }
