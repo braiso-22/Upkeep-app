@@ -86,6 +86,12 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.Comp
             serialNumber.setText(component.getSerialNumber());
             observation.setText(component.getObservations());
             code.setText(component.getCode());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onComponentClick(component);
+                }
+            });
         }
 
         @Override

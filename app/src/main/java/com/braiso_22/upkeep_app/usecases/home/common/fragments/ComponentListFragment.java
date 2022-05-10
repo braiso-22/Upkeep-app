@@ -1,12 +1,16 @@
 package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Component;
 import com.braiso_22.upkeep_app.model.vo.Service;
@@ -37,12 +41,17 @@ public class ComponentListFragment extends Fragment {
             recycler.setAdapter(new ComponentAdapter(components, this.getActivity(), new ComponentAdapter.OnComponentClickListener() {
                 @Override
                 public void onComponentClick(Component component) {
-
+                    goToUpkeepList(component);
                 }
             }));
         });
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+    }
+
+    public void goToUpkeepList(Component component) {
+        UpkeepListFragment upkeepListFragment = new UpkeepListFragment();
+        this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, upkeepListFragment).addToBackStack(null).commit();
     }
 
 }
