@@ -9,6 +9,7 @@
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_owner_home.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_splash.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/boat_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/component_item.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fleet_item.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/flotas_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_boat_list.xml" value="0.36666666666666664" />
@@ -16,7 +17,9 @@
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_fleets.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_fleets_list.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_services_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_upkeep_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/service_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/upkeep_item.xml" value="0.25" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/menu/bottom_menu_owner.xml" value="0.36666666666666664" />
       </map>
     </option>
