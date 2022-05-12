@@ -15,6 +15,8 @@ public class Task {
     @NotNull
     private int length;
     @NotNull
+    private String name;
+    @NotNull
     private String description;
 
     @NotNull
@@ -23,18 +25,22 @@ public class Task {
     private int operator;
 
     @Ignore
-    public Task(){}
+    public Task() {
+    }
+
     @Ignore
-    public Task(int id, @NotNull int length, @NotNull String description, @NotNull int upkeep, @NotNull int operator) {
+    public Task(int id, @NotNull int length, @NotNull String name, @NotNull String description, @NotNull int upkeep, @NotNull int operator) {
         this.id = id;
         this.length = length;
+        this.name = name;
         this.description = description;
         this.upkeep = upkeep;
         this.operator = operator;
     }
 
-    public Task(@NotNull int length, @NotNull String description, @NotNull int upkeep, @NotNull int operator) {
+    public Task(@NotNull int length, @NotNull String name, @NotNull String description, @NotNull int upkeep, @NotNull int operator) {
         this.length = length;
+        this.name = name;
         this.description = description;
         this.upkeep = upkeep;
         this.operator = operator;
@@ -48,9 +54,18 @@ public class Task {
         return id;
     }
 
-    public void setLength(int length){
-        this.length=length;
+    public String getName() {
+        return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
     public int getLength() {
         return length;
     }

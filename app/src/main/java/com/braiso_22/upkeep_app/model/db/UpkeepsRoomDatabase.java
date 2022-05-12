@@ -54,7 +54,7 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
             synchronized (UpkeepsRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            UpkeepsRoomDatabase.class, "upkeeps_database")
+                                    UpkeepsRoomDatabase.class, "upkeeps_database")
                             .addCallback(roomDatabaseCallback)
                             .build();
                 }
@@ -62,6 +62,7 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
     private static RoomDatabase.Callback roomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -74,7 +75,7 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 OwnerDao ownerDao = INSTANCE.ownerDao();
                 ownerDao.deleteAll();
 
-                Owner owner = new Owner("brais","1", "54157611V","Brais","Fernandez","braisfv22@gmail.com");
+                Owner owner = new Owner("brais", "1", "54157611V", "Brais", "Fernandez", "braisfv22@gmail.com");
                 ownerDao.insert(owner);
 
                 // Fleet
@@ -95,14 +96,14 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 ServiceDao serviceDao = INSTANCE.serviceDao();
                 serviceDao.deleteAll();
 
-                Service service = new Service("123", "motores",1);
+                Service service = new Service("123", "motores", 1);
                 serviceDao.insert(service);
 
                 // Manager
                 ManagerDao managerDao = INSTANCE.managerDao();
                 managerDao.deleteAll();
 
-                Manager manager = new Manager("adrian","1","54157612F","Adrian","Fernadez", "adrianfv07@gmail.com", 1);
+                Manager manager = new Manager("adrian", "1", "54157612F", "Adrian", "Fernadez", "adrianfv07@gmail.com", 1);
                 managerDao.insert(manager);
 
                 // Component
@@ -124,15 +125,15 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 OperatorDao operatorDao = INSTANCE.operatorDao();
                 operatorDao.deleteAll();
 
-                Operator operator = new Operator("brais1","1", "54347643K", "Brais",
-                        "Fernandez", "braisfv22@gmail.com",1);
+                Operator operator = new Operator("brais1", "1", "54347643K", "Brais",
+                        "Fernandez", "braisfv22@gmail.com", 1);
                 operatorDao.insert(operator);
 
                 // Task
                 TaskDao taskDao = INSTANCE.taskDao();
                 taskDao.deleteAll();
 
-                Task task = new Task(20, "Cambio de gomas", 1, 1);
+                Task task = new Task(20, "Cambio de gomas", "Se cambiaron las antiguas gomas porque estaban gastadas y era peligroso", 1, 1);
                 taskDao.insert(task);
 
                 // Store
