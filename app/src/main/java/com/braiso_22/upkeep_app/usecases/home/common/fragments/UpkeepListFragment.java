@@ -35,7 +35,7 @@ public class UpkeepListFragment extends Fragment {
 
         ViewModel viewModel = new ViewModel(getActivity().getApplication());
         viewModel.getAllUpkeeps().observe(this.getActivity(), upkeeps -> {
-            recyclerView.setAdapter(new UpkeepAdapter(upkeeps,this.getActivity() ,new UpkeepAdapter.OnUpkeepClickListener() {
+            recyclerView.setAdapter(new UpkeepAdapter(upkeeps, this.getActivity(), new UpkeepAdapter.OnUpkeepClickListener() {
                 @Override
                 public void onUpkeepClick(Upkeep upkeep) {
                     goToTaskList(upkeep);
@@ -45,8 +45,9 @@ public class UpkeepListFragment extends Fragment {
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
+
     public void goToTaskList(Upkeep upkeep) {
-        //TaskListFragment taskListFragment = new TaskListFragment();
-        //this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, taskListFragment).commit();
+        TaskListFragment taskListFragment = new TaskListFragment();
+        this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, taskListFragment).commit();
     }
 }
