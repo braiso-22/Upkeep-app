@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/storeIdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Id"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/storeCodeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="Código"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/storeNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:text="Nombre"
+            app:layout_constraintBottom_toBottomOf="@+id/storeIdText"
+            app:layout_constraintStart_toEndOf="@+id/storeIdText"
+            app:layout_constraintTop_toTopOf="@+id/storeIdText" />
+
+        <TextView
+            android:id="@+id/storeBrandText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Marca"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/storeNameText"
+            app:layout_constraintStart_toEndOf="@+id/storeNameText"
+            app:layout_constraintTop_toTopOf="@+id/storeNameText" />
+
+        <TextView
+            android:id="@+id/storeModelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Modelo"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/storeBrandText"
+            app:layout_constraintStart_toEndOf="@+id/storeBrandText"
+            app:layout_constraintTop_toTopOf="@+id/storeBrandText" />
+
+        <TextView
+            android:id="@+id/storeSerialNumberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Numero Serie"
+            app:layout_constraintStart_toStartOf="@+id/storeIdText"
+            app:layout_constraintTop_toBottomOf="@+id/storeNameText" />
+
+        <TextView
+            android:id="@+id/storeObservationsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Observaciones"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/storeIdText"
+            app:layout_constraintTop_toBottomOf="@+id/storeSerialNumberText"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/storeNumStockText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="numStock"
+            app:layout_constraintStart_toEndOf="@+id/storeSerialNumberText"
+            app:layout_constraintTop_toTopOf="@+id/storeSerialNumberText" />
+
+        <TextView
+            android:id="@+id/storeMinStockText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="min Stock"
+            app:layout_constraintStart_toEndOf="@+id/storeNumStockText"
+            app:layout_constraintTop_toTopOf="@+id/storeNumStockText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
