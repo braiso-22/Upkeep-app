@@ -60,6 +60,7 @@ public class Store {
         this.observations = observations;
         this.numStock = numStock;
         this.minStock = minStock;
+        this.task = task;
     }
 
     public void setId(int id) {
