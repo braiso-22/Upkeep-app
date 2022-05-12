@@ -63,7 +63,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         private Task task;
 
         // Constructor
-        public TaskViewHolder(final android.view.View itemView) {
+        public TaskViewHolder(View itemView) {
             super(itemView);
             taskId = itemView.findViewById(R.id.taskIdText);
             taskName = itemView.findViewById(R.id.taskNameText);
@@ -72,7 +72,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         }
 
         // BindData method
-        public void bindData(final Task task) {
+        public void bindData(Task task) {
             this.task = task;
             taskId.setText(String.valueOf(task.getId()));
             taskName.setText(task.getName());

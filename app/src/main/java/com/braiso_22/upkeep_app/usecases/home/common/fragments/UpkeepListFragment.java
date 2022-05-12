@@ -48,6 +48,6 @@ public class UpkeepListFragment extends Fragment {
 
     public void goToTaskList(Upkeep upkeep) {
         TaskListFragment taskListFragment = new TaskListFragment();
-        this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, taskListFragment).commit();
+        this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, taskListFragment).addToBackStack(null).commit();
     }
 }

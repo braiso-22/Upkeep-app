@@ -15,7 +15,7 @@ import java.util.List;
 
 public class UpkeepAdapter extends RecyclerView.Adapter<UpkeepAdapter.UpkeepViewHolder> {
 
-    private List<Upkeep> values;
+    private final List<Upkeep> values;
     private LayoutInflater inflater;
     private final Context context;
     private OnUpkeepClickListener listener;
