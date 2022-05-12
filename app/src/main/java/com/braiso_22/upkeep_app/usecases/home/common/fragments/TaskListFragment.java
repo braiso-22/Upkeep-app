@@ -40,10 +40,15 @@ public class TaskListFragment extends Fragment {
             recyclerView.setAdapter(new TaskAdapter(tasks, this.getActivity(), new TaskAdapter.OnTaskClickListener() {
                 @Override
                 public void onTaskClick(Task task) {
-                    // Go to store
+                    goToStore(task);
                 }
             }));
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+    }
+
+    public void goToStore(Task task) {
+           StoreListFragment storeListFragment = new StoreListFragment();
+           this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, storeListFragment).addToBackStack(null).commit();
     }
 }
