@@ -44,10 +44,10 @@
                 android:text="Trabajas para un armador?"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
+                app:layout_constraintTop_toBottomOf="@+id/onBoardingOwnerButton" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/onBoardingOwnerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/onBoardingEmployeeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -74,10 +74,10 @@
                 android:text="Modo prueba"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button3" />
+                app:layout_constraintTop_toBottomOf="@+id/onBoardingEmployeeButton" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/onBoardingAdminButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
