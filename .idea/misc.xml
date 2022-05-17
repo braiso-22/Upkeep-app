@@ -4,8 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/ic_baseline_build_24.xml" value="0.2195" />
-        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_login.xml" value="0.1765625" />
-        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_on_boarding.xml" value="0.1765625" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_login.xml" value="0.15" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_on_boarding.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_owner_home.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_splash.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/boat_item.xml" value="0.36666666666666664" />
@@ -13,13 +13,16 @@
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fleet_item.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/flotas_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_boat_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_component_list.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_fleet.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_fleets.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_fleets_list.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_services_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_store_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_task_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fragment_upkeep_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/service_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/store_item.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/task_item.xml" value="0.25" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/upkeep_item.xml" value="0.25" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/menu/bottom_menu_owner.xml" value="0.36666666666666664" />
@@ -31,5 +34,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.15" />
+      </ProjectState>
+    </option>
   </component>
 </project>
