@@ -18,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/crud_options_menu"
+        app:title="@string/boats"
         />
 
     <androidx.recyclerview.widget.RecyclerView
