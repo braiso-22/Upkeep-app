@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Upkeep-app</string>
+    <string name="fleets">Flotas</string>
+    <string name="boats">Barcos</string>
+    <string name="services">Servicios</string>
+    <string name="components">Componentes</string>
+    <string name="upkeeps">Mantenimientos</string>
+    <string name="tasks">Tareas</string>
+    <string name="stores">Recambios</string>
+    <string name="users">Usuarios</string>
+    <string name="profile">Perfil</string>
+    <string name="views">Vistas</string>
+
+</resources>

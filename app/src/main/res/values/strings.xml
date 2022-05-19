@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Upkeep-app</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fleets">Fleets</string>
+    <string name="boats">Boats</string>
+    <string name="services">Services</string>
+    <string name="components">Components</string>
+    <string name="upkeeps">Upkeeps</string>
+    <string name="tasks">Tasks</string>
+    <string name="stores">Stores</string>
+    <string name="users">Users</string>
+    <string name="profile">Profile</string>
+    <string name="views">Views</string>
 </resources>
