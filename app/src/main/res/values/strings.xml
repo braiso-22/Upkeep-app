@@ -10,4 +10,8 @@
     <string name="users">Users</string>
     <string name="profile">Profile</string>
     <string name="views">Views</string>
+    <string name="create">Create</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="delete_all">Delete all</string>
 </resources>

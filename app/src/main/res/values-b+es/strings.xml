@@ -11,5 +11,8 @@
     <string name="users">Usuarios</string>
     <string name="profile">Perfil</string>
     <string name="views">Vistas</string>
-
+    <string name="create">Crear</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="delete_all">Eliminar todo</string>
 </resources>
