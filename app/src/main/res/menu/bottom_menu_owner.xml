@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/actual_table"
           android:title="temp"
-          android:icon="@drawable/ic_baseline_build_24" />
+          android:icon="@drawable/ic_baseline_directions_boat_24" />
     <item android:id="@+id/users"
           android:title="users"
           android:icon="@drawable/ic_baseline_supervised_user_circle_24" />
