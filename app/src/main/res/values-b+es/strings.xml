@@ -15,4 +15,5 @@
     <string name="edit">Editar</string>
     <string name="delete">Eliminar</string>
     <string name="delete_all">Eliminar todo</string>
+    <string name="change_user_type">Cambiar tipo de usuario</string>
 </resources>
