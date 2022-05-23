@@ -1,5 +1,6 @@
 package com.braiso_22.upkeep_app.usecases.home.owner.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Fleet;
+import com.braiso_22.upkeep_app.usecases.creation.FleetCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.FleetAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -48,7 +50,8 @@ public class FleetsListFragment extends Fragment {
         }, new CRUDToolbarMenu.CreateMethod(){
             @Override
             public void create() {
-
+                Intent intent = new Intent(getActivity(), FleetCreationActivity.class);
+                startActivity(intent);
             }
         });
     }
