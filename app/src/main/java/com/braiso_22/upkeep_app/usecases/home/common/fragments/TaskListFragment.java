@@ -2,6 +2,7 @@ package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Task;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.TaskAdapter;
+import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class TaskListFragment extends Fragment {
@@ -38,6 +40,18 @@ public class TaskListFragment extends Fragment {
         vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recyclerView = view.findViewById(R.id.tasksRecyclerView);
         inflateRecycler(recyclerView);
+        Toolbar toolbar = view.findViewById(R.id.taskToolbar);
+        CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
+            @Override
+            public void delete() {
+                vm.deleteAllTasks();
+            }
+        }, new CRUDToolbarMenu.CreateMethod() {
+            @Override
+            public void create() {
+
+            }
+        });
     }
 
     /**

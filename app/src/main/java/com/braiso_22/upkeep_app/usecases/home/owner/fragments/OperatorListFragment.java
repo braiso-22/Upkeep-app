@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.UserAdapter;
+import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 import java.util.ArrayList;
@@ -41,7 +43,18 @@ public class OperatorListFragment extends Fragment {
         vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.operatorRecyclerView);
         inflateRecycler(recycler);
+        Toolbar toolbar = this.getParentFragment().getView().findViewById(R.id.usersToolbar);
+        CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
+            @Override
+            public void delete() {
+                vm.deleteAllOperators();
+            }
+        }, new CRUDToolbarMenu.CreateMethod(){
+            @Override
+            public void create() {
 
+            }
+        });
     }
 
     private void inflateRecycler(RecyclerView recycler) {

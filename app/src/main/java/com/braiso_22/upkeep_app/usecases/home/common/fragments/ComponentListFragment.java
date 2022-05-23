@@ -2,6 +2,7 @@ package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.braiso_22.upkeep_app.model.vo.Component;
 import com.braiso_22.upkeep_app.model.vo.Service;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.ComponentAdapter;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.ServiceAdapter;
+import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class ComponentListFragment extends Fragment {
@@ -37,6 +39,18 @@ public class ComponentListFragment extends Fragment {
         vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.componentRecyclerView);
         inflateRecycler(recycler);
+        Toolbar toolbar = this.getView().findViewById(R.id.componentToolbar);
+        CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
+            @Override
+            public void delete() {
+                vm.deleteAllComponents();
+            }
+        }, new CRUDToolbarMenu.CreateMethod(){
+            @Override
+            public void create() {
+
+            }
+        });
     }
 /**
  *  Get components from database with live data and set it to the recycler view

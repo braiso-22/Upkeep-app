@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Service;
 import com.braiso_22.upkeep_app.usecases.home.common.fragments.ComponentListFragment;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.ServiceAdapter;
+import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class ServicesListFragment extends Fragment {
@@ -36,6 +38,18 @@ public class ServicesListFragment extends Fragment {
         vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.servicesRecyclerView);
         inflateRecycler(recycler);
+        Toolbar toolbar = this.getView().findViewById(R.id.serviceToolbar);
+        CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
+            @Override
+            public void delete() {
+                vm.deleteAllServices();
+            }
+        }, new CRUDToolbarMenu.CreateMethod(){
+            @Override
+            public void create() {
+
+            }
+        });
     }
 
     private void inflateRecycler(RecyclerView recycler) {

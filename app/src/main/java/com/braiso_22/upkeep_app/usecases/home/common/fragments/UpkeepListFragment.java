@@ -2,6 +2,7 @@ package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Upkeep;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.UpkeepAdapter;
+import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class UpkeepListFragment extends Fragment {
@@ -35,6 +37,18 @@ public class UpkeepListFragment extends Fragment {
         vm = new ViewModel(getActivity().getApplication());
         RecyclerView recyclerView = view.findViewById(R.id.upkeepsRecyclerView);
         inflateRecycler(recyclerView);
+        Toolbar toolbar = view.findViewById(R.id.upkeepsToolbar);
+        CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
+            @Override
+            public void delete() {
+                vm.deleteAllUpkeeps();
+            }
+        }, new CRUDToolbarMenu.CreateMethod() {
+            @Override
+            public void create() {
+
+            }
+        });
     }
 
     /**

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.BoatAdapter;
+import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class BoatsListFragment extends Fragment {
@@ -35,6 +37,18 @@ public class BoatsListFragment extends Fragment {
         vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.boatsRecyclerView);
         inflateRecycler(recycler);
+        Toolbar toolbar = this.getView().findViewById(R.id.boatToolbar);
+        CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
+            @Override
+            public void delete() {
+                vm.deleteAllBoats();
+            }
+        }, new CRUDToolbarMenu.CreateMethod(){
+            @Override
+            public void create() {
+
+            }
+        });
     }
 
     private void inflateRecycler(RecyclerView recycler) {

@@ -11,6 +11,7 @@
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_owner_home.xml" value="0.2" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_splash.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/boat_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/change_user_toggle.xml" value="0.19718309859154928" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/component_item.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/fleet_item.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/flotas_fragment.xml" value="0.36666666666666664" />
@@ -36,7 +37,7 @@
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/user_item.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/menu/bottom_menu_owner.xml" value="0.2804232804232804" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/menu/crud_options_menu.xml" value="0.2864864864864865" />
-        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/menu/top_users_list_option_menu.xml" value="0.1" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/menu/top_users_list_option_menu.xml" value="0.33" />
       </map>
     </option>
   </component>

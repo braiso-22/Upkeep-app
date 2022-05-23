@@ -42,7 +42,6 @@ public class OwnerHomeActivity extends AppCompatActivity implements  NavigationB
                 ft2.commit();
                 break;
         }
-
         return true;
     }
 

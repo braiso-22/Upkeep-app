@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Fleet;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.FleetAdapter;
+import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class FleetsListFragment extends Fragment {
@@ -36,16 +37,19 @@ public class FleetsListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.fleetsRecyclerView);
-
         inflateRecycler(recycler);
-        Toolbar toolbar = (Toolbar) this.getView().findViewById(R.id.fleetsToolbar);
-        toolbar.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.deleteAllOption:
-                    vm.deleteAllFleets();
-                    break;
+
+        Toolbar toolbar = this.getView().findViewById(R.id.fleetsToolbar);
+        CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
+            @Override
+            public void delete() {
+                vm.deleteAllFleets();
             }
-            return true;
+        }, new CRUDToolbarMenu.CreateMethod(){
+            @Override
+            public void create() {
+
+            }
         });
     }
 
@@ -76,4 +80,6 @@ public class FleetsListFragment extends Fragment {
         //fragment.setFleet(fleet);
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
     }
+
+
 }
