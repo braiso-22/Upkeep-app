@@ -4,29 +4,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
-import com.braiso_22.upkeep_app.model.vo.users.User;
-import com.braiso_22.upkeep_app.usecases.home.owner.adapters.UserAdapter;
-import com.braiso_22.upkeep_app.viewmodel.ViewModel;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-
 public class UsersListFragment extends Fragment {
 
     public UsersListFragment() {
@@ -43,7 +29,22 @@ public class UsersListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        SwitchCompat switchCompat = view.findViewById(R.id.switch1);
+        FragmentManager manager = this.getChildFragmentManager();
+
+        switchCompat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean operatorChecked = ((SwitchCompat) v).isChecked();
+                FragmentTransaction ft = manager.beginTransaction();
+
+                Fragment fragment = operatorChecked ?
+                        new OperatorListFragment() : new ManagerListFragment();
+
+                ft.replace(R.id.usersListFragmentContainer, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
-
-
 }
