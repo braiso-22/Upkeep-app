@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.braiso_22.upkeep_app.R;
 
-public class FleetCreation extends AppCompatActivity {
+public class FleetCreationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

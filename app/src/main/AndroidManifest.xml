@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Upkeepapp">
         <activity
+            android:name=".usecases.creation.FleetCreationActivity"
+            android:exported="false" />
+        <activity
             android:name=".usecases.home.owner.OwnerHomeActivity"
             android:exported="false" />
         <activity
