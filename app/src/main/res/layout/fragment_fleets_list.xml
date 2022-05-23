@@ -7,7 +7,7 @@
     tools:context=".usecases.home.owner.fragments.FleetsListFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/fleetToolbar"
+        android:id="@+id/fleetsToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -27,6 +27,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fleetToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/fleetsToolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
