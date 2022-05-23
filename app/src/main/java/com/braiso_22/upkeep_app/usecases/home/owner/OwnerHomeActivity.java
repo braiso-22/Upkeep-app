@@ -34,12 +34,12 @@ public class OwnerHomeActivity extends AppCompatActivity implements  NavigationB
             case R.id.users:
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragmentContainerView, new UsersListFragment());
-                ft.addToBackStack(null).commit();
+                ft.commit();
                 break;
             case R.id.actual_table:
                 FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
                 ft2.replace(R.id.fragmentContainerView, new FleetsListFragment());
-                ft2.addToBackStack(null).commit();
+                ft2.commit();
                 break;
         }
 
