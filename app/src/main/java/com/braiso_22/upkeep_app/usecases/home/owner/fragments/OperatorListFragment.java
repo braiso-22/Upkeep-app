@@ -20,11 +20,6 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link OperatorListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class OperatorListFragment extends Fragment {
     // constructor
     public OperatorListFragment() {
