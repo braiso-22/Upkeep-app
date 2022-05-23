@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerListFragment extends Fragment {
-
+    ViewModel vm;
     // constructor
     public ManagerListFragment() {
         // Required empty public constructor
@@ -37,8 +37,13 @@ public class ManagerListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.managerRecyclerView);
-        ViewModel vm = new ViewModel(this.getActivity().getApplication());
+        inflateRecycler(recycler);
+
+
+    }
+    private void inflateRecycler(RecyclerView recycler) {
         vm.getAllManagers().observe(this.getActivity(), managers -> {
             List<User> users = new ArrayList<>(managers);
             recycler.setAdapter(new UserAdapter(users, this.getActivity(), new UserAdapter.OnUserClickListener() {

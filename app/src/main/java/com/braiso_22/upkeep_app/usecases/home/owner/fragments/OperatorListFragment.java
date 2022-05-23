@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OperatorListFragment extends Fragment {
+    ViewModel vm;
+
     // constructor
     public OperatorListFragment() {
         // Required empty public constructor
@@ -36,8 +38,13 @@ public class OperatorListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.operatorRecyclerView);
-        ViewModel vm = new ViewModel(this.getActivity().getApplication());
+        inflateRecycler(recycler);
+
+    }
+
+    private void inflateRecycler(RecyclerView recycler) {
         vm.getAllOperators().observe(this.getActivity(), operators -> {
             List<User> users = new ArrayList<>(operators);
             recycler.setAdapter(new UserAdapter(users, this.getActivity(), new UserAdapter.OnUserClickListener() {
