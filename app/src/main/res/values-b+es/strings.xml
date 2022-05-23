@@ -16,4 +16,7 @@
     <string name="delete">Eliminar</string>
     <string name="delete_all">Eliminar todo</string>
     <string name="change_user_type">Cambiar tipo de usuario</string>
+    <string name="name">Nombre</string>
+    <string name="owner">Propietario</string>
+    <string name="wrong_data">Datos incorrectos</string>
 </resources>

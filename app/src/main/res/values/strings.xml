@@ -15,4 +15,7 @@
     <string name="delete">Delete</string>
     <string name="delete_all">Delete all</string>
     <string name="change_user_type">Change user type</string>
+    <string name="name">Name</string>
+    <string name="owner">Owner</string>
+    <string name="wrong_data">Wrong data</string>
 </resources>
