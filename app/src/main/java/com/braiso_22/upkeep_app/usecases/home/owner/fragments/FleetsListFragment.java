@@ -48,9 +48,12 @@ public class FleetsListFragment extends Fragment {
             return true;
         });
     }
+
     /**
      * Get fleets from database with live data and set it to the recycler view
-     * */
+     *
+     * @param recycler
+     */
     private void inflateRecycler(RecyclerView recycler) {
 
         vm.getAllFleets().observe(this.getActivity(), fleets -> {
@@ -64,9 +67,10 @@ public class FleetsListFragment extends Fragment {
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
+
     /**
      * Change to the BoatListFragment
-     * */
+     */
     private void goToBoatList(Fleet fleet) {
         BoatsListFragment fragment = new BoatsListFragment();
         //fragment.setFleet(fleet);

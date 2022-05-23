@@ -19,6 +19,8 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 
 public class StoreListFragment extends Fragment {
+    ViewModel vm;
+
     // Empty Constructor
     public StoreListFragment() {
     }
@@ -33,11 +35,19 @@ public class StoreListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.storeRecyclerView);
+        inflateRecycler(recycler);
+    }
 
-        ViewModel vm = new ViewModel(this.getActivity().getApplication());
+    /**
+     * Get stores from database with live data and set it to the recycler view
+     *
+     * @param recycler
+     */
+    private void inflateRecycler(RecyclerView recycler) {
         vm.getAllStores().observe(this.getActivity(), stores -> {
-            recycler.setAdapter(new StoreAdapter( this.getActivity(),stores, new StoreAdapter.OnStoreClickListener() {
+            recycler.setAdapter(new StoreAdapter(this.getActivity(), stores, new StoreAdapter.OnStoreClickListener() {
                 @Override
                 public void onStoreClick(Store store) {
 

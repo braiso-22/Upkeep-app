@@ -19,6 +19,7 @@ import com.braiso_22.upkeep_app.usecases.home.owner.adapters.ServiceAdapter;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class ServicesListFragment extends Fragment {
+    ViewModel vm;
 
     public ServicesListFragment() {
         // Required empty public constructor
@@ -32,9 +33,12 @@ public class ServicesListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.servicesRecyclerView);
+        inflateRecycler(recycler);
+    }
 
-        ViewModel vm = new ViewModel(this.getActivity().getApplication());
+    private void inflateRecycler(RecyclerView recycler) {
         vm.getAllServices().observe(this.getActivity(), services -> {
             recycler.setAdapter(new ServiceAdapter(services, this.getActivity(), new ServiceAdapter.OnServiceClickListener() {
                 @Override

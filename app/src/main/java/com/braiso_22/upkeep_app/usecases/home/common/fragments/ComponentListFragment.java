@@ -19,7 +19,7 @@ import com.braiso_22.upkeep_app.usecases.home.owner.adapters.ServiceAdapter;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class ComponentListFragment extends Fragment {
-
+    ViewModel vm;
     // Empty Constructor
     public ComponentListFragment() {
     }
@@ -34,9 +34,15 @@ public class ComponentListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.componentRecyclerView);
-
-        ViewModel vm = new ViewModel(this.getActivity().getApplication());
+        inflateRecycler(recycler);
+    }
+/**
+ *  Get components from database with live data and set it to the recycler view
+ * @param recycler
+ * */
+    private void inflateRecycler(RecyclerView recycler) {
         vm.getAllComponents().observe(this.getActivity(), components -> {
             recycler.setAdapter(new ComponentAdapter(components, this.getActivity(), new ComponentAdapter.OnComponentClickListener() {
                 @Override

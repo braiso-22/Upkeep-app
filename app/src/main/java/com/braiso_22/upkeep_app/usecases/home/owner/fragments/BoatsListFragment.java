@@ -18,6 +18,7 @@ import com.braiso_22.upkeep_app.usecases.home.owner.adapters.BoatAdapter;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class BoatsListFragment extends Fragment {
+    ViewModel vm;
 
     public BoatsListFragment() {
         // Required empty public constructor
@@ -31,9 +32,12 @@ public class BoatsListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recycler = this.getView().findViewById(R.id.boatsRecyclerView);
+        inflateRecycler(recycler);
+    }
 
-        ViewModel vm = new ViewModel(this.getActivity().getApplication());
+    private void inflateRecycler(RecyclerView recycler) {
         vm.getAllBoats().observe(this.getActivity(), boats -> {
             recycler.setAdapter(new BoatAdapter(boats, this.getActivity(), new BoatAdapter.OnBoatClickListener() {
                 @Override
@@ -45,8 +49,9 @@ public class BoatsListFragment extends Fragment {
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
+
     // method to change the fragment to services list fragment
-    public void goToServicesList(Boat boat){
+    public void goToServicesList(Boat boat) {
         ServicesListFragment fragment = new ServicesListFragment();
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
     }

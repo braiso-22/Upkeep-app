@@ -17,6 +17,8 @@ import com.braiso_22.upkeep_app.usecases.home.common.adapters.TaskAdapter;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class TaskListFragment extends Fragment {
+    ViewModel vm;
+
     // Constructor
     public TaskListFragment() {
         // Required empty public constructor
@@ -33,10 +35,18 @@ public class TaskListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        vm = new ViewModel(this.getActivity().getApplication());
         RecyclerView recyclerView = view.findViewById(R.id.tasksRecyclerView);
+        inflateRecycler(recyclerView);
+    }
 
-        ViewModel viewModel = new ViewModel(this.getActivity().getApplication());
-        viewModel.getAllTasks().observe(this.getActivity(), tasks -> {
+    /**
+     * Get tasks from database with live data and set it to the recycler view
+     *
+     * @param recyclerView
+     */
+    private void inflateRecycler(RecyclerView recyclerView) {
+        vm.getAllTasks().observe(this.getActivity(), tasks -> {
             recyclerView.setAdapter(new TaskAdapter(tasks, this.getActivity(), new TaskAdapter.OnTaskClickListener() {
                 @Override
                 public void onTaskClick(Task task) {
@@ -47,8 +57,8 @@ public class TaskListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
 
-    public void goToStore(Task task) {
-           StoreListFragment storeListFragment = new StoreListFragment();
-           this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, storeListFragment).addToBackStack(null).commit();
+    private void goToStore(Task task) {
+        StoreListFragment storeListFragment = new StoreListFragment();
+        this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, storeListFragment).addToBackStack(null).commit();
     }
 }

@@ -16,6 +16,7 @@ import com.braiso_22.upkeep_app.usecases.home.common.adapters.UpkeepAdapter;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class UpkeepListFragment extends Fragment {
+    ViewModel vm;
 
     public UpkeepListFragment() {
         // Required empty public constructor
@@ -31,10 +32,18 @@ public class UpkeepListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        vm = new ViewModel(getActivity().getApplication());
         RecyclerView recyclerView = view.findViewById(R.id.upkeepsRecyclerView);
+        inflateRecycler(recyclerView);
+    }
 
-        ViewModel viewModel = new ViewModel(getActivity().getApplication());
-        viewModel.getAllUpkeeps().observe(this.getActivity(), upkeeps -> {
+    /**
+     * Get tasks from database with live data and set it to the recycler view
+     *
+     * @param recyclerView
+     */
+    private void inflateRecycler(RecyclerView recyclerView) {
+        vm.getAllUpkeeps().observe(this.getActivity(), upkeeps -> {
             recyclerView.setAdapter(new UpkeepAdapter(upkeeps, this.getActivity(), new UpkeepAdapter.OnUpkeepClickListener() {
                 @Override
                 public void onUpkeepClick(Upkeep upkeep) {
