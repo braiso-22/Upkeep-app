@@ -1,5 +1,6 @@
 package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Component;
 import com.braiso_22.upkeep_app.model.vo.Service;
+import com.braiso_22.upkeep_app.usecases.creation.ComponentCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.ComponentAdapter;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.ServiceAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
@@ -48,7 +50,8 @@ public class ComponentListFragment extends Fragment {
         }, new CRUDToolbarMenu.CreateMethod(){
             @Override
             public void create() {
-
+                Intent intent = new Intent(getActivity(), ComponentCreationActivity.class);
+                startActivity(intent);
             }
         });
     }

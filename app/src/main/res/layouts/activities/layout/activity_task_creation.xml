@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".usecases.creation.TaskCreationActivity">
+
+    <EditText
+        android:id="@+id/taskLengthEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="@string/length"/>
+
+    <EditText
+        android:id="@+id/taskNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="@string/name"
+        app:layout_constraintEnd_toEndOf="@+id/taskLengthEditText"
+        app:layout_constraintStart_toStartOf="@+id/taskLengthEditText"
+        app:layout_constraintTop_toBottomOf="@+id/taskLengthEditText" />
+
+    <EditText
+        android:id="@+id/taskDescriptionEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/description"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="@+id/taskNameEditText"
+        app:layout_constraintStart_toStartOf="@+id/taskNameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/taskNameEditText" />
+
+    <EditText
+        android:id="@+id/taskUpkeepEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:hint="@string/upkeep"
+        app:layout_constraintEnd_toEndOf="@+id/taskDescriptionEditText"
+        app:layout_constraintStart_toStartOf="@+id/taskDescriptionEditText"
+        app:layout_constraintTop_toBottomOf="@+id/taskDescriptionEditText" />
+
+    <EditText
+        android:id="@+id/taskOperatorEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/operator"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="@+id/taskUpkeepEditText"
+        app:layout_constraintStart_toStartOf="@+id/taskUpkeepEditText"
+        app:layout_constraintTop_toBottomOf="@+id/taskUpkeepEditText" />
+
+    <Button
+        android:id="@+id/cancelTaskCreationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@android:string/cancel"
+        app:layout_constraintEnd_toStartOf="@+id/createTaskCreationButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskOperatorEditText" />
+
+    <Button
+        android:id="@+id/createTaskCreationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cancelTaskCreationButton"
+        app:layout_constraintTop_toTopOf="@+id/cancelTaskCreationButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

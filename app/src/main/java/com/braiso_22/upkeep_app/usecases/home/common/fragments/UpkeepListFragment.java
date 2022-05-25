@@ -1,5 +1,6 @@
 package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Upkeep;
+import com.braiso_22.upkeep_app.usecases.creation.UpkeepCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.UpkeepAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -46,7 +48,8 @@ public class UpkeepListFragment extends Fragment {
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override
             public void create() {
-
+                Intent intent = new Intent(getActivity(), UpkeepCreationActivity.class);
+                startActivity(intent);
             }
         });
     }

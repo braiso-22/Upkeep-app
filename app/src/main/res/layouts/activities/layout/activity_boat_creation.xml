@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".usecases.creation.BoatCreationActivity">
+
+    <EditText
+        android:id="@+id/boatCodeEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="@string/code"/>
+
+    <EditText
+        android:id="@+id/boatNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/boatCodeEditText"
+        app:layout_constraintStart_toStartOf="@+id/boatCodeEditText"
+        app:layout_constraintTop_toBottomOf="@+id/boatCodeEditText"
+        android:hint="@string/name"/>
+
+    <EditText
+        android:id="@+id/boatRegistrationEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/registration"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="@+id/boatNameEditText"
+        app:layout_constraintStart_toStartOf="@+id/boatNameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/boatNameEditText" />
+
+    <EditText
+        android:id="@+id/boatFleetEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/fleet"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/boatRegistrationEditText"
+        app:layout_constraintStart_toStartOf="@+id/boatRegistrationEditText"
+        app:layout_constraintTop_toBottomOf="@+id/boatRegistrationEditText" />
+
+    <Button
+        android:id="@+id/cancelBoatCreationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@android:string/cancel"
+        app:layout_constraintEnd_toStartOf="@+id/createBoatCreationButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boatFleetEditText" />
+
+    <Button
+        android:id="@+id/createBoatCreationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="@string/create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cancelBoatCreationButton"
+        app:layout_constraintTop_toTopOf="@+id/cancelBoatCreationButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

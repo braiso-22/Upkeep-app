@@ -1,5 +1,6 @@
 package com.braiso_22.upkeep_app.usecases.home.owner.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Service;
+import com.braiso_22.upkeep_app.usecases.creation.ServiceCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.fragments.ComponentListFragment;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.ServiceAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
@@ -47,7 +49,8 @@ public class ServicesListFragment extends Fragment {
         }, new CRUDToolbarMenu.CreateMethod(){
             @Override
             public void create() {
-
+                Intent intent = new Intent(getActivity(), ServiceCreationActivity.class);
+                startActivity(intent);
             }
         });
     }

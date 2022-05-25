@@ -8,49 +8,51 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.braiso_22.upkeep_app.R;
-import com.braiso_22.upkeep_app.model.vo.Fleet;
+import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
-public class FleetCreationActivity extends AppCompatActivity {
+public class BoatCreationActivity extends AppCompatActivity {
 
-    private EditText name,owner;
+    private EditText name,registration,code,fleet;
     private Button create,cancel;
     private ViewModel vm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fleet_creation);
+        setContentView(R.layout.activity_boat_creation);
         vm = new ViewModel(this.getApplication());
         initViews();
         onClickButtons();
     }
     private void initViews(){
-        name = findViewById(R.id.fleetNameEditText);
-        owner = findViewById(R.id.fleetOwnerEditText);
-        create = findViewById(R.id.createFleetCreationButton);
-        cancel = findViewById(R.id.cancelFleetCreationButton);
+        name = findViewById(R.id.boatNameEditText);
+        registration = findViewById(R.id.boatRegistrationEditText);
+        code = findViewById(R.id.boatCodeEditText);
+        fleet = findViewById(R.id.boatFleetEditText);
+        create = findViewById(R.id.createBoatCreationButton);
+        cancel = findViewById(R.id.cancelBoatCreationButton);
     }
 
     private void onClickButtons(){
         create.setOnClickListener(v -> {
-            if(!TextUtils.areFieldsEmpty(name,owner) && TextUtils.checkNumeric(owner)){
-                saveFleet();
+            if(!TextUtils.areFieldsEmpty(name,registration,code,fleet) && TextUtils.checkNumeric(fleet)){
+                saveBoat();
             }else{
                 Toast.makeText(this,getResources().getText(R.string.wrong_data),Toast.LENGTH_LONG).show();
             }
         });
         cancel.setOnClickListener(v -> finish());
     }
-
-    private void saveFleet(){
+    private void saveBoat(){
+        String code = this.code.getText().toString();
         String name = this.name.getText().toString();
-        int owner = Integer.parseInt(this.owner.getText().toString());
-        Fleet fleet = new Fleet(name,owner);
-        vm.insert(fleet);
+        String registration = this.registration.getText().toString();
+        int fleet = Integer.parseInt(this.fleet.getText().toString());
+
+        Boat boat = new Boat(code,name,registration,fleet);
+        vm.insert(boat);
         finish();
     }
-
-
 }

@@ -18,4 +18,23 @@
     <string name="name">Name</string>
     <string name="owner">Owner</string>
     <string name="wrong_data">Wrong data</string>
+    <string name="code">Code</string>
+    <string name="registration">Registration</string>
+    <string name="fleet">Fleet</string>
+    <string name="boat">Boat</string>
+    <string name="brand">Brand</string>
+    <string name="model">Model</string>
+    <string name="serialNumber">Serial number</string>
+    <string name="observations">Observations</string>
+    <string name="service">Service</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="component">Component</string>
+    <string name="description">Description</string>
+    <string name="length">Length</string>
+    <string name="operator">Operator</string>
+    <string name="upkeep">Upkeep</string>
+    <string name="minStock">Minimum stock</string>
+    <string name="numStock">Stock</string>
+    <string name="task">Task</string>
 </resources>

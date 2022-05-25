@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".usecases.creation.ComponentCreationActivity">
+
+    <EditText
+        android:id="@+id/componentCodeEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="@string/code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/componentNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="@string/name"
+        app:layout_constraintEnd_toEndOf="@+id/componentCodeEditText"
+        app:layout_constraintStart_toStartOf="@+id/componentCodeEditText"
+        app:layout_constraintTop_toBottomOf="@+id/componentCodeEditText" />
+
+    <EditText
+        android:id="@+id/componentBrandEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/brand"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="@+id/componentNameEditText"
+        app:layout_constraintStart_toStartOf="@+id/componentNameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/componentNameEditText" />
+
+    <EditText
+        android:id="@+id/componentModelEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="@string/model"
+        app:layout_constraintEnd_toEndOf="@+id/componentBrandEditText"
+        app:layout_constraintStart_toStartOf="@+id/componentBrandEditText"
+        app:layout_constraintTop_toBottomOf="@+id/componentBrandEditText" />
+
+    <EditText
+        android:id="@+id/componentSerialNumberEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/serialNumber"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="@+id/componentModelEditText"
+        app:layout_constraintStart_toStartOf="@+id/componentModelEditText"
+        app:layout_constraintTop_toBottomOf="@+id/componentModelEditText" />
+
+    <EditText
+        android:id="@+id/componentObservationsEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="@string/observations"
+        app:layout_constraintEnd_toEndOf="@+id/componentSerialNumberEditText"
+        app:layout_constraintStart_toStartOf="@+id/componentSerialNumberEditText"
+        app:layout_constraintTop_toBottomOf="@+id/componentSerialNumberEditText" />
+
+    <EditText
+        android:id="@+id/componentServiceEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="@string/service"
+        app:layout_constraintEnd_toEndOf="@+id/componentObservationsEditText"
+        app:layout_constraintStart_toStartOf="@+id/componentObservationsEditText"
+        app:layout_constraintTop_toBottomOf="@+id/componentObservationsEditText" />
+
+    <Button
+        android:id="@+id/cancelComponentCreationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@android:string/cancel"
+        app:layout_constraintEnd_toStartOf="@+id/createComponentCreationButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/componentServiceEditText" />
+
+    <Button
+        android:id="@+id/createComponentCreationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cancelComponentCreationButton"
+        app:layout_constraintTop_toTopOf="@+id/cancelComponentCreationButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

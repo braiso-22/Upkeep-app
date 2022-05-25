@@ -1,5 +1,6 @@
 package com.braiso_22.upkeep_app.usecases.home.owner.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Boat;
+import com.braiso_22.upkeep_app.usecases.creation.BoatCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.BoatAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -46,7 +48,8 @@ public class BoatsListFragment extends Fragment {
         }, new CRUDToolbarMenu.CreateMethod(){
             @Override
             public void create() {
-
+                Intent intent = new Intent(getActivity(), BoatCreationActivity.class);
+                startActivity(intent);
             }
         });
     }

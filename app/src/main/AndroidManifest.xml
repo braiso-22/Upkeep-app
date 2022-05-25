@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Upkeepapp">
         <activity
+            android:name=".usecases.creation.StoreCreationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.creation.TaskCreationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.creation.UpkeepCreationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.creation.ComponentCreationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.creation.ServiceCreationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.creation.BoatCreationActivity"
+            android:exported="false" />
+        <activity
             android:name=".usecases.creation.FleetCreationActivity"
             android:exported="false" />
         <activity

@@ -2,18 +2,14 @@ package com.braiso_22.upkeep_app.usecases.home.owner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.braiso_22.upkeep_app.R;
-import com.braiso_22.upkeep_app.usecases.home.owner.adapters.FleetAdapter;
 import com.braiso_22.upkeep_app.usecases.home.owner.fragments.FleetsListFragment;
 import com.braiso_22.upkeep_app.usecases.home.owner.fragments.UsersListFragment;
-import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -44,5 +40,6 @@ public class OwnerHomeActivity extends AppCompatActivity implements  NavigationB
         }
         return true;
     }
+
 
 }

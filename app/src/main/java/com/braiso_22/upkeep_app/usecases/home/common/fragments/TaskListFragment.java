@@ -1,5 +1,6 @@
 package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Task;
+import com.braiso_22.upkeep_app.usecases.creation.TaskCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.TaskAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -49,7 +51,8 @@ public class TaskListFragment extends Fragment {
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override
             public void create() {
-
+                Intent intent = new Intent(getActivity(), TaskCreationActivity.class);
+                startActivity(intent);
             }
         });
     }

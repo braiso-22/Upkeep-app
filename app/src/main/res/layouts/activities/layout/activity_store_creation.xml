@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".usecases.creation.StoreCreationActivity">
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/cancelStoreCreationButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/storeCodeEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:hint="@string/code"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/storeNumStockEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/numStock"
+                android:inputType="number"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="@+id/storeObservationsEditText"
+                app:layout_constraintStart_toStartOf="@+id/storeObservationsEditText"
+                app:layout_constraintTop_toBottomOf="@+id/storeObservationsEditText" />
+
+            <EditText
+                android:id="@+id/storeObservationsEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/observations"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="@+id/storeSerialNumberEditText"
+                app:layout_constraintStart_toStartOf="@+id/storeSerialNumberEditText"
+                app:layout_constraintTop_toBottomOf="@+id/storeSerialNumberEditText" />
+
+            <EditText
+                android:id="@+id/storeMinStockEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/minStock"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintEnd_toEndOf="@+id/storeNumStockEditText"
+                app:layout_constraintStart_toStartOf="@+id/storeNumStockEditText"
+                app:layout_constraintTop_toBottomOf="@+id/storeNumStockEditText" />
+
+            <EditText
+                android:id="@+id/storeModelEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/model"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="@+id/storeBrandEditText"
+                app:layout_constraintStart_toStartOf="@+id/storeBrandEditText"
+                app:layout_constraintTop_toBottomOf="@+id/storeBrandEditText" />
+
+            <EditText
+                android:id="@+id/storeSerialNumberEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/serialNumber"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintEnd_toEndOf="@+id/storeModelEditText"
+                app:layout_constraintStart_toStartOf="@+id/storeModelEditText"
+                app:layout_constraintTop_toBottomOf="@+id/storeModelEditText" />
+
+            <EditText
+                android:id="@+id/storeBrandEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/brand"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintEnd_toEndOf="@+id/storeNameEditText"
+                app:layout_constraintStart_toStartOf="@+id/storeNameEditText"
+                app:layout_constraintTop_toBottomOf="@+id/storeNameEditText" />
+
+            <EditText
+                android:id="@+id/storeNameEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="@+id/storeCodeEditText"
+                app:layout_constraintStart_toStartOf="@+id/storeCodeEditText"
+                app:layout_constraintTop_toBottomOf="@+id/storeCodeEditText" />
+
+            <EditText
+                android:id="@+id/storeTaskEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/tasks"
+                android:inputType="number"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="@+id/storeMinStockEditText"
+                app:layout_constraintStart_toStartOf="@+id/storeMinStockEditText"
+                app:layout_constraintTop_toBottomOf="@+id/storeMinStockEditText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/cancelStoreCreationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="@android:string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/createStoreCreationButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+    <Button
+        android:id="@+id/createStoreCreationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cancelStoreCreationButton"
+        app:layout_constraintTop_toTopOf="@+id/cancelStoreCreationButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
