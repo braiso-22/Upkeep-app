@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Upkeepapp">
         <activity
+            android:name=".usecases.termsandconditions.TermsAndConditionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".usecases.creation.StoreCreationActivity"
             android:exported="false" />
         <activity

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.usecases.home.owner.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.usecases.onboarding.OnBoardingActivity;
+import com.braiso_22.upkeep_app.usecases.termsandconditions.TermsAndConditionsActivity;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class SplashActivity extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        Intent intent = new Intent(this, OnBoardingActivity.class);
+        Intent intent = new Intent(this, TermsAndConditionsActivity.class);
         startActivity(intent);
         finish();
 
