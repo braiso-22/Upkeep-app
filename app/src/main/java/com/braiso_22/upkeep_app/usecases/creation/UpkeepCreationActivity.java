@@ -19,6 +19,8 @@ public class UpkeepCreationActivity extends AppCompatActivity {
     EditText date, time, component;
     Button cancel, create;
     ViewModel vm;
+    Bundle bundle;
+    Upkeep upkeep;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -26,6 +28,7 @@ public class UpkeepCreationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upkeep_creation);
         vm = new ViewModel(getApplication());
+        bundle = getIntent().getExtras();
         initViews();
         onClickButtons();
     }
@@ -36,6 +39,12 @@ public class UpkeepCreationActivity extends AppCompatActivity {
         component = findViewById(R.id.upkeepComponentEditText);
         cancel = findViewById(R.id.cancelUpkeepCreationButton);
         create = findViewById(R.id.createUpkeepCreationButton);
+        if (bundle != null) {
+            upkeep = (Upkeep) bundle.getSerializable("upkeep");
+            date.setText(upkeep.getDate());
+            time.setText(upkeep.getHour());
+            component.setText(String.valueOf( upkeep.getComponent()));
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -44,19 +53,32 @@ public class UpkeepCreationActivity extends AppCompatActivity {
         create.setOnClickListener(v -> {
             if (!TextUtils.areFieldsEmpty(date, time, component) &&
                     TextUtils.isDate(date) && TextUtils.isTime(time)) {
-                saveUpkeep();
+                if (bundle == null) {
+                    insertUpkeep();
+                } else {
+                    updateUpkeep();
+                }
             } else {
                 Toast.makeText(this, getResources().getText(R.string.wrong_data), Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    private void saveUpkeep() {
+    private void insertUpkeep() {
         String date = this.date.getText().toString();
         String time = this.time.getText().toString();
         int component = Integer.valueOf(this.component.getText().toString());
         Upkeep upkeep = new Upkeep(date, time, component);
         vm.insert(upkeep);
+        finish();
+    }
+
+    private void updateUpkeep() {
+        String date = this.date.getText().toString();
+        String time = this.time.getText().toString();
+        int component = Integer.valueOf(this.component.getText().toString());
+
+        vm.update(new Upkeep(upkeep.getId(), date, time, component));
         finish();
     }
 }

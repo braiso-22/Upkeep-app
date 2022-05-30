@@ -17,12 +17,15 @@ public class ServiceCreationActivity extends AppCompatActivity {
     EditText name, code, boat;
     Button create, cancel;
     ViewModel vm;
+    Bundle bundle;
+    Service service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_creation);
         vm = new ViewModel(this.getApplication());
+        bundle = getIntent().getExtras();
         initViews();
         onClickButtons();
     }
@@ -33,25 +36,46 @@ public class ServiceCreationActivity extends AppCompatActivity {
         boat = findViewById(R.id.serviceBoatEditText);
         create = findViewById(R.id.createServiceCreationButton);
         cancel = findViewById(R.id.cancelServiceCreationButton);
+        if (bundle != null) {
+            service = (Service) bundle.getSerializable("service");
+            name.setText(service.getName());
+            code.setText(service.getCode());
+            boat.setText(String.valueOf(service.getBoat()));
+        }
     }
 
     private void onClickButtons() {
         create.setOnClickListener(v -> {
             if (!TextUtils.areFieldsEmpty(name, code, boat)) {
-                saveService();
+                if (bundle == null) {
+                    insertService();
+                } else {
+                    updateService();
+                }
             } else {
                 Toast.makeText(this, getResources().getText(R.string.wrong_data), Toast.LENGTH_LONG).show();
             }
         });
-        cancel.setOnClickListener(v -> finish());
+        cancel.setOnClickListener(v ->
+
+                finish());
     }
 
-    private void saveService() {
+    private void insertService() {
         String code = this.code.getText().toString();
         String name = this.name.getText().toString();
         int boat = Integer.valueOf(this.boat.getText().toString());
 
         vm.insert(new Service(code, name, boat));
+        finish();
+    }
+
+    private void updateService() {
+        String code = this.code.getText().toString();
+        String name = this.name.getText().toString();
+        int boat = Integer.valueOf(this.boat.getText().toString());
+        int id = service.getId();
+        vm.update(new Service(id, code, name, boat));
         finish();
     }
 }

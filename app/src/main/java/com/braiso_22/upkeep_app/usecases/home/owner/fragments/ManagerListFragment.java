@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +28,7 @@ import java.util.List;
 
 public class ManagerListFragment extends Fragment {
     ViewModel vm;
+
     // constructor
     public ManagerListFragment() {
         // Required empty public constructor
@@ -52,7 +54,7 @@ public class ManagerListFragment extends Fragment {
             public void delete() {
                 vm.deleteAllManagers();
             }
-        }, new CRUDToolbarMenu.CreateMethod(){
+        }, new CRUDToolbarMenu.CreateMethod() {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), UserCreationActivity.class);
@@ -62,6 +64,7 @@ public class ManagerListFragment extends Fragment {
         });
 
     }
+
     private void inflateRecycler(RecyclerView recycler) {
         vm.getAllManagers().observe(this.getActivity(), managers -> {
             List<User> users = new ArrayList<>(managers);
@@ -70,9 +73,37 @@ public class ManagerListFragment extends Fragment {
                 public void onUserClick(User manager) {
 
                 }
+
+                @Override
+                public void onUserLongClick(User manager, View view) {
+                    showPopupMenu(manager, view);
+                }
             }));
         });
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+    }
+    private void showPopupMenu(User manager, View view) {
+        PopupMenu popup = new PopupMenu(this.getActivity(), view);
+        popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.deleteOneOption:
+                    //vm.deleteManager(manager);
+                    return true;
+                case R.id.editOption:
+                    goToUserEdit(manager);
+                    return true;
+                default:
+                    return false;
+            }
+        });
+        popup.show();
+    }
+    private void goToUserEdit(User user) {
+        Intent intent = new Intent(this.getActivity(), UserCreationActivity.class);
+        intent.putExtra("userType", UserTypes.MANAGER);
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 
 }

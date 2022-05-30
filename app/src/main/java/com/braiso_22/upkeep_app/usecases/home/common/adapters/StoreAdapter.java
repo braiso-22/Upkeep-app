@@ -50,6 +50,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
     // Inner interface to handle the click event
     public interface OnStoreClickListener {
         void onStoreClick(Store store);
+        void onStoreLongClick(Store store, View view);
     }
 
     // Inner class ViewHolder
@@ -88,6 +89,13 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
                 @Override
                 public void onClick(View v) {
                     listener.onStoreClick(store);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.onStoreLongClick(store, v);
+                    return true;
                 }
             });
         }

@@ -9,6 +9,7 @@ import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.databinding.ActivityUserCreationBinding;
 import com.braiso_22.upkeep_app.model.vo.users.Manager;
 import com.braiso_22.upkeep_app.model.vo.users.Operator;
+import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.utils.UserTypes;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -18,6 +19,8 @@ public class UserCreationActivity extends AppCompatActivity {
     ActivityUserCreationBinding binding;
     ViewModel vm;
     UserTypes userType;
+    Bundle extras;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +30,21 @@ public class UserCreationActivity extends AppCompatActivity {
 
         vm = new ViewModel(getApplication());
 
-        Bundle extras = getIntent().getExtras();
+        extras = getIntent().getExtras();
         if (extras != null) {
             userType = (UserTypes) extras.getSerializable("userType");
+            user = (User) extras.getSerializable("user");
+            binding.userNameEditText.setText(user.getName());
+            binding.userEmailEditText.setText(user.getEmail());
+            binding.userSurnameEditText.setText(user.getSurnames());
+            binding.userCodeEditText.setText(user.getCode());
+            binding.userLoginEditText.setText(user.getLogin());
+            binding.userIdentificationEditText.setText(user.getIdentification());
+            if (user instanceof Manager) {
+                binding.userServiceEditText.setText(String.valueOf(((Manager) user).getService()));
+            } else {
+                binding.userServiceEditText.setText(String.valueOf(((Operator) user).getService()));
+            }
         }
         onClickButtons();
     }
@@ -41,7 +56,12 @@ public class UserCreationActivity extends AppCompatActivity {
                     binding.userIdentificationEditText, binding.userCodeEditText,
                     binding.userServiceEditText) &&
                     TextUtils.checkNumeric(binding.userServiceEditText)) {
-                saveUser();
+                if (extras == null) {
+                    insertUser();
+                } else {
+                    updateUser();
+                }
+
             } else {
                 Toast.makeText(this, getResources().getText(R.string.wrong_data), Toast.LENGTH_LONG).show();
             }
@@ -52,7 +72,28 @@ public class UserCreationActivity extends AppCompatActivity {
         });
     }
 
-    private void saveUser() {
+    private void insertUser() {
+        User user = getUserWithType();
+        if (user instanceof Manager) {
+            vm.insert((Manager) user);
+        } else {
+            vm.insert((Operator) user);
+        }
+        finish();
+    }
+
+    private void updateUser() {
+        User user = getUserWithType();
+        user.setId(this.user.getId());
+        if (user instanceof Manager) {
+            vm.update((Manager) user);
+        } else {
+            vm.update((Operator) user);
+        }
+        finish();
+    }
+
+    private User getUserWithType() {
         String login = binding.userLoginEditText.getText().toString();
         String name = binding.userNameEditText.getText().toString();
         String surnames = binding.userSurnameEditText.getText().toString();
@@ -60,19 +101,14 @@ public class UserCreationActivity extends AppCompatActivity {
         String identification = binding.userIdentificationEditText.getText().toString();
         String code = binding.userCodeEditText.getText().toString();
         int service = Integer.valueOf(binding.userServiceEditText.getText().toString());
-
         switch (userType) {
             case MANAGER:
-                Manager manager = new Manager(login, name, surnames, email, identification, code, service);
-                vm.insert(manager);
-                break;
+                return new Manager(login, code, identification, name, surnames, email, service);
             case OPERATOR:
-                Operator operator = new Operator(login, name, surnames, email, identification, code, service);
-                vm.insert(operator);
-                break;
+                return new Operator(login, code, identification, name, surnames, email, service);
             default:
                 break;
         }
-        finish();
+        return null;
     }
 }

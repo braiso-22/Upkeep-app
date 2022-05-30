@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,7 +46,7 @@ public class BoatsListFragment extends Fragment {
             public void delete() {
                 vm.deleteAllBoats();
             }
-        }, new CRUDToolbarMenu.CreateMethod(){
+        }, new CRUDToolbarMenu.CreateMethod() {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), BoatCreationActivity.class);
@@ -61,10 +62,38 @@ public class BoatsListFragment extends Fragment {
                 public void onBoatClick(Boat boat) {
                     goToServicesList(boat);
                 }
+
+                @Override
+                public void onBoatLongClick(Boat boat, View view) {
+                    showPopupMenu(boat, view);
+                }
             }));
         });
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+    }
+
+    private void showPopupMenu(Boat boat, View view) {
+        PopupMenu popup = new PopupMenu(this.getActivity(), view);
+        popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.editOption:
+                    goToBoatCreation(boat);
+                    break;
+                case R.id.deleteOneOption:
+                    //vm.deleteBoat(boat);
+                    break;
+            }
+            return true;
+        });
+        popup.show();
+    }
+
+    private void goToBoatCreation(Boat boat) {
+        Intent intent = new Intent(this.getActivity(), BoatCreationActivity.class);
+        intent.putExtra("boat", boat);
+        startActivity(intent);
     }
 
     // method to change the fragment to services list fragment

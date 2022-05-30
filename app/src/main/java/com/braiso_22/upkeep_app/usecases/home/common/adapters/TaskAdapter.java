@@ -51,6 +51,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     //Inner interface for the click listener
     public interface OnTaskClickListener {
         void onTaskClick(Task task);
+        void onTaskLongClick(Task task, View view);
     }
 
     // Inner class TaskViewHolder
@@ -82,6 +83,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 @Override
                 public void onClick(View v) {
                     listener.onTaskClick(task);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.onTaskLongClick(task, v);
+                    return true;
                 }
             });
         }

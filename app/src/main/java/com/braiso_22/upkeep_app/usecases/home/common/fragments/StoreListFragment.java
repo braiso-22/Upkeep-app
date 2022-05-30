@@ -3,6 +3,7 @@ package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,7 +47,7 @@ public class StoreListFragment extends Fragment {
             public void delete() {
                 vm.deleteAllStores();
             }
-        }, new CRUDToolbarMenu.CreateMethod(){
+        }, new CRUDToolbarMenu.CreateMethod() {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), StoreCreationActivity.class);
@@ -67,11 +68,17 @@ public class StoreListFragment extends Fragment {
                 public void onStoreClick(Store store) {
 
                 }
+
+                @Override
+                public void onStoreLongClick(Store store, View view) {
+                    showPopupMenu(store, view);
+                }
             }));
         });
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
+
     private void menuOnClick(Toolbar toolbar) {
         toolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
@@ -82,4 +89,27 @@ public class StoreListFragment extends Fragment {
             return true;
         });
     }
+
+    private void showPopupMenu(Store store, View view) {
+        PopupMenu popup = new PopupMenu(this.getActivity(), view);
+        popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.deleteOneOption:
+                    //vm.deleteStore(store);
+                    break;
+                case R.id.editOption:
+                    goToStoreEdit(store);
+            }
+            return true;
+        });
+        popup.show();
+    }
+
+    private void goToStoreEdit(Store store) {
+        Intent intent = new Intent(this.getActivity(), StoreCreationActivity.class);
+        intent.putExtra("store", store);
+        startActivity(intent);
+    }
+
 }

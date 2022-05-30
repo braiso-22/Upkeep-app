@@ -3,6 +3,7 @@ package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,6 +70,11 @@ public class TaskListFragment extends Fragment {
                 public void onTaskClick(Task task) {
                     goToStore(task);
                 }
+
+                @Override
+                public void onTaskLongClick(Task task, View view) {
+                    showPopupMenu(task, view);
+                }
             }));
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
@@ -78,4 +84,28 @@ public class TaskListFragment extends Fragment {
         StoreListFragment storeListFragment = new StoreListFragment();
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, storeListFragment).addToBackStack(null).commit();
     }
+
+    private void showPopupMenu(Task task, View view) {
+        PopupMenu popup = new PopupMenu(this.getActivity(), view);
+        popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.deleteOneOption:
+                    //vm.deleteTask(task);
+                    return true;
+                case R.id.editOption:
+                        goToTaskEdit(task);
+                    return true;
+                default:
+                    return false;
+            }
+        });
+        popup.show();
+    }
+    private void goToTaskEdit(Task task) {
+        Intent intent = new Intent(this.getActivity(), TaskCreationActivity.class);
+        intent.putExtra("task", task);
+        startActivity(intent);
+    }
+
 }

@@ -48,6 +48,7 @@ public class UpkeepAdapter extends RecyclerView.Adapter<UpkeepAdapter.UpkeepView
 
     public interface OnUpkeepClickListener {
         void onUpkeepClick(Upkeep upkeep);
+        void onUpkeepLongClick(Upkeep upkeep, View view);
     }
 
     public class UpkeepViewHolder extends RecyclerView.ViewHolder {
@@ -71,6 +72,13 @@ public class UpkeepAdapter extends RecyclerView.Adapter<UpkeepAdapter.UpkeepView
                 @Override
                 public void onClick(View v) {
                     listener.onUpkeepClick(upkeep);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.onUpkeepLongClick(upkeep, v);
+                    return true;
                 }
             });
         }

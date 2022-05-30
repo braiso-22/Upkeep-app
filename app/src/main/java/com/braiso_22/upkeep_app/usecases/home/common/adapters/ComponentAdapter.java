@@ -53,6 +53,7 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.Comp
     // Inner Interface OnComponentClickListener
     public interface OnComponentClickListener {
         void onComponentClick(Component component);
+        void onComponentLongClick(Component component, View view);
     }
 
     // Inner Class ComponentViewHolder
@@ -90,6 +91,13 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.Comp
                 @Override
                 public void onClick(View v) {
                     listener.onComponentClick(component);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.onComponentLongClick(component, v);
+                    return true;
                 }
             });
         }

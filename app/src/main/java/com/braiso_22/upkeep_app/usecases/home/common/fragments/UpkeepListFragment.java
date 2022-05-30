@@ -3,6 +3,7 @@ package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -66,6 +67,11 @@ public class UpkeepListFragment extends Fragment {
                 public void onUpkeepClick(Upkeep upkeep) {
                     goToTaskList(upkeep);
                 }
+
+                @Override
+                public void onUpkeepLongClick(Upkeep upkeep, View view) {
+                    showPopupMenu(upkeep, view);
+                }
             }));
 
         });
@@ -76,4 +82,30 @@ public class UpkeepListFragment extends Fragment {
         TaskListFragment taskListFragment = new TaskListFragment();
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, taskListFragment).addToBackStack(null).commit();
     }
+
+    private void showPopupMenu(Upkeep upkeep, View view) {
+        PopupMenu popup = new PopupMenu(this.getActivity(), view);
+        popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.deleteOneOption:
+                    //vm.deleteUpkeep(upkeep);
+                    return true;
+                case R.id.editOption:
+                    goToUpkeepEdit(upkeep);
+                    return true;
+                default:
+                    return false;
+            }
+        });
+        popup.show();
+
+    }
+    private  void goToUpkeepEdit(Upkeep upkeep){
+        Intent intent = new Intent(this.getActivity(), UpkeepCreationActivity.class);
+        intent.putExtra("upkeep", upkeep);
+        startActivity(intent);
+    }
+
+
 }

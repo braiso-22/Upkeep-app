@@ -3,6 +3,7 @@ package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +25,7 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class ComponentListFragment extends Fragment {
     ViewModel vm;
+
     // Empty Constructor
     public ComponentListFragment() {
     }
@@ -47,7 +49,7 @@ public class ComponentListFragment extends Fragment {
             public void delete() {
                 vm.deleteAllComponents();
             }
-        }, new CRUDToolbarMenu.CreateMethod(){
+        }, new CRUDToolbarMenu.CreateMethod() {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), ComponentCreationActivity.class);
@@ -55,10 +57,12 @@ public class ComponentListFragment extends Fragment {
             }
         });
     }
-/**
- *  Get components from database with live data and set it to the recycler view
- * @param recycler
- * */
+
+    /**
+     * Get components from database with live data and set it to the recycler view
+     *
+     * @param recycler
+     */
     private void inflateRecycler(RecyclerView recycler) {
         vm.getAllComponents().observe(this.getActivity(), components -> {
             recycler.setAdapter(new ComponentAdapter(components, this.getActivity(), new ComponentAdapter.OnComponentClickListener() {
@@ -66,15 +70,45 @@ public class ComponentListFragment extends Fragment {
                 public void onComponentClick(Component component) {
                     goToUpkeepList(component);
                 }
+
+                @Override
+                public void onComponentLongClick(Component component, View view) {
+                    showPopupMenu(component, view);
+                }
             }));
         });
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
 
-    public void goToUpkeepList(Component component) {
+    private void goToUpkeepList(Component component) {
         UpkeepListFragment upkeepListFragment = new UpkeepListFragment();
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, upkeepListFragment).addToBackStack(null).commit();
+    }
+
+    private void showPopupMenu(Component component, View view) {
+        PopupMenu popup = new PopupMenu(this.getActivity(), view);
+        popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(
+                item -> {
+                    switch (item.getItemId()) {
+                        case R.id.deleteOneOption:
+                            //vm.deleteComponent(component);
+                            return true;
+                        case R.id.editOption:
+                            goToComponentCreation(component);
+                            return true;
+                        default:
+                            return false;
+                    }
+                });
+        popup.show();
+    }
+
+    private void goToComponentCreation(Component component) {
+        Intent intent = new Intent(this.getActivity(), ComponentCreationActivity.class);
+        intent.putExtra("component", component);
+        startActivity(intent);
     }
 
 }

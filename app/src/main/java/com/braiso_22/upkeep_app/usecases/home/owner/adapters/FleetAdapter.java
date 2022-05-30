@@ -48,6 +48,7 @@ public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.FleetViewHol
 
     public interface OnFleetClickListener {
         void onFleetClick(Fleet fleet);
+
         void onFleetLongClick(Fleet fleet, View view);
     }
 
@@ -76,7 +77,7 @@ public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.FleetViewHol
                 @Override
                 public boolean onLongClick(View view) {
                     listener.onFleetLongClick(fleet, view);
-                    return false;
+                    return true;
                 }
             });
         }

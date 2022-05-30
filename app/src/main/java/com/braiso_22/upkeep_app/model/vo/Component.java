@@ -6,8 +6,10 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
+
 @Entity(tableName = "component")
-public class Component {
+public class Component implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -22,8 +24,11 @@ public class Component {
 
     @NotNull
     private int service;
+
     @Ignore
-    public Component(){}
+    public Component() {
+    }
+
     @Ignore
     public Component(int id, @NotNull String code, @NotNull String name, String brand, String model, String serialNumber, String observations, @NotNull int service) {
         this.id = id;

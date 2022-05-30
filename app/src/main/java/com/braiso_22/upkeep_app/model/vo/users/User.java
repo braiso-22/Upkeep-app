@@ -5,7 +5,9 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-public abstract class User {
+import java.io.Serializable;
+
+public abstract class User implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 

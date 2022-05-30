@@ -45,6 +45,8 @@ public class BoatAdapter extends RecyclerView.Adapter<BoatAdapter.BoatViewHolder
 
     public interface OnBoatClickListener {
         void onBoatClick(Boat boat);
+
+        void onBoatLongClick(Boat boat, View view);
     }
 
     public class BoatViewHolder extends RecyclerView.ViewHolder {
@@ -73,6 +75,13 @@ public class BoatAdapter extends RecyclerView.Adapter<BoatAdapter.BoatViewHolder
                 @Override
                 public void onClick(View v) {
                     listener.onBoatClick(boat);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.onBoatLongClick(boat, v);
+                    return true;
                 }
             });
 

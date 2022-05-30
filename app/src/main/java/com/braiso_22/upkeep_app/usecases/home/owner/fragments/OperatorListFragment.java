@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -67,12 +68,39 @@ public class OperatorListFragment extends Fragment {
             List<User> users = new ArrayList<>(operators);
             recycler.setAdapter(new UserAdapter(users, this.getActivity(), new UserAdapter.OnUserClickListener() {
                 @Override
-                public void onUserClick(User manager) {
+                public void onUserClick(User operator) {
 
+                }
+                @Override
+                public void onUserLongClick(User operator, View view){
+                    showPopupMenu(operator, view);
                 }
             }));
         });
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+    }
+    private void showPopupMenu(User operator, View view) {
+        PopupMenu popup = new PopupMenu(this.getActivity(), view);
+        popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.deleteOneOption:
+                    //vm.deleteOperator(operator);
+                    return true;
+                case R.id.editOption:
+                    goToUserEdit(operator);
+                    return true;
+                default:
+                    return false;
+            }
+        });
+        popup.show();
+    }
+    private void goToUserEdit(User user) {
+        Intent intent = new Intent(this.getActivity(), UserCreationActivity.class);
+        intent.putExtra("userType", UserTypes.OPERATOR);
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 
 }

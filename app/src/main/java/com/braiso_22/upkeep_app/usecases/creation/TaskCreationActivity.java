@@ -17,12 +17,15 @@ public class TaskCreationActivity extends AppCompatActivity {
     EditText length, name, description, upkeep, operator;
     Button cancel, create;
     ViewModel vm;
+    Bundle bundle;
+    Task task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_creation);
         vm = new ViewModel(getApplication());
+        bundle = getIntent().getExtras();
         initViews();
         onClickButtons();
     }
@@ -35,6 +38,14 @@ public class TaskCreationActivity extends AppCompatActivity {
         operator = findViewById(R.id.taskOperatorEditText);
         cancel = findViewById(R.id.cancelTaskCreationButton);
         create = findViewById(R.id.createTaskCreationButton);
+        if (bundle != null) {
+            task = (Task) bundle.getSerializable("task");
+            length.setText(String.valueOf(task.getLength()));
+            name.setText(task.getName());
+            description.setText(task.getDescription());
+            upkeep.setText(String.valueOf(task.getUpkeep()));
+            operator.setText(String.valueOf(task.getOperator()));
+        }
     }
 
     private void onClickButtons() {
@@ -42,20 +53,36 @@ public class TaskCreationActivity extends AppCompatActivity {
         create.setOnClickListener(v -> {
             if (!TextUtils.areFieldsEmpty(length, name, description, upkeep, operator) &&
                     TextUtils.checkNumeric(length, upkeep, operator)) {
-                saveTask();
+                if (bundle == null) {
+                    insertTask();
+                } else {
+                    updateTask();
+                }
+
             } else {
                 Toast.makeText(this, getResources().getText(R.string.wrong_data), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void saveTask() {
+    private void insertTask() {
         Task task = new Task(Integer.parseInt(length.getText().toString()),
                 name.getText().toString(),
                 description.getText().toString(),
                 Integer.parseInt(upkeep.getText().toString()),
                 Integer.parseInt(operator.getText().toString()));
         vm.insert(task);
+        finish();
+    }
+
+    private void updateTask() {
+        String length = this.length.getText().toString();
+        String name = this.name.getText().toString();
+        String description = this.description.getText().toString();
+        String upkeep = this.upkeep.getText().toString();
+        String operator = this.operator.getText().toString();
+
+        vm.update(new Task(task.getId(), Integer.parseInt(length), name, description, Integer.parseInt(upkeep), Integer.parseInt(operator)));
         finish();
     }
 

@@ -6,8 +6,10 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
+
 @Entity(tableName = "store")
-public class Store {
+public class Store implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 

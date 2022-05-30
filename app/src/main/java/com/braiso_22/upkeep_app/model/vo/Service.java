@@ -6,8 +6,10 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
+
 @Entity(tableName = "service")
-public class Service {
+public class Service implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -19,7 +21,9 @@ public class Service {
     private int boat;
 
     @Ignore
-    public Service(){}
+    public Service() {
+    }
+
     @Ignore
     public Service(int id, @NotNull String code, @NotNull String name, @NotNull int boat) {
         this.id = id;

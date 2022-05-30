@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,7 +47,7 @@ public class ServicesListFragment extends Fragment {
             public void delete() {
                 vm.deleteAllServices();
             }
-        }, new CRUDToolbarMenu.CreateMethod(){
+        }, new CRUDToolbarMenu.CreateMethod() {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), ServiceCreationActivity.class);
@@ -62,16 +63,44 @@ public class ServicesListFragment extends Fragment {
                 public void onServiceClick(Service service) {
                     goToComponentList(service);
                 }
+
+                @Override
+                public void onServiceLongClick(Service service, View view) {
+                    showPopupMenu(service, view);
+                }
             }));
         });
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
 
-    public void goToComponentList(Service service) {
+
+    private void goToComponentList(Service service) {
         ComponentListFragment fragment = new ComponentListFragment();
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
+    }
 
+    private void showPopupMenu(Service service, View view) {
+        PopupMenu popup = new PopupMenu(this.getActivity(), view);
+        popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.editOption:
+                    goToServiceCreation(service);
+                    break;
+                case R.id.deleteOneOption:
+                    //vm.deleteService(service);
+                    break;
+            }
+            return false;
+        });
+        popup.show();
+    }
+
+    private void goToServiceCreation(Service service) {
+        Intent intent = new Intent(this.getActivity(), ServiceCreationActivity.class);
+        intent.putExtra("service", service);
+        startActivity(intent);
     }
 
 

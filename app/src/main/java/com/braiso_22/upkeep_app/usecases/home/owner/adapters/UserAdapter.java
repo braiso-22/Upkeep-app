@@ -53,6 +53,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     // Inner Interface OnUserClickListener
     public interface OnUserClickListener {
         void onUserClick(User user);
+        void onUserLongClick(User user, View view);
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
@@ -99,6 +100,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 @Override
                 public void onClick(View v) {
                     listener.onUserClick(user);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.onUserLongClick(user, v);
+                    return true;
                 }
             });
         }

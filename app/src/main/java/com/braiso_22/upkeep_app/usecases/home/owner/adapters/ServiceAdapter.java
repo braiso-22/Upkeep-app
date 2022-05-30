@@ -49,12 +49,14 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
     // OnBindViewHolder with holder and position
     @Override
     public void onBindViewHolder(ServiceAdapter.ServiceViewHolder holder, int position) {
-       holder.bindData(values.get(position));
+        holder.bindData(values.get(position));
     }
 
     // Inner Interface OnServiceClickListener
     public interface OnServiceClickListener {
         void onServiceClick(Service service);
+
+        void onServiceLongClick(Service service, View view);
     }
 
     // Inner class ServiceViewHolder
@@ -84,6 +86,14 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
                 @Override
                 public void onClick(View v) {
                     listener.onServiceClick(service);
+                }
+
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.onServiceLongClick(service, v);
+                    return true;
                 }
             });
         }
