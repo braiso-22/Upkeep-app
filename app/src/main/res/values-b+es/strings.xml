@@ -75,4 +75,8 @@
     <string name="complete_license"></string>
     <string name="accept">Aceptar</string>
     <string name="must_accept">Debe aceptar los términos y condiciones para continuar</string>
+    <string name="login">Login</string>
+    <string name="identification">Identificación</string>
+    <string name="surnames">Apellidos</string>
+    <string name="email">Email</string>
 </resources>

@@ -40,6 +40,4 @@ public class OwnerHomeActivity extends AppCompatActivity implements  NavigationB
         }
         return true;
     }
-
-
 }

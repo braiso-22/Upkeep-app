@@ -1,5 +1,6 @@
 package com.braiso_22.upkeep_app.usecases.home.owner.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,8 +16,10 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.users.User;
+import com.braiso_22.upkeep_app.usecases.creation.UserCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.UserAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
+import com.braiso_22.upkeep_app.utils.UserTypes;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 import java.util.ArrayList;
@@ -52,7 +55,9 @@ public class OperatorListFragment extends Fragment {
         }, new CRUDToolbarMenu.CreateMethod(){
             @Override
             public void create() {
-
+                Intent intent = new Intent(getActivity(), UserCreationActivity.class);
+                intent.putExtra("userType", UserTypes.OPERATOR);
+                startActivity(intent);
             }
         });
     }
