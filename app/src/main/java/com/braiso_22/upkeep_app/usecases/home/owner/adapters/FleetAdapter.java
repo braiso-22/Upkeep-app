@@ -1,11 +1,13 @@
 package com.braiso_22.upkeep_app.usecases.home.owner.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.braiso_22.upkeep_app.R;
@@ -39,12 +41,14 @@ public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.FleetViewHol
     }
 
     @Override
-    public void onBindViewHolder(final FleetAdapter.FleetViewHolder holder, final int position) {
+    public void onBindViewHolder(final FleetAdapter.FleetViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         holder.bindData(values.get(position));
+
     }
 
     public interface OnFleetClickListener {
         void onFleetClick(Fleet fleet);
+        void onFleetLongClick(Fleet fleet, View view);
     }
 
     public class FleetViewHolder extends RecyclerView.ViewHolder {
@@ -68,7 +72,15 @@ public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.FleetViewHol
                     listener.onFleetClick(fleet);
                 }
             });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    listener.onFleetLongClick(fleet, view);
+                    return false;
+                }
+            });
         }
+
 
         @Override
         public String toString() {

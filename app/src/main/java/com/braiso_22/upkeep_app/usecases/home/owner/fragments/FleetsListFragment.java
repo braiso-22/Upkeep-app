@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,7 +48,7 @@ public class FleetsListFragment extends Fragment {
             public void delete() {
                 vm.deleteAllFleets();
             }
-        }, new CRUDToolbarMenu.CreateMethod(){
+        }, new CRUDToolbarMenu.CreateMethod() {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), FleetCreationActivity.class);
@@ -69,6 +70,11 @@ public class FleetsListFragment extends Fragment {
                 public void onFleetClick(Fleet fleet) {
                     goToBoatList(fleet);
                 }
+
+                @Override
+                public void onFleetLongClick(Fleet fleet, View view) {
+                    showPopup(fleet,view);
+                }
             }));
         });
 
@@ -82,6 +88,29 @@ public class FleetsListFragment extends Fragment {
         BoatsListFragment fragment = new BoatsListFragment();
         //fragment.setFleet(fleet);
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
+    }
+
+    private void showPopup(Fleet fleet, View view) {
+        PopupMenu popup = new PopupMenu(this.getActivity(), view);
+        popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.deleteOneOption:
+                    //vm.deleteFleet(item.getTitle().toString());
+                    return true;
+                case R.id.editOption:
+                    goToFleetEdit(fleet);
+                default:
+                    return false;
+            }
+        });
+        popup.show();
+    }
+
+    private void goToFleetEdit(Fleet fleet) {
+        Intent intent = new Intent(this.getActivity(), FleetCreationActivity.class);
+        intent.putExtra("fleet", fleet);
+        startActivity(intent);
     }
 
 
