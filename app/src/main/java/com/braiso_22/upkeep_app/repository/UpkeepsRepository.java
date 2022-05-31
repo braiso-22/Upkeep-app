@@ -105,6 +105,11 @@ public class UpkeepsRepository {
             fleetDao.deleteAll();
         });
     }
+    public void deleteFleet(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            fleetDao.deleteById(id);
+        });
+    }
 
     public void update(Fleet fleet) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
@@ -129,6 +134,11 @@ public class UpkeepsRepository {
     public void deleteAllBoats() {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             boatDao.deleteAll();
+        });
+    }
+    public void deleteBoat(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            boatDao.deleteById(id);
         });
     }
 
@@ -157,6 +167,11 @@ public class UpkeepsRepository {
             serviceDao.deleteAll();
         });
     }
+    public void deleteService(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            serviceDao.deleteById(id);
+        });
+    }
 
     public void update(Service service) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
@@ -181,6 +196,11 @@ public class UpkeepsRepository {
     public void deleteAllManagers() {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             managerDao.deleteAll();
+        });
+    }
+    public void deleteManager(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            managerDao.deleteById(id);
         });
     }
 
@@ -209,6 +229,11 @@ public class UpkeepsRepository {
             componentDao.deleteAll();
         });
     }
+    public void deleteComponent(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            componentDao.deleteById(id);
+        });
+    }
 
     public void update(Component component) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
@@ -233,6 +258,11 @@ public class UpkeepsRepository {
     public void deleteAllUpkeeps() {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             upkeepDao.deleteAll();
+        });
+    }
+    public void deleteUpkeep(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            upkeepDao.deleteById(id);
         });
     }
 
@@ -265,6 +295,11 @@ public class UpkeepsRepository {
             taskDao.deleteAll();
         });
     }
+    public void deleteTask(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            taskDao.deleteById(id);
+        });
+    }
 
     public void update(Task task) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
@@ -291,6 +326,11 @@ public class UpkeepsRepository {
             operatorDao.deleteAll();
         });
     }
+    public void deleteOperator(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            operatorDao.deleteById(id);
+        });
+    }
 
     public void update(Operator operator) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
@@ -315,6 +355,11 @@ public class UpkeepsRepository {
     public void deleteAllStores() {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             storeDao.deleteAll();
+        });
+    }
+    public void deleteStore(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            storeDao.deleteById(id);
         });
     }
 
