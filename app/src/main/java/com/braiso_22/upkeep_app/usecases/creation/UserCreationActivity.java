@@ -31,8 +31,9 @@ public class UserCreationActivity extends AppCompatActivity {
         vm = new ViewModel(getApplication());
 
         extras = getIntent().getExtras();
-        if (extras != null) {
-            userType = (UserTypes) extras.getSerializable("userType");
+        userType = (UserTypes) extras.getSerializable("userType");
+
+        if (extras.containsKey("user")) {
             user = (User) extras.getSerializable("user");
             binding.userNameEditText.setText(user.getName());
             binding.userEmailEditText.setText(user.getEmail());
@@ -42,7 +43,8 @@ public class UserCreationActivity extends AppCompatActivity {
             binding.userIdentificationEditText.setText(user.getIdentification());
             if (user instanceof Manager) {
                 binding.userServiceEditText.setText(String.valueOf(((Manager) user).getService()));
-            } else {
+            }
+            if (user instanceof Operator) {
                 binding.userServiceEditText.setText(String.valueOf(((Operator) user).getService()));
             }
         }
@@ -56,10 +58,10 @@ public class UserCreationActivity extends AppCompatActivity {
                     binding.userIdentificationEditText, binding.userCodeEditText,
                     binding.userServiceEditText) &&
                     TextUtils.checkNumeric(binding.userServiceEditText)) {
-                if (extras == null) {
-                    insertUser();
-                } else {
+                if (extras.containsKey("user")) {
                     updateUser();
+                } else {
+                    insertUser();
                 }
 
             } else {
