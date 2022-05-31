@@ -72,6 +72,10 @@ public class ViewModel extends AndroidViewModel {
         repository.deleteAllFleets();
     }
 
+    public void deleteFleet(Fleet fleet) {
+        repository.deleteFleet(fleet.getId());
+    }
+
     public void update(Fleet fleet) {
         repository.update(fleet);
     }
@@ -90,6 +94,10 @@ public class ViewModel extends AndroidViewModel {
 
     public void deleteAllBoats() {
         repository.deleteAllBoats();
+    }
+
+    public void deleteBoat(Boat boat) {
+        repository.deleteBoat(boat.getId());
     }
 
     public void update(Boat boat) {
@@ -112,6 +120,10 @@ public class ViewModel extends AndroidViewModel {
         repository.deleteAllServices();
     }
 
+    public void deleteService(Service service) {
+        repository.deleteService(service.getId());
+    }
+
     public void update(Service service) {
         repository.update(service);
     }
@@ -130,6 +142,10 @@ public class ViewModel extends AndroidViewModel {
 
     public void deleteAllManagers() {
         repository.deleteAllManagers();
+    }
+
+    public void deleteManager(Manager manager) {
+        repository.deleteManager(manager.getId());
     }
 
     public void update(Manager manager) {
@@ -152,6 +168,10 @@ public class ViewModel extends AndroidViewModel {
         repository.deleteAllComponents();
     }
 
+    public void deleteComponent(Component component) {
+        repository.deleteComponent(component.getId());
+    }
+
     public void update(Component component) {
         repository.update(component);
     }
@@ -170,6 +190,10 @@ public class ViewModel extends AndroidViewModel {
 
     public void deleteAllUpkeeps() {
         repository.deleteAllUpkeeps();
+    }
+
+    public void deleteUpkeep(Upkeep upkeep) {
+        repository.deleteUpkeep(upkeep.getId());
     }
 
     public void update(Upkeep upkeep) {
@@ -196,6 +220,10 @@ public class ViewModel extends AndroidViewModel {
         repository.deleteAllTasks();
     }
 
+    public void deleteTask(Task task) {
+        repository.deleteTask(task.getId());
+    }
+
     public void update(Task task) {
         repository.update(task);
     }
@@ -216,6 +244,10 @@ public class ViewModel extends AndroidViewModel {
         repository.deleteAllOperators();
     }
 
+    public void deleteOperator(Operator operator) {
+        repository.deleteOperator(operator.getId());
+    }
+
     public void update(Operator operator) {
         repository.update(operator);
     }
@@ -234,6 +266,10 @@ public class ViewModel extends AndroidViewModel {
 
     public void deleteAllStores() {
         repository.deleteAllStores();
+    }
+
+    public void deleteStore(Store store) {
+        repository.deleteStore(store.getId());
     }
 
     public void update(Store store) {
