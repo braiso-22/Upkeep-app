@@ -89,7 +89,7 @@ public class ServicesListFragment extends Fragment {
                     goToServiceCreation(service);
                     break;
                 case R.id.deleteOneOption:
-                    //vm.deleteService(service);
+                    vm.deleteService(service);
                     break;
             }
             return false;

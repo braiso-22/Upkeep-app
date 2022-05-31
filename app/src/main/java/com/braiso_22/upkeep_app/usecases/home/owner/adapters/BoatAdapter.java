@@ -21,9 +21,9 @@ public class BoatAdapter extends RecyclerView.Adapter<BoatAdapter.BoatViewHolder
     private OnBoatClickListener listener;
 
     public BoatAdapter(List<Boat> values, Context context, OnBoatClickListener listener) {
-        inflater = LayoutInflater.from(context);
         this.values = values;
         this.context = context;
+        inflater = LayoutInflater.from(context);
         this.listener = listener;
     }
 

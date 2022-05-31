@@ -93,7 +93,7 @@ public class ComponentListFragment extends Fragment {
                 item -> {
                     switch (item.getItemId()) {
                         case R.id.deleteOneOption:
-                            //vm.deleteComponent(component);
+                            vm.deleteComponent(component);
                             return true;
                         case R.id.editOption:
                             goToComponentCreation(component);

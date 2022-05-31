@@ -91,7 +91,7 @@ public class TaskListFragment extends Fragment {
         popup.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.deleteOneOption:
-                    //vm.deleteTask(task);
+                    vm.deleteTask(task);
                     return true;
                 case R.id.editOption:
                         goToTaskEdit(task);

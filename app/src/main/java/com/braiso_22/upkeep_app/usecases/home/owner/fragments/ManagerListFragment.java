@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
+import com.braiso_22.upkeep_app.model.vo.users.Manager;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.creation.UserCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.UserAdapter;
@@ -88,7 +89,7 @@ public class ManagerListFragment extends Fragment {
         popup.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.deleteOneOption:
-                    //vm.deleteManager(manager);
+                    vm.deleteManager(((Manager)manager));
                     return true;
                 case R.id.editOption:
                     goToUserEdit(manager);

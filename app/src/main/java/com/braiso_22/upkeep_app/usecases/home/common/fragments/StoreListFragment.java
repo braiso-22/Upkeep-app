@@ -96,7 +96,7 @@ public class StoreListFragment extends Fragment {
         popup.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.deleteOneOption:
-                    //vm.deleteStore(store);
+                    vm.deleteStore(store);
                     break;
                 case R.id.editOption:
                     goToStoreEdit(store);

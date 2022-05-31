@@ -89,7 +89,7 @@ public class UpkeepListFragment extends Fragment {
         popup.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.deleteOneOption:
-                    //vm.deleteUpkeep(upkeep);
+                    vm.deleteUpkeep(upkeep);
                     return true;
                 case R.id.editOption:
                     goToUpkeepEdit(upkeep);

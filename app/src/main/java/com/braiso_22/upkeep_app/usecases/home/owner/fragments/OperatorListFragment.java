@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
+import com.braiso_22.upkeep_app.model.vo.users.Operator;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.creation.UserCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.UserAdapter;
@@ -85,7 +86,7 @@ public class OperatorListFragment extends Fragment {
         popup.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.deleteOneOption:
-                    //vm.deleteOperator(operator);
+                    vm.deleteOperator(((Operator) operator));
                     return true;
                 case R.id.editOption:
                     goToUserEdit(operator);

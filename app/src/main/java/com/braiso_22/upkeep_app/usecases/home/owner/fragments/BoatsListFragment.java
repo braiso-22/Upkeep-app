@@ -82,7 +82,7 @@ public class BoatsListFragment extends Fragment {
                     goToBoatCreation(boat);
                     break;
                 case R.id.deleteOneOption:
-                    //vm.deleteBoat(boat);
+                    vm.deleteBoat(boat);
                     break;
             }
             return true;

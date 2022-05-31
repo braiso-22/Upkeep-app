@@ -96,7 +96,7 @@ public class FleetsListFragment extends Fragment {
         popup.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.deleteOneOption:
-                    //vm.deleteFleet(item.getTitle().toString());
+                    vm.deleteFleet(fleet);
                     return true;
                 case R.id.editOption:
                     goToFleetEdit(fleet);
