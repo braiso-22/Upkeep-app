@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -21,13 +22,20 @@ import com.braiso_22.upkeep_app.usecases.onboarding.OnBoardingActivity;
 public class TermsAndConditionsActivity extends AppCompatActivity {
 
     ActivityTermsAndConditionsBinding binding;
-
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityTermsAndConditionsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        sharedPreferences = this.getSharedPreferences("terms", MODE_PRIVATE);
+        if(sharedPreferences.getBoolean("accepted", false)){
+            Intent intent = new Intent(this, OnBoardingActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
 
         String firstText = getString(R.string.terms1);
         String link = getString(R.string.terms2);
@@ -52,6 +60,7 @@ public class TermsAndConditionsActivity extends AppCompatActivity {
         binding.termsLinkTextView.setMovementMethod(LinkMovementMethod.getInstance());
         binding.button.setOnClickListener(v -> {
             if (binding.termsCheckBox.isChecked()) {
+                saveAcceptedTerms();
                 Intent intent = new Intent(this, OnBoardingActivity.class);
                 startActivity(intent);
                 finish();
@@ -59,5 +68,10 @@ public class TermsAndConditionsActivity extends AppCompatActivity {
                 Toast.makeText(this, getString(R.string.must_accept), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void saveAcceptedTerms() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("accepted", true);
+        editor.apply();
     }
 }
