@@ -11,22 +11,26 @@ public abstract class User implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @NotNull
+
     private String login;
-    @NotNull
+
     private String code;
-    @NotNull
+
     private String identification;
-    @NotNull
+
     private String name;
-    @NotNull
+
     private String surnames;
-    @NotNull
+
     private String email;
+
+    private String password;
+
     @Ignore
     public User() {
 
     }
+
     @Ignore
     public User(int id, @NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
                 @NotNull String surnames, @NotNull String email) {
@@ -48,6 +52,14 @@ public abstract class User implements Serializable {
         this.surnames = surnames;
         this.email = email;
     }
+    @Ignore
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
+
+
 
     public void setId(int id) {
         this.id = id;
@@ -103,6 +115,14 @@ public abstract class User implements Serializable {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

@@ -10,18 +10,25 @@ public class Manager extends User {
 
     @NotNull
     private int service;
+
     @Ignore
-    public Manager(){}
+    public Manager() {
+    }
+
     @Ignore
-    public Manager(int id,@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
+    public Manager(int id, @NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
                    @NotNull String surnames, @NotNull String email, @NotNull int service) {
-        super(id,login, code, identification, name, surnames, email);
+        super(id, login, code, identification, name, surnames, email);
         this.service = service;
     }
 
     public Manager(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull int service) {
         super(login, code, identification, name, surnames, email);
         this.service = service;
+    }
+    @Ignore
+    public Manager(@NotNull String login, @NotNull String password) {
+        super(login, password);
     }
 
     public int getService() {
