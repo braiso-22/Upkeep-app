@@ -6,11 +6,13 @@ import com.braiso_22.upkeep_app.databinding.ActivityLoginBinding;
 import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.home.owner.OwnerHomeActivity;
+import com.braiso_22.upkeep_app.utils.Encrypter;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -41,11 +43,17 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            Toast.makeText(this, "Register Successful", Toast.LENGTH_SHORT).show();
-            Owner owner = new Owner(binding.loginEmailInput.getText().toString(), binding.loginPasswordInput.getText().toString());
-            viewModel.insert(owner);
-            startOwnerActivity();
 
+            try {
+                Toast.makeText(this, "Register Successful", Toast.LENGTH_SHORT).show();
+                String encryptedPassword = Encrypter.encrypt(binding.loginPasswordInput.getText().toString());
+                Owner owner = new Owner(binding.loginEmailInput.getText().toString(), encryptedPassword);
+                viewModel.insert(owner);
+                startOwnerActivity();
+            } catch (Exception e) {
+                Log.e("RegisterEncryptError", e.getMessage());
+                Toast.makeText(this, "Error al encriptar la contraseña, vuelvelo a intentar", Toast.LENGTH_SHORT).show();
+            }
         });
 
         binding.loginLoginButton.setOnClickListener(v -> {
@@ -53,14 +61,21 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Empty fields founds", Toast.LENGTH_SHORT).show();
                 return;
             }
+            String encryptedPassword = "";
+            try {
+                encryptedPassword = Encrypter.encrypt(binding.loginPasswordInput.getText().toString());
+            } catch (Exception e) {
+                Log.e("LoginEncryptError", e.getMessage());
+                Toast.makeText(this, "Error al comprobar la contraseña, vuelvelo a intentar", Toast.LENGTH_SHORT).show();
+            }
             if (!checkPassword(users, binding.loginEmailInput.getText().toString(),
-                    binding.loginPasswordInput.getText().toString())) {
+                    encryptedPassword)) {
                 Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
             startOwnerActivity();
+
+
         });
     }
 
