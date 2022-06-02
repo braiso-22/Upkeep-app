@@ -23,9 +23,9 @@ public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.FleetViewHol
     final FleetAdapter.OnFleetClickListener listener;
 
     public FleetAdapter(List<Fleet> values, Context context, FleetAdapter.OnFleetClickListener listener) {
-        this.inflater = LayoutInflater.from(context);
         this.values = values;
         this.context = context;
+        this.inflater = LayoutInflater.from(context);
         this.listener = listener;
     }
 
@@ -81,7 +81,6 @@ public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.FleetViewHol
                 }
             });
         }
-
 
         @Override
         public String toString() {

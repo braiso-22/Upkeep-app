@@ -8,11 +8,13 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
+
 public class UsersListFragment extends Fragment {
 
     public UsersListFragment() {
@@ -42,7 +44,6 @@ public class UsersListFragment extends Fragment {
                         new OperatorListFragment() : new ManagerListFragment();
 
                 ft.replace(R.id.usersListFragmentContainer, fragment)
-                        .addToBackStack(null)
                         .commit();
             }
         });
