@@ -4,11 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.139" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/ic_back_icon.xml" value="0.1" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/ic_baseline_build_24.xml" value="0.2195" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/ic_baseline_directions_boat_24.xml" value="0.1" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/ic_baseline_supervised_user_circle_24.xml" value="0.139" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/ic_front_icon.xml" value="0.1" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.139" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/splash_screen.xml" value="0.1" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/uppkepp_logo_background.xml" value="0.1" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/uppkepp_logo_foreground.xml" value="0.1" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_fleet_creation.xml" value="0.26944444444444443" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_login.xml" value="0.15" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layout/activity_on_boarding.xml" value="0.33" />
@@ -75,6 +80,9 @@
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/menu/crud_options_menu.xml" value="0.20270270270270271" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/menu/top_users_list_option_menu.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.139" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/mipmap-anydpi-v26/upkeep_logo.xml" value="0.201" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/mipmap-anydpi-v26/uppkepp_logo.xml" value="0.201" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/mipmap-anydpi-v26/uppkepp_logo_round.xml" value="0.1" />
       </map>
     </option>
   </component>
