@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".usecases.home.OwnerHomeActivity">
+    tools:context=".usecases.home.NotOwnerHomeActivity">
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.braiso_22.upkeep_app.usecases.home.owner.fragments.FleetsListFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView"
-        app:menu="@menu/bottom_menu_owner">
+        app:menu="@menu/bottom_menu_not_owner">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

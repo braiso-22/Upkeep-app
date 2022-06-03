@@ -3,7 +3,7 @@ package com.braiso_22.upkeep_app.usecases.onboarding;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.braiso_22.upkeep_app.R;
-import com.braiso_22.upkeep_app.usecases.home.HomeActivity;
+import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.usecases.login.NotOwnerLoginActivity;
 import com.braiso_22.upkeep_app.usecases.login.OwnerLoginActivity;
 
@@ -50,7 +50,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         adminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OnBoardingActivity.this, HomeActivity.class);
+                Intent intent = new Intent(OnBoardingActivity.this, OwnerHomeActivity.class);
                 startActivity(intent);
             }
         });

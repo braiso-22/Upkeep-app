@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.braiso_22.upkeep_app.databinding.ActivityOwnerLoginBinding;
 import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.model.vo.users.User;
-import com.braiso_22.upkeep_app.usecases.home.HomeActivity;
+import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.utils.Encrypter;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -100,7 +100,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
     }
 
     private void startOwnerActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, OwnerHomeActivity.class);
         startActivity(intent);
         finish();
     }

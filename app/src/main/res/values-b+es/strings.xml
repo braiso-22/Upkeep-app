@@ -79,4 +79,5 @@
     <string name="identification">Identificación</string>
     <string name="surnames">Apellidos</string>
     <string name="email">Email</string>
+    <string name="recent">Reciente</string>
 </resources>

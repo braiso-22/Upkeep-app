@@ -11,7 +11,8 @@ import com.braiso_22.upkeep_app.databinding.ActivityNotOwnerLoginBinding;
 import com.braiso_22.upkeep_app.model.vo.users.Manager;
 import com.braiso_22.upkeep_app.model.vo.users.Operator;
 import com.braiso_22.upkeep_app.model.vo.users.User;
-import com.braiso_22.upkeep_app.usecases.home.HomeActivity;
+import com.braiso_22.upkeep_app.usecases.home.NotOwnerHomeActivity;
+import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.utils.Encrypter;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -54,7 +55,7 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
                 } else {
                     viewModel.update((Operator) user);
                 }
-                startOwnerActivity();
+                startNotOwnerActivity();
             } catch (Exception e) {
                 Log.e("RegisterEncryptError", e.getMessage());
                 Toast.makeText(this, "Error al encriptar la contraseña, vuelvelo a intentar", Toast.LENGTH_SHORT).show();
@@ -78,7 +79,7 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
                 return;
             }
-            startOwnerActivity();
+            startNotOwnerActivity();
         });
     }
 
@@ -122,8 +123,8 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
         return false;
     }
 
-    private void startOwnerActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
+    private void startNotOwnerActivity() {
+        Intent intent = new Intent(this, NotOwnerHomeActivity.class);
         startActivity(intent);
         finish();
     }

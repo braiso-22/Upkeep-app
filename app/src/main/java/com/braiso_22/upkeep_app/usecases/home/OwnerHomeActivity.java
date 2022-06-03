@@ -15,7 +15,7 @@ import com.braiso_22.upkeep_app.usecases.home.owner.fragments.UsersListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class HomeActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
+public class OwnerHomeActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
     BottomNavigationView bottomNavigationView;
     Fragment lastFragment;
 

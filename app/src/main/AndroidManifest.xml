@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Upkeepapp" >
         <activity
+            android:name=".usecases.home.NotOwnerHomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".usecases.login.NotOwnerLoginActivity"
             android:exported="false" />
         <activity
@@ -40,7 +43,7 @@
             android:name=".usecases.creation.FleetCreationActivity"
             android:exported="false" />
         <activity
-            android:name=".usecases.home.HomeActivity"
+            android:name=".usecases.home.OwnerHomeActivity"
             android:exported="false" />
         <activity
             android:name=".usecases.login.OwnerLoginActivity"

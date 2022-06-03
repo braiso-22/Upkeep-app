@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/recent"
+        android:icon="@drawable/ic_baseline_access_time_24"
+        android:title="@string/recent" />
+    <item
+        android:id="@+id/actual_table"
+        android:icon="@drawable/ic_baseline_directions_boat_24"
+        android:title="@string/views" />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/profile" />
+</menu>
