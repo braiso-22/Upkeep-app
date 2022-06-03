@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.braiso_22.upkeep_app">
+    package="com.braiso_22.upkeep_app" >
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/upkeep_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Upkeepapp">
+        android:theme="@style/Theme.Upkeepapp" >
+        <activity
+            android:name=".usecases.login.NotOwnerLoginActivity"
+            android:exported="false" />
         <activity
             android:name=".usecases.creation.UserCreationActivity"
             android:exported="false" />
@@ -37,20 +40,21 @@
             android:name=".usecases.creation.FleetCreationActivity"
             android:exported="false" />
         <activity
-            android:name=".usecases.home.owner.OwnerHomeActivity"
+            android:name=".usecases.home.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".usecases.login.LoginActivity"
+            android:name=".usecases.login.OwnerLoginActivity"
             android:exported="false" />
         <activity
             android:name=".usecases.onboarding.OnBoardingActivity"
             android:exported="false" />
         <activity
             android:name=".usecases.splashscreen.SplashActivity"
-            android:theme="@style/SplashTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

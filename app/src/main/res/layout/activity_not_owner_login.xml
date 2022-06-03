@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".usecases.login.LoginActivity">
+    tools:context=".usecases.login.NotOwnerLoginActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/loginProfileImageView"
+                android:id="@+id/loginNotOwnerProfileImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -41,7 +41,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <EditText
-                android:id="@+id/loginEmailInput"
+                android:id="@+id/loginNotOwnerEmailInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -51,10 +51,10 @@
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginProfileImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/loginNotOwnerProfileImageView" />
 
             <EditText
-                android:id="@+id/loginPasswordInput"
+                android:id="@+id/loginNotOwnerPasswordInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -62,12 +62,12 @@
                 android:hint="Contraseña"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                app:layout_constraintEnd_toEndOf="@+id/loginEmailInput"
-                app:layout_constraintStart_toStartOf="@+id/loginEmailInput"
-                app:layout_constraintTop_toBottomOf="@+id/loginEmailInput" />
+                app:layout_constraintEnd_toEndOf="@+id/loginNotOwnerEmailInput"
+                app:layout_constraintStart_toStartOf="@+id/loginNotOwnerEmailInput"
+                app:layout_constraintTop_toBottomOf="@+id/loginNotOwnerEmailInput" />
 
             <Button
-                android:id="@+id/loginRegisterbutton"
+                android:id="@+id/loginNotOwnerRegisterbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-16dp"
@@ -75,17 +75,17 @@
                 android:layout_marginBottom="32dp"
                 android:text="Registro"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/loginPasswordInput"
-                app:layout_constraintTop_toBottomOf="@+id/loginPasswordInput" />
+                app:layout_constraintStart_toStartOf="@+id/loginNotOwnerPasswordInput"
+                app:layout_constraintTop_toBottomOf="@+id/loginNotOwnerPasswordInput" />
 
             <Button
-                android:id="@+id/loginLoginButton"
+                android:id="@+id/loginNotOwnerLoginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="-16dp"
                 android:text="Inicio"
-                app:layout_constraintEnd_toEndOf="@+id/loginPasswordInput"
-                app:layout_constraintTop_toTopOf="@+id/loginRegisterbutton" />
+                app:layout_constraintEnd_toEndOf="@+id/loginNotOwnerPasswordInput"
+                app:layout_constraintTop_toTopOf="@+id/loginNotOwnerRegisterbutton" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

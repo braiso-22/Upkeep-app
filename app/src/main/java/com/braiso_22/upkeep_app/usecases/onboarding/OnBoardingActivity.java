@@ -3,8 +3,9 @@ package com.braiso_22.upkeep_app.usecases.onboarding;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.braiso_22.upkeep_app.R;
-import com.braiso_22.upkeep_app.usecases.home.owner.OwnerHomeActivity;
-import com.braiso_22.upkeep_app.usecases.login.LoginActivity;
+import com.braiso_22.upkeep_app.usecases.home.HomeActivity;
+import com.braiso_22.upkeep_app.usecases.login.NotOwnerLoginActivity;
+import com.braiso_22.upkeep_app.usecases.login.OwnerLoginActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,7 +34,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         ownerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OnBoardingActivity.this, LoginActivity.class);
+                Intent intent = new Intent(OnBoardingActivity.this, OwnerLoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -41,7 +42,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         employeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OnBoardingActivity.this, LoginActivity.class);
+                Intent intent = new Intent(OnBoardingActivity.this, NotOwnerLoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -49,7 +50,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         adminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OnBoardingActivity.this, OwnerHomeActivity.class);
+                Intent intent = new Intent(OnBoardingActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });

@@ -2,53 +2,58 @@ package com.braiso_22.upkeep_app.usecases.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.braiso_22.upkeep_app.databinding.ActivityLoginBinding;
-import com.braiso_22.upkeep_app.model.vo.users.Owner;
-import com.braiso_22.upkeep_app.model.vo.users.User;
-import com.braiso_22.upkeep_app.usecases.home.owner.OwnerHomeActivity;
-import com.braiso_22.upkeep_app.utils.Encrypter;
-import com.braiso_22.upkeep_app.utils.TextUtils;
-import com.braiso_22.upkeep_app.viewmodel.ViewModel;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.braiso_22.upkeep_app.databinding.ActivityNotOwnerLoginBinding;
+import com.braiso_22.upkeep_app.model.vo.users.Manager;
+import com.braiso_22.upkeep_app.model.vo.users.Operator;
+import com.braiso_22.upkeep_app.model.vo.users.User;
+import com.braiso_22.upkeep_app.usecases.home.HomeActivity;
+import com.braiso_22.upkeep_app.utils.Encrypter;
+import com.braiso_22.upkeep_app.utils.TextUtils;
+import com.braiso_22.upkeep_app.viewmodel.ViewModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity {
 
-    ActivityLoginBinding binding;
+public class NotOwnerLoginActivity extends AppCompatActivity {
+    ActivityNotOwnerLoginBinding binding;
     ViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        binding = ActivityNotOwnerLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         viewModel = new ViewModel(getApplication());
 
-        List<User> users = new ArrayList<>();
-        viewModel.getAllOwners().observe(this, users::addAll);
+        List<User> users = populateUsersArray();
 
-        binding.loginRegisterbutton.setOnClickListener(v -> {
-            if (TextUtils.areFieldsEmpty(binding.loginEmailInput, binding.loginPasswordInput)) {
+        binding.loginNotOwnerRegisterbutton.setOnClickListener(v -> {
+            if (TextUtils.areFieldsEmpty(binding.loginNotOwnerEmailInput, binding.loginNotOwnerPasswordInput)) {
                 Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (checkUserExists(users, binding.loginEmailInput.getText().toString())) {
+            if (!checkUserNotRegistered(users, binding.loginNotOwnerEmailInput.getText().toString())) {
                 Toast.makeText(this, "No se puede registrar con ese usuario", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-
             try {
                 Toast.makeText(this, "Register Successful", Toast.LENGTH_SHORT).show();
-                String encryptedPassword = Encrypter.encrypt(binding.loginPasswordInput.getText().toString());
-                Owner owner = new Owner(binding.loginEmailInput.getText().toString(), encryptedPassword);
-                viewModel.insert(owner);
+                String encryptedPassword = Encrypter.encrypt(binding.loginNotOwnerPasswordInput.getText().toString());
+                User user = getUserWithLogin(users, binding.loginNotOwnerEmailInput.getText().toString());
+                user.setPassword(encryptedPassword);
+                boolean isManager = user instanceof Manager;
+                if (isManager) {
+                    viewModel.update((Manager) user);
+                } else {
+                    viewModel.update((Operator) user);
+                }
                 startOwnerActivity();
             } catch (Exception e) {
                 Log.e("RegisterEncryptError", e.getMessage());
@@ -56,47 +61,56 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        binding.loginLoginButton.setOnClickListener(v -> {
-            if (TextUtils.areFieldsEmpty(binding.loginEmailInput, binding.loginPasswordInput)) {
+        binding.loginNotOwnerLoginButton.setOnClickListener(v -> {
+            if (TextUtils.areFieldsEmpty(binding.loginNotOwnerEmailInput, binding.loginNotOwnerPasswordInput)) {
                 Toast.makeText(this, "Empty fields founds", Toast.LENGTH_SHORT).show();
                 return;
             }
             String encryptedPassword = "";
             try {
-                encryptedPassword = Encrypter.encrypt(binding.loginPasswordInput.getText().toString());
+                encryptedPassword = Encrypter.encrypt(binding.loginNotOwnerPasswordInput.getText().toString());
             } catch (Exception e) {
                 Log.e("LoginEncryptError", e.getMessage());
                 Toast.makeText(this, "Error al comprobar la contraseña, vuelvelo a intentar", Toast.LENGTH_SHORT).show();
             }
-            if (!checkPassword(users, binding.loginEmailInput.getText().toString(),
+            if (!checkPassword(users, binding.loginNotOwnerEmailInput.getText().toString(),
                     encryptedPassword)) {
                 Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
                 return;
             }
             startOwnerActivity();
-
-
         });
     }
 
     // usuarios manager y operator
-    /*
+
     private List<User> populateUsersArray() {
         List<User> users = new ArrayList<>();
         viewModel.getAllManagers().observe(this, users::addAll);
         viewModel.getAllOperators().observe(this, users::addAll);
         return users;
-    }*/
+    }
 
-    private boolean checkUserExists(List<User> users, String username) {
+    private boolean checkUserNotRegistered(List<User> users, String username) {
         boolean exists = false;
         for (User user : users) {
-            if (user.getLogin().equals(username)) {
+            if (user.getLogin().equals(username) && user.getPassword() == null) {
                 exists = true;
                 break;
             }
         }
         return exists;
+    }
+
+    private User getUserWithLogin(List<User> users, String username) {
+        User user = null;
+        for (User u : users) {
+            if (u.getLogin().equals(username)) {
+                user = u;
+                break;
+            }
+        }
+        return user;
     }
 
     private boolean checkPassword(List<User> users, String username, String password) {
@@ -109,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void startOwnerActivity() {
-        Intent intent = new Intent(this, OwnerHomeActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
