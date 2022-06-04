@@ -24,6 +24,7 @@ import java.util.List;
 public class NotOwnerLoginActivity extends AppCompatActivity {
     ActivityNotOwnerLoginBinding binding;
     ViewModel viewModel;
+    List<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         viewModel = new ViewModel(getApplication());
 
-        List<User> users = populateUsersArray();
+        users = populateUsersArray();
 
         binding.loginNotOwnerRegisterbutton.setOnClickListener(v -> {
             if (TextUtils.areFieldsEmpty(binding.loginNotOwnerEmailInput, binding.loginNotOwnerPasswordInput)) {
@@ -123,8 +124,18 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
         return false;
     }
 
+    private User getUser(List<User> users, String login) {
+        for (User user : users) {
+            if (user.getLogin().equals(login)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     private void startNotOwnerActivity() {
         Intent intent = new Intent(this, NotOwnerHomeActivity.class);
+        intent.putExtra("user", getUser(users,binding.loginNotOwnerEmailInput.getText().toString()));
         startActivity(intent);
         finish();
     }

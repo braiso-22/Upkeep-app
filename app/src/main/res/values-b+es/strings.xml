@@ -70,7 +70,6 @@
     <string name="terms29">ontáctenos</string>
     <string name="terms30">o dude en contactarnos si tiene alguna pregunta.</string>
     <string name="terms31"> través de correo electrónico: braisfv22@gmail.com</string>
-
     <string name="continueText">Continuar</string>
     <string name="complete_license"></string>
     <string name="accept">Aceptar</string>
@@ -80,4 +79,6 @@
     <string name="surnames">Apellidos</string>
     <string name="email">Email</string>
     <string name="recent">Reciente</string>
+    <string name="exit">Salir</string>
+    <string name="profile_data">Datos de perfil</string>
 </resources>

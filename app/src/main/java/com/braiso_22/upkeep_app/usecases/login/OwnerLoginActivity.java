@@ -22,6 +22,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
 
     ActivityOwnerLoginBinding binding;
     ViewModel viewModel;
+    List<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         viewModel = new ViewModel(getApplication());
 
-        List<User> users = new ArrayList<>();
+        users = new ArrayList<>();
         viewModel.getAllOwners().observe(this, users::addAll);
 
         binding.loginOwnerRegisterbutton.setOnClickListener(v -> {
@@ -79,10 +80,19 @@ public class OwnerLoginActivity extends AppCompatActivity {
         });
     }
 
+    private User getUser(List<User> users, String login) {
+        for (User user : users) {
+            if (user.getLogin().equals(login)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     private boolean checkUserExists(List<User> users, String username) {
         boolean exists = false;
         for (User user : users) {
-            if (user.getLogin().equals(username)) {
+            if (user.equals(username)) {
                 exists = true;
                 break;
             }
@@ -101,6 +111,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
 
     private void startOwnerActivity() {
         Intent intent = new Intent(this, OwnerHomeActivity.class);
+        intent.putExtra("owner", getUser(users,binding.loginOwnerEmailInput.getText().toString()));
         startActivity(intent);
         finish();
     }

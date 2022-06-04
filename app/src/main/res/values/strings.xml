@@ -69,9 +69,6 @@
     <string name="terms29">Contact Us</string>
     <string name="terms30">Feel free to contact us if you have any questions.</string>
     <string name="terms31">Via email: braisfv22@gmail.com</string>
-
-    Process finished with exit code 0
-
     <string name="continueText">Continue</string>
     <string name="complete_license"></string>
     <string name="accept">Accept</string>
@@ -81,4 +78,6 @@
     <string name="surnames">Surnames</string>
     <string name="email">Email</string>
     <string name="recent">Recent</string>
+    <string name="exit">Exit</string>
+    <string name="profile_data">Profile data</string>
 </resources>

@@ -10,14 +10,17 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.braiso_22.upkeep_app.R;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.usecases.home.owner.fragments.FleetsListFragment;
 import com.braiso_22.upkeep_app.usecases.home.owner.fragments.UsersListFragment;
+import com.braiso_22.upkeep_app.usecases.profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class OwnerHomeActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
     BottomNavigationView bottomNavigationView;
     Fragment lastFragment;
+    Owner owner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,37 +28,48 @@ public class OwnerHomeActivity extends AppCompatActivity implements NavigationBa
         setContentView(R.layout.activity_owner_home);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(this);
+        this.owner = (Owner) getIntent().getSerializableExtra("owner");
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         switch (id) {
             case R.id.users:
-                lastFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                if (!(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) instanceof UsersListFragment) &&
+                        !(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) instanceof ProfileFragment)) {
+                    lastFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+                }
+
                 ft.replace(R.id.fragmentContainerView, new UsersListFragment());
-                ft.commit();
                 break;
             case R.id.actual_table:
-                FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
                 if (lastFragment != null && !lastFragment.equals(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView))) {
-                    ft2.replace(R.id.fragmentContainerView, lastFragment);
+                    ft.replace(R.id.fragmentContainerView, lastFragment);
+                    lastFragment = null;
                 } else {
-                    ft2.replace(R.id.fragmentContainerView, new FleetsListFragment());
+                    ft.replace(R.id.fragmentContainerView, new FleetsListFragment());
+                    ft.disallowAddToBackStack();
                 }
-                ft2.commit();
                 break;
+            case R.id.profile:
+                if (!(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) instanceof UsersListFragment) &&
+                        !(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) instanceof ProfileFragment)) {
+                    lastFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+                }
+                ft.replace(R.id.fragmentContainerView, new ProfileFragment(owner));
         }
+        ft.commit();
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        if (bottomNavigationView.getSelectedItemId() != R.id.actual_table) {
-            finish();
-        } else {
+        if (R.id.actual_table == bottomNavigationView.getSelectedItemId() && !(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) instanceof FleetsListFragment)) {
             super.onBackPressed();
+        } else {
+            finish();
         }
     }
 }
