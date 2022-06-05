@@ -28,7 +28,7 @@ public class OwnerHomeActivity extends AppCompatActivity implements NavigationBa
         setContentView(R.layout.activity_owner_home);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(this);
-        this.owner = (Owner) getIntent().getSerializableExtra("owner");
+        this.owner = (Owner) getIntent().getSerializableExtra("user");
     }
 
     @Override

@@ -2,14 +2,19 @@ package com.braiso_22.upkeep_app.usecases.creation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.databinding.ActivityUserCreationBinding;
 import com.braiso_22.upkeep_app.model.vo.users.Manager;
 import com.braiso_22.upkeep_app.model.vo.users.Operator;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.model.vo.users.User;
+import com.braiso_22.upkeep_app.usecases.home.NotOwnerHomeActivity;
+import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.utils.UserTypes;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -47,6 +52,11 @@ public class UserCreationActivity extends AppCompatActivity {
             if (user instanceof Operator) {
                 binding.userServiceEditText.setText(String.valueOf(((Operator) user).getService()));
             }
+            if (user instanceof Owner) {
+                // set EditText invisible
+                binding.userServiceEditText.setText("1");
+                binding.userServiceEditText.setVisibility(View.GONE);
+            }
         }
         onClickButtons();
     }
@@ -78,21 +88,31 @@ public class UserCreationActivity extends AppCompatActivity {
         User user = getUserWithType();
         if (user instanceof Manager) {
             vm.insert((Manager) user);
-        } else {
+            goToHome(NotOwnerHomeActivity.class);
+        } else if (user instanceof Operator) {
             vm.insert((Operator) user);
+            goToHome(NotOwnerHomeActivity.class);
+        } else {
+            vm.insert((Owner) user);
+            goToHome(OwnerHomeActivity.class);
         }
-        finish();
     }
 
     private void updateUser() {
         User user = getUserWithType();
         user.setId(this.user.getId());
+        user.setPassword(this.user.getPassword());
+        this.user = user;
         if (user instanceof Manager) {
             vm.update((Manager) user);
-        } else {
+            goToHome(NotOwnerHomeActivity.class);
+        } else if (user instanceof Operator) {
             vm.update((Operator) user);
+            goToHome(NotOwnerHomeActivity.class);
+        } else {
+            vm.update((Owner) user);
+            goToHome(OwnerHomeActivity.class);
         }
-        finish();
     }
 
     private User getUserWithType() {
@@ -108,9 +128,19 @@ public class UserCreationActivity extends AppCompatActivity {
                 return new Manager(login, code, identification, name, surnames, email, service);
             case OPERATOR:
                 return new Operator(login, code, identification, name, surnames, email, service);
+            case OWNER:
+                return new Owner(login, code, identification, name, surnames, email);
             default:
                 break;
         }
         return null;
     }
+
+    private void goToHome(Class activity) {
+        Intent intent = new Intent(this, activity);
+        intent.putExtra("user", user);
+        finish();
+        startActivity(intent);
+    }
+
 }

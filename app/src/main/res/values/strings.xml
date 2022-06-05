@@ -70,7 +70,6 @@
     <string name="terms30">Feel free to contact us if you have any questions.</string>
     <string name="terms31">Via email: braisfv22@gmail.com</string>
     <string name="continueText">Continue</string>
-    <string name="complete_license"></string>
     <string name="accept">Accept</string>
     <string name="must_accept">You must accept the terms and conditions to continue</string>
     <string name="login">Login</string>
@@ -78,6 +77,6 @@
     <string name="surnames">Surnames</string>
     <string name="email">Email</string>
     <string name="recent">Recent</string>
-    <string name="exit">Exit</string>
     <string name="profile_data">Profile data</string>
+    <string name="logout">Log out</string>
 </resources>

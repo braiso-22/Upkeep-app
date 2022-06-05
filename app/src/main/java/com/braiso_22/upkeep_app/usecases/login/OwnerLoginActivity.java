@@ -111,7 +111,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
 
     private void startOwnerActivity() {
         Intent intent = new Intent(this, OwnerHomeActivity.class);
-        intent.putExtra("owner", getUser(users,binding.loginOwnerEmailInput.getText().toString()));
+        intent.putExtra("user", getUser(users,binding.loginOwnerEmailInput.getText().toString()));
         startActivity(intent);
         finish();
     }
