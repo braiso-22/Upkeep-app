@@ -11,6 +11,7 @@ import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -94,11 +95,18 @@ public class OwnerLoginActivity extends AppCompatActivity {
         viewModel.getOwnerByLogin(binding.loginOwnerEmailInput.getText().toString())
                 .observe(this, owner -> {
                     user = owner;
-                    if(user!=null){
-                        intent.putExtra("user", user);
-                        user=null;
-                        startActivity(intent);
-                        finish();
+                    int counter = 0;
+                    if (user != null) {
+                        counter++;
+                        if (counter == 1) {
+                            intent.putExtra("user", user);
+                            SharedPreferences sharedPreferences = getSharedPreferences("savedUser", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("savedUser", user.getLogin());
+                            editor.apply();
+                            startActivity(intent);
+                            finish();
+                        }
                     }
 
                 });

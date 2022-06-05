@@ -36,6 +36,7 @@ public class OnBoardingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(OnBoardingActivity.this, OwnerLoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -44,6 +45,7 @@ public class OnBoardingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(OnBoardingActivity.this, NotOwnerLoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -52,6 +54,7 @@ public class OnBoardingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(OnBoardingActivity.this, OwnerHomeActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

@@ -3,6 +3,7 @@ package com.braiso_22.upkeep_app.usecases.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -109,7 +110,10 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
 
                     } else {
                         intent.putExtra("user", user);
-                        user = null;
+                        SharedPreferences sharedPreferences = getSharedPreferences("savedUser", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("savedUser", user.getLogin());
+                        editor.apply();
                         startActivity(intent);
                         finish();
                     }
@@ -118,13 +122,21 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
                 });
         viewModel.getOperatorByLogin(binding.loginNotOwnerEmailInput.getText().toString())
                 .observe(this, operator -> {
+                    int counter = 0;
+
                     if (user == null) {
                         user = operator;
-                    } else {
-                        intent.putExtra("user", user);
-                        user = null;
-                        startActivity(intent);
-                        finish();
+                    } else if (counter == 0) {
+                        counter++;
+                        if (counter == 1) {
+                            intent.putExtra("user", user);
+                            SharedPreferences sharedPreferences = getSharedPreferences("savedUser", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("savedUser", user.getLogin());
+                            editor.apply();
+                            startActivity(intent);
+                            finish();
+                        }
                     }
                 });
     }

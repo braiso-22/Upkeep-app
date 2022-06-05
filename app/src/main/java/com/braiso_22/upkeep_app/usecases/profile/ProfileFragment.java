@@ -1,6 +1,7 @@
 package com.braiso_22.upkeep_app.usecases.profile;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,8 @@ public class ProfileFragment extends Fragment {
                     goToUserEdit(user);
                     break;
                 case R.id.logout:
+                    SharedPreferences preferences = getActivity().getSharedPreferences("savedUser", getActivity().MODE_PRIVATE);
+                    preferences.edit().clear().apply();
                     getActivity().finish();
                     break;
                 default:
