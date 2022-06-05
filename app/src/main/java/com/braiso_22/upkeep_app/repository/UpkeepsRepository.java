@@ -64,7 +64,7 @@ public class UpkeepsRepository {
         return allOwners;
     }
 
-    public LiveData<List<Owner>> getOwnerByLogin(String login) {
+    public LiveData<Owner> getOwnerByLogin(String login) {
         return ownerDao.getByLogin(login);
     }
 
@@ -183,7 +183,7 @@ public class UpkeepsRepository {
         return allManagers;
     }
 
-    public LiveData<List<Manager>> getManagerByLogin(String login) {
+    public LiveData<Manager> getManagerByLogin(String login) {
         return managerDao.getByLogin(login);
     }
 
@@ -311,7 +311,7 @@ public class UpkeepsRepository {
         return allOperators;
     }
 
-    public LiveData<List<Operator>> getOperatorByLogin(String login) {
+    public LiveData<Operator> getOperatorByLogin(String login) {
         return operatorDao.getByLogin(login);
     }
 

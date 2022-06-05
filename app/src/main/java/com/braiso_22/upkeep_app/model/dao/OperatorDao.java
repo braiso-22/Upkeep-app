@@ -30,7 +30,7 @@ public interface OperatorDao {
     LiveData<Operator> getById(int id);
 
     @Query("SELECT * FROM operator WHERE login = :login")
-    LiveData<List<Operator>> getByLogin(String login);
+    LiveData<Operator> getByLogin(String login);
 
     @Update
     void update(Operator operator);

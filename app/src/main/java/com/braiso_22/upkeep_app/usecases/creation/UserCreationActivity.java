@@ -80,7 +80,14 @@ public class UserCreationActivity extends AppCompatActivity {
 
         });
         binding.cancelUserCreationButton.setOnClickListener(v -> {
-            finish();
+            if (user instanceof Manager) {
+                goToHome(NotOwnerHomeActivity.class);
+            } else if (user instanceof Operator) {
+                goToHome(NotOwnerHomeActivity.class);
+            } else {
+                goToHome(OwnerHomeActivity.class);
+            }
+
         });
     }
 

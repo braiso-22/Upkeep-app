@@ -22,7 +22,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
 
     ActivityOwnerLoginBinding binding;
     ViewModel viewModel;
-    List<User> users;
+    Owner user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,31 +30,35 @@ public class OwnerLoginActivity extends AppCompatActivity {
         binding = ActivityOwnerLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         viewModel = new ViewModel(getApplication());
+        binding.loginOwnerEmailInput.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus && !TextUtils.areFieldsEmpty(binding.loginOwnerEmailInput)) {
+                viewModel.getOwnerByLogin(binding.loginOwnerEmailInput.getText().toString())
+                        .observe(this, owner -> {
+                            user = owner;
+                        });
+            }
+        });
 
-        users = new ArrayList<>();
-        viewModel.getAllOwners().observe(this, users::addAll);
 
         binding.loginOwnerRegisterbutton.setOnClickListener(v -> {
             if (TextUtils.areFieldsEmpty(binding.loginOwnerEmailInput, binding.loginOwnerPasswordInput)) {
                 Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (checkUserExists(users, binding.loginOwnerEmailInput.getText().toString())) {
-                Toast.makeText(this, "No se puede registrar con ese usuario", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-
             try {
-                Toast.makeText(this, "Register Successful", Toast.LENGTH_SHORT).show();
-                String encryptedPassword = Encrypter.encrypt(binding.loginOwnerPasswordInput.getText().toString());
-                Owner owner = new Owner(binding.loginOwnerEmailInput.getText().toString(), encryptedPassword);
-                viewModel.insert(owner);
-                startOwnerActivity();
+                String cipheredPassword = Encrypter.encrypt(binding.loginOwnerPasswordInput.getText().toString());
+                Owner user = new Owner(binding.loginOwnerEmailInput.getText().toString(),
+                        cipheredPassword);
+                if (isUserRegistered(user)) {
+                    Toast.makeText(this, "No se puede registrar con este usuario", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                viewModel.insert(user);
+                goToHome();
             } catch (Exception e) {
-                Log.e("RegisterEncryptError", e.getMessage());
-                Toast.makeText(this, "Error al encriptar la contraseña, vuelvelo a intentar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error en el cifrado de contraseñas", Toast.LENGTH_SHORT).show();
             }
+
         });
 
         binding.loginOwnerLoginButton.setOnClickListener(v -> {
@@ -62,57 +66,41 @@ public class OwnerLoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Empty fields founds", Toast.LENGTH_SHORT).show();
                 return;
             }
-            String encryptedPassword = "";
             try {
-                encryptedPassword = Encrypter.encrypt(binding.loginOwnerPasswordInput.getText().toString());
+                String cipheredPassword = Encrypter.encrypt(binding.loginOwnerPasswordInput.getText().toString());
+                if (checkPassword(cipheredPassword)) {
+                    goToHome();
+                } else {
+                    Toast.makeText(this, "Password incorrect", Toast.LENGTH_SHORT).show();
+                }
             } catch (Exception e) {
-                Log.e("LoginEncryptError", e.getMessage());
-                Toast.makeText(this, "Error al comprobar la contraseña, vuelvelo a intentar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error en el cifrado de contraseñas", Toast.LENGTH_SHORT).show();
             }
-            if (!checkPassword(users, binding.loginOwnerEmailInput.getText().toString(),
-                    encryptedPassword)) {
-                Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            startOwnerActivity();
 
 
         });
     }
 
-    private User getUser(List<User> users, String login) {
-        for (User user : users) {
-            if (user.getLogin().equals(login)) {
-                return user;
-            }
-        }
-        return null;
+    private boolean isUserRegistered(User user) {
+        return this.user != null && this.user.equals(user);
     }
 
-    private boolean checkUserExists(List<User> users, String username) {
-        boolean exists = false;
-        for (User user : users) {
-            if (user.equals(username)) {
-                exists = true;
-                break;
-            }
-        }
-        return exists;
+    private boolean checkPassword(String password) {
+        return this.user != null && this.user.getPassword().equals(password);
     }
 
-    private boolean checkPassword(List<User> users, String username, String password) {
-        for (User user : users) {
-            if (user.getLogin().equals(username) && user.getPassword().equals(password)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void startOwnerActivity() {
+    private void goToHome() {
         Intent intent = new Intent(this, OwnerHomeActivity.class);
-        intent.putExtra("user", getUser(users,binding.loginOwnerEmailInput.getText().toString()));
-        startActivity(intent);
-        finish();
+        viewModel.getOwnerByLogin(binding.loginOwnerEmailInput.getText().toString())
+                .observe(this, owner -> {
+                    user = owner;
+                    if(user!=null){
+                        intent.putExtra("user", user);
+                        user=null;
+                        startActivity(intent);
+                        finish();
+                    }
+
+                });
     }
 }

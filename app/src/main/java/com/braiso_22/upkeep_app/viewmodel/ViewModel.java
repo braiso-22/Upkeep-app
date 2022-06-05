@@ -44,7 +44,7 @@ public class ViewModel extends AndroidViewModel {
         return allOwners;
     }
 
-    public LiveData<List<Owner>> getOwnerByLogin(String login) {
+    public LiveData<Owner> getOwnerByLogin(String login) {
         return repository.getOwnerByLogin(login);
     }
 
@@ -132,7 +132,7 @@ public class ViewModel extends AndroidViewModel {
         return allManagers;
     }
 
-    public LiveData<List<Manager>> getManagerByLogin(String login) {
+    public LiveData<Manager> getManagerByLogin(String login) {
         return repository.getManagerByLogin(login);
     }
 
@@ -232,7 +232,7 @@ public class ViewModel extends AndroidViewModel {
         return allOperators;
     }
 
-    public LiveData<List<Operator>> getOperatorByLogin(String login) {
+    public LiveData<Operator> getOperatorByLogin(String login) {
         return repository.getOperatorByLogin(login);
     }
 

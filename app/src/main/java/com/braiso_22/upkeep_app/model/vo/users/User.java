@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public abstract class User implements Serializable {
     @PrimaryKey(autoGenerate = true)
@@ -128,5 +129,18 @@ public abstract class User implements Serializable {
     @Override
     public String toString() {
         return String.format("{id=%d, login=%s,code=%s, identification=%s, name=%s, surnames=%s, email=%s }", id, login, code, identification, name, surnames, email);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getLogin().equals(user.getLogin());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLogin());
     }
 }

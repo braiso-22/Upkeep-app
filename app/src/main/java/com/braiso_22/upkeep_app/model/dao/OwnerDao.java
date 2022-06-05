@@ -30,7 +30,7 @@ public interface OwnerDao {
     LiveData<Owner> getById(int id);
 
     @Query("SELECT * FROM owner WHERE login = :login")
-    LiveData<List<Owner>> getByLogin(String login);
+    LiveData<Owner> getByLogin(String login);
 
     @Update
     void update(Owner owner);

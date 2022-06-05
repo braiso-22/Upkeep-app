@@ -30,7 +30,7 @@ public interface ManagerDao {
     LiveData<Manager> getById(int id);
 
     @Query("SELECT * FROM manager WHERE login = :login")
-    LiveData<List<Manager>> getByLogin(String login);
+    LiveData<Manager> getByLogin(String login);
 
     @Update
     void update(Manager manager);
