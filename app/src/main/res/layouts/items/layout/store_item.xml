@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
@@ -19,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Id"
-            android:textColor="@color/black"
+            android:text="@string/id"
+            android:textColor="?colorOnSecondary"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
-            android:text="Código"
+            android:text="@string/code"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,9 +39,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textColor="@color/black"
+            android:text="@string/name"
+            android:textColor="?colorOnSecondary"
             android:textSize="20sp"
-            android:text="Nombre"
             app:layout_constraintBottom_toBottomOf="@+id/storeIdText"
             app:layout_constraintStart_toEndOf="@+id/storeIdText"
             app:layout_constraintTop_toTopOf="@+id/storeIdText" />
@@ -52,9 +51,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Marca"
+            android:text="@string/brand"
+            android:textColor="?colorOnSecondary"
             android:textSize="16sp"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/storeNameText"
             app:layout_constraintStart_toEndOf="@+id/storeNameText"
             app:layout_constraintTop_toTopOf="@+id/storeNameText" />
@@ -64,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Modelo"
-            android:textColor="@color/black"
+            android:text="@string/model"
+            android:textColor="?colorOnSecondary"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/storeBrandText"
             app:layout_constraintStart_toEndOf="@+id/storeBrandText"
@@ -76,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Numero Serie"
+            android:text="@string/serialNumber"
             app:layout_constraintStart_toStartOf="@+id/storeIdText"
             app:layout_constraintTop_toBottomOf="@+id/storeNameText" />
 
@@ -86,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Observaciones"
+            android:text="@string/observations"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/storeIdText"
             app:layout_constraintTop_toBottomOf="@+id/storeSerialNumberText"
@@ -97,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="numStock"
+            android:text="@string/numStock"
             app:layout_constraintStart_toEndOf="@+id/storeSerialNumberText"
             app:layout_constraintTop_toTopOf="@+id/storeSerialNumberText" />
 
@@ -106,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="min Stock"
+            android:text="@string/minStock"
             app:layout_constraintStart_toEndOf="@+id/storeNumStockText"
             app:layout_constraintTop_toTopOf="@+id/storeNumStockText" />
     </androidx.constraintlayout.widget.ConstraintLayout>

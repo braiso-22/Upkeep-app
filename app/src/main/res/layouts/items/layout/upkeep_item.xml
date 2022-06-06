@@ -21,8 +21,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:textSize="20sp"
-            android:textColor="@color/black"
-            android:text="id"
+            android:textColor="?colorOnSecondary"
+            android:text="@string/id"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -34,12 +34,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="09/05/2022"
+            android:text="@string/date"
             android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textColor="?colorOnSecondary"
             app:layout_constraintBottom_toBottomOf="@+id/idUpkeepText"
             app:layout_constraintStart_toEndOf="@+id/idUpkeepText"
-            app:layout_constraintTop_toTopOf="@+id/idUpkeepText"></TextView>
+            app:layout_constraintTop_toTopOf="@+id/idUpkeepText"/>
 
         <TextView
             android:id="@+id/hourUpkeepText"
@@ -47,11 +47,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:textSize="20sp"
-            android:text="18:23"
-            android:textColor="@color/black"
+            android:text="@string/time"
+            android:textColor="?colorOnSecondary"
             app:layout_constraintBottom_toBottomOf="@+id/dateUpkeepText"
             app:layout_constraintStart_toEndOf="@+id/dateUpkeepText"
-            app:layout_constraintTop_toTopOf="@+id/dateUpkeepText"></TextView>
+            app:layout_constraintTop_toTopOf="@+id/dateUpkeepText"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

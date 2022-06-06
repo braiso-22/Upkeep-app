@@ -19,7 +19,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/length"/>
+        android:hint="@string/length"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/taskNameEditText"
@@ -32,7 +33,8 @@
         android:hint="@string/name"
         app:layout_constraintEnd_toEndOf="@+id/taskLengthEditText"
         app:layout_constraintStart_toStartOf="@+id/taskLengthEditText"
-        app:layout_constraintTop_toBottomOf="@+id/taskLengthEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/taskLengthEditText"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/taskDescriptionEditText"
@@ -46,7 +48,8 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="@+id/taskNameEditText"
         app:layout_constraintStart_toStartOf="@+id/taskNameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/taskNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/taskNameEditText"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/taskUpkeepEditText"
@@ -59,7 +62,8 @@
         android:hint="@string/upkeep"
         app:layout_constraintEnd_toEndOf="@+id/taskDescriptionEditText"
         app:layout_constraintStart_toStartOf="@+id/taskDescriptionEditText"
-        app:layout_constraintTop_toBottomOf="@+id/taskDescriptionEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/taskDescriptionEditText"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/taskOperatorEditText"
@@ -73,7 +77,8 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="@+id/taskUpkeepEditText"
         app:layout_constraintStart_toStartOf="@+id/taskUpkeepEditText"
-        app:layout_constraintTop_toBottomOf="@+id/taskUpkeepEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/taskUpkeepEditText"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/cancelTaskCreationButton"

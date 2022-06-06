@@ -19,7 +19,8 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/userLoginEditText"
@@ -33,7 +34,8 @@
         app:layout_constraintEnd_toEndOf="@+id/userCodeEditText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/userCodeEditText"
-        app:layout_constraintTop_toBottomOf="@+id/userCodeEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/userCodeEditText"
+        android:autofillHints="username" />
 
     <EditText
         android:id="@+id/userIdentificationEditText"
@@ -46,7 +48,8 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/userLoginEditText"
         app:layout_constraintStart_toStartOf="@+id/userLoginEditText"
-        app:layout_constraintTop_toBottomOf="@+id/userLoginEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/userLoginEditText"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/userNameEditText"
@@ -60,7 +63,8 @@
         app:layout_constraintEnd_toEndOf="@+id/userIdentificationEditText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/userIdentificationEditText"
-        app:layout_constraintTop_toBottomOf="@+id/userIdentificationEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/userIdentificationEditText"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/userSurnameEditText"
@@ -74,7 +78,8 @@
         app:layout_constraintEnd_toEndOf="@+id/userNameEditText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/userNameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/userNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/userNameEditText"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/userEmailEditText"
@@ -83,12 +88,15 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/email"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/userSurnameEditText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/userSurnameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/userSurnameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/userSurnameEditText"
+        android:autofillHints="emailAddress"
+
+        />
 
     <EditText
         android:id="@+id/userServiceEditText"
@@ -102,7 +110,8 @@
         app:layout_constraintEnd_toEndOf="@+id/userEmailEditText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/userEmailEditText"
-        app:layout_constraintTop_toBottomOf="@+id/userEmailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/userEmailEditText"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/cancelUserCreationButton"

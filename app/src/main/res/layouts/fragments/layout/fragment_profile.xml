@@ -32,7 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:srcCompat="@drawable/ic_baseline_person_24" />
+        app:srcCompat="@drawable/unknown_user_profile" 
+        android:contentDescription="@string/unknown_user_profile"/>
 
     <TextView
         android:id="@+id/userNameTagTextView"
@@ -41,7 +42,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="@string/name"
-        android:textColor="@color/black"
+        android:textColor="?colorOnSecondary"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileDataTextView" />
@@ -51,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/empty"
         app:layout_constraintStart_toStartOf="@+id/userNameTagTextView"
         app:layout_constraintTop_toBottomOf="@+id/userNameTagTextView"
         android:textSize="18sp"/>
@@ -64,7 +65,7 @@
         android:text="@string/surnames"
         app:layout_constraintStart_toStartOf="@+id/userNameTextView"
         app:layout_constraintTop_toBottomOf="@+id/userNameTextView"
-        android:textColor="@color/black"
+        android:textColor="?colorOnSecondary"
         android:textSize="20sp"/>
 
     <TextView
@@ -72,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/empty"
         app:layout_constraintStart_toStartOf="@+id/userSurnameTagTextView"
         app:layout_constraintTop_toBottomOf="@+id/userSurnameTagTextView"
         android:textSize="18sp"/>
@@ -85,7 +86,7 @@
         android:text="@string/email"
         app:layout_constraintStart_toStartOf="@+id/userSurnameTextView"
         app:layout_constraintTop_toBottomOf="@+id/userSurnameTextView"
-        android:textColor="@color/black"
+        android:textColor="?colorOnSecondary"
         android:textSize="20sp"/>
 
     <TextView
@@ -93,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/empty"
         app:layout_constraintStart_toStartOf="@+id/userEmailTagTextView"
         app:layout_constraintTop_toBottomOf="@+id/userEmailTagTextView"
         android:textSize="18sp"
@@ -108,7 +109,7 @@
         android:text="@string/identification"
         app:layout_constraintStart_toStartOf="@+id/userEmailTextView"
         app:layout_constraintTop_toBottomOf="@+id/userEmailTextView"
-        android:textColor="@color/black"
+        android:textColor="?colorOnSecondary"
         android:textSize="20sp"/>
 
     <TextView
@@ -116,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/empty"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/userIdentificationTagTextView"
         app:layout_constraintTop_toBottomOf="@+id/userIdentificationTagTextView" />

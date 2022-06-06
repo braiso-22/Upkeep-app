@@ -19,7 +19,8 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/fleetOwnerEditText"
@@ -32,7 +33,8 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/fleetNameEditText"
         app:layout_constraintStart_toStartOf="@+id/fleetNameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/fleetNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/fleetNameEditText"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/cancelFleetCreationButton"

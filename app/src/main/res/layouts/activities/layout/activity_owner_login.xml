@@ -40,7 +40,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_person_24" />
+                app:srcCompat="@drawable/unknown_user_profile"
+                android:contentDescription="@string/unknown_user_profile" />
 
             <EditText
                 android:id="@+id/loginOwnerEmailInput"
@@ -48,12 +49,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:ems="10"
-                android:hint="Nombre/email"
+                android:hint="@string/username"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginOwnerProfileImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/loginOwnerProfileImageView"
+                android:autofillHints="username" />
 
             <EditText
                 android:id="@+id/loginOwnerPasswordInput"
@@ -61,21 +63,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:ems="10"
-                android:hint="Contraseña"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="@+id/loginOwnerEmailInput"
                 app:layout_constraintStart_toStartOf="@+id/loginOwnerEmailInput"
-                app:layout_constraintTop_toBottomOf="@+id/loginOwnerEmailInput" />
+                app:layout_constraintTop_toBottomOf="@+id/loginOwnerEmailInput"
+                android:autofillHints="password" />
 
             <Button
-                android:id="@+id/loginOwnerRegisterbutton"
+                android:id="@+id/loginOwnerRegisterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
-                android:text="Registro"
+                android:text="@string/sign_up"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/loginOwnerPasswordInput"
                 app:layout_constraintTop_toBottomOf="@+id/loginOwnerPasswordInput" />
@@ -85,9 +88,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="-16dp"
-                android:text="Inicio"
+                android:text="@string/login"
                 app:layout_constraintEnd_toEndOf="@+id/loginOwnerPasswordInput"
-                app:layout_constraintTop_toTopOf="@+id/loginOwnerRegisterbutton" />
+                app:layout_constraintTop_toTopOf="@+id/loginOwnerRegisterButton" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.braiso_22.upkeep_app"
-        minSdk 23
+        minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"

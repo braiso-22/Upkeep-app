@@ -14,25 +14,27 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:hint="@string/code"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/code"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/boatNameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:autofillHints="name"
         android:ems="10"
+        android:hint="@string/name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/boatCodeEditText"
         app:layout_constraintStart_toStartOf="@+id/boatCodeEditText"
-        app:layout_constraintTop_toBottomOf="@+id/boatCodeEditText"
-        android:hint="@string/name"/>
+        app:layout_constraintTop_toBottomOf="@+id/boatCodeEditText" />
 
     <EditText
         android:id="@+id/boatRegistrationEditText"
@@ -41,6 +43,7 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/registration"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColorHint="#757575"
@@ -55,6 +58,7 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/fleet"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/boatRegistrationEditText"

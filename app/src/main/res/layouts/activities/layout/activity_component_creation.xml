@@ -19,7 +19,8 @@
         android:hint="@string/code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/componentNameEditText"
@@ -32,7 +33,8 @@
         android:hint="@string/name"
         app:layout_constraintEnd_toEndOf="@+id/componentCodeEditText"
         app:layout_constraintStart_toStartOf="@+id/componentCodeEditText"
-        app:layout_constraintTop_toBottomOf="@+id/componentCodeEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/componentCodeEditText"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/componentBrandEditText"
@@ -46,7 +48,8 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="@+id/componentNameEditText"
         app:layout_constraintStart_toStartOf="@+id/componentNameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/componentNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/componentNameEditText"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/componentModelEditText"
@@ -59,7 +62,8 @@
         android:hint="@string/model"
         app:layout_constraintEnd_toEndOf="@+id/componentBrandEditText"
         app:layout_constraintStart_toStartOf="@+id/componentBrandEditText"
-        app:layout_constraintTop_toBottomOf="@+id/componentBrandEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/componentBrandEditText"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/componentSerialNumberEditText"
@@ -73,7 +77,9 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="@+id/componentModelEditText"
         app:layout_constraintStart_toStartOf="@+id/componentModelEditText"
-        app:layout_constraintTop_toBottomOf="@+id/componentModelEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/componentModelEditText"
+        android:importantForAutofill="no"
+        tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/componentObservationsEditText"
@@ -86,7 +92,8 @@
         android:hint="@string/observations"
         app:layout_constraintEnd_toEndOf="@+id/componentSerialNumberEditText"
         app:layout_constraintStart_toStartOf="@+id/componentSerialNumberEditText"
-        app:layout_constraintTop_toBottomOf="@+id/componentSerialNumberEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/componentSerialNumberEditText"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/componentServiceEditText"
@@ -99,7 +106,8 @@
         android:hint="@string/service"
         app:layout_constraintEnd_toEndOf="@+id/componentObservationsEditText"
         app:layout_constraintStart_toStartOf="@+id/componentObservationsEditText"
-        app:layout_constraintTop_toBottomOf="@+id/componentObservationsEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/componentObservationsEditText"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/cancelComponentCreationButton"
