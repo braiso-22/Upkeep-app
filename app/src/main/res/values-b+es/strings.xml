@@ -42,7 +42,7 @@
     <string name="terms1">Al marcar la casilla y pulsar continuar, acepta los términos de </string>
     <string name="terms2">licencia y directiva de privacidad.</string>
     <string name="terms3">Términos, condiciones y POLÍTICA DE PRIVACIDAD</string>
-    <string name="terms4">ctualizado el 2022-05-24</string>
+    <string name="terms4">ctualizado el 2022–05–24</string>
     <string name="terms5">érminos generalesLa presente Política de Privacidad establece los términos en que Upkeep-app usa y protege la información que es proporcionada por sus usuarios al momento de utilizase. Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios. Al acceder o utilizar nuestro Servicio, usted indica que ha leído, comprendido y aceptado nuestra recopilación, almacenamiento, uso y divulgación de su información personal como se describe en esta Política de privacidad y en nuestros Términos de servicio.</string>
     <string name="terms6">nformación que es recogida</string>
     <string name="terms7">ecopilamos información suya cuando visita nuestra plataforma, se registra en nuestro sitio, realiza un pedido, se suscribe a nuestro boletín, responde a una encuesta o completa un formulario.</string>
@@ -80,4 +80,18 @@
     <string name="recent">Reciente</string>
     <string name="profile_data">Datos de perfil</string>
     <string name="logout">Cerrar sesión</string>
+    <string name="short_manager">M</string>
+    <string name="short_Operator">O</string>
+    <string name="unknown_user_profile">Foto de perfil de usuario desconocido</string>
+    <string name="empty">Vacío</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="sign_up">Registro</string>
+    <string name="are_you_a_owner">¿Eres un armador?</string>
+    <string name="are_you_hired">¿Estás contratado por un armador?</string>
+    <string name="click">Click</string>
+    <string name="test_mode">Modo prueba</string>
+    <string name="id">Id</string>
+    <string name="lore_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget nunc eget nunc ornare aliquet. Nulla facilisi. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget nunc eget nunc ornare aliquet. Nulla facilisi. Nulla facilisi.</string>
+    <string name="usertype">UserType</string>
 </resources>
