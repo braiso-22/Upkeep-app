@@ -21,7 +21,7 @@ import com.braiso_22.upkeep_app.usecases.onboarding.OnBoardingActivity;
 
 public class TermsAndConditionsActivity extends AppCompatActivity {
 
-    ActivityTermsAndConditionsBinding binding;
+    public ActivityTermsAndConditionsBinding binding;
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

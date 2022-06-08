@@ -13,6 +13,7 @@
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/ic_front_icon.xml" value="0.1" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.139" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/splash_screen.xml" value="0.1" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/unknown_user_profile.xml" value="0.1845" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/upkeep_logo_background.xml" value="0.1845" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/upkeep_logo_foreground.xml" value="0.1845" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/drawable/uppkepp_logo_background.xml" value="0.1" />
@@ -60,14 +61,16 @@
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_component_creation.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_fleet_creation.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_login.xml" value="0.26944444444444443" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_not_owner_home.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_not_owner_login.xml" value="0.33" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_on_boarding.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_owner_home.xml" value="0.26969416126042633" />
-        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_owner_login.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_owner_login.xml" value="0.25" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_service_creation.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_splash.xml" value="0.26944444444444443" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_store_creation.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_task_creation.xml" value="0.26969416126042633" />
-        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_terms_and_conditions.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_terms_and_conditions.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_upkeep_creation.xml" value="0.26969416126042633" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/layout/activity_user_creation.xml" value="0.25" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/mipmap-anydpi-v26/ic_launcher.xml" value="0.273" />
@@ -76,6 +79,14 @@
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/activities/mipmap-anydpi-v26/uppkepp_logo_round.xml" value="0.273" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_boats_list.xml" value="0.26944444444444443" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_component_list.xml" value="0.267840593141798" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_fleets_list.xml" value="0.15433946130825138" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_manager_list.xml" value="0.15433946130825138" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_operator_list.xml" value="0.15433946130825138" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_profile.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_services_list.xml" value="0.15433946130825138" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_store_list.xml" value="0.15433946130825138" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_task_list.xml" value="0.15433946130825138" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_upkeep_list.xml" value="0.15433946130825138" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/fragments/layout/fragment_users_list.xml" value="0.26944444444444443" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/items/layout/boat_item.xml" value="0.26944444444444443" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/layouts/items/layout/component_item.xml" value="0.26944444444444443" />
@@ -93,6 +104,7 @@
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/menu/top_users_list_option_menu.xml" value="0.33" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.139" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/mipmap-anydpi-v26/upkeep_logo.xml" value="0.201" />
+        <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/mipmap-anydpi-v26/upkeep_logo_round.xml" value="0.1845" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/mipmap-anydpi-v26/uppkepp_logo.xml" value="0.201" />
         <entry key="..\:/Users/braiso-22/AndroidStudioProjects/Upkeepapp/app/src/main/res/mipmap-anydpi-v26/uppkepp_logo_round.xml" value="0.1" />
       </map>

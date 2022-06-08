@@ -51,7 +51,7 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
             }
         });
 
-        binding.loginNotOwnerRegisterbutton.setOnClickListener(v -> {
+        binding.loginNotOwnerRegisterButton.setOnClickListener(v -> {
             if (TextUtils.areFieldsEmpty(binding.loginNotOwnerEmailInput, binding.loginNotOwnerPasswordInput)) {
                 Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show();
                 return;
