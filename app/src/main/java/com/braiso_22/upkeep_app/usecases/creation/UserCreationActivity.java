@@ -19,6 +19,9 @@ import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.utils.UserTypes;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserCreationActivity extends AppCompatActivity {
 
     ActivityUserCreationBinding binding;
@@ -26,6 +29,10 @@ public class UserCreationActivity extends AppCompatActivity {
     UserTypes userType;
     Bundle extras;
     User user;
+    User owner;
+    List<Operator> operators = new ArrayList<>();
+    List<Manager> managers = new ArrayList<>();
+    List<Owner> owners = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +41,14 @@ public class UserCreationActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         vm = new ViewModel(getApplication());
-
         extras = getIntent().getExtras();
         userType = (UserTypes) extras.getSerializable("userType");
-
+        if (extras.containsKey("owner")) {
+            owner = (Owner) extras.getSerializable("owner");
+        }
         if (extras.containsKey("user")) {
             user = (User) extras.getSerializable("user");
+
             binding.userNameEditText.setText(user.getName());
             binding.userEmailEditText.setText(user.getEmail());
             binding.userSurnameEditText.setText(user.getSurnames());
@@ -68,6 +77,7 @@ public class UserCreationActivity extends AppCompatActivity {
                     binding.userIdentificationEditText, binding.userCodeEditText,
                     binding.userServiceEditText) &&
                     TextUtils.checkNumeric(binding.userServiceEditText)) {
+
                 if (extras.containsKey("user")) {
                     updateUser();
                 } else {
@@ -80,14 +90,11 @@ public class UserCreationActivity extends AppCompatActivity {
 
         });
         binding.cancelUserCreationButton.setOnClickListener(v -> {
-            if (user instanceof Manager) {
-                goToHome(NotOwnerHomeActivity.class);
-            } else if (user instanceof Operator) {
-                goToHome(NotOwnerHomeActivity.class);
+            if (owner != null) {
+                goToOwnerHome();
             } else {
-                goToHome(OwnerHomeActivity.class);
+                goToNotOwnerHome();
             }
-
         });
     }
 
@@ -95,14 +102,12 @@ public class UserCreationActivity extends AppCompatActivity {
         User user = getUserWithType();
         if (user instanceof Manager) {
             vm.insert((Manager) user);
-            goToHome(NotOwnerHomeActivity.class);
         } else if (user instanceof Operator) {
             vm.insert((Operator) user);
-            goToHome(NotOwnerHomeActivity.class);
         } else {
             vm.insert((Owner) user);
-            goToHome(OwnerHomeActivity.class);
         }
+        goToOwnerHome();
     }
 
     private void updateUser() {
@@ -112,13 +117,15 @@ public class UserCreationActivity extends AppCompatActivity {
         this.user = user;
         if (user instanceof Manager) {
             vm.update((Manager) user);
-            goToHome(NotOwnerHomeActivity.class);
         } else if (user instanceof Operator) {
             vm.update((Operator) user);
-            goToHome(NotOwnerHomeActivity.class);
         } else {
             vm.update((Owner) user);
-            goToHome(OwnerHomeActivity.class);
+        }
+        if (owner != null) {
+            goToOwnerHome();
+        } else {
+            goToNotOwnerHome();
         }
     }
 
@@ -143,11 +150,17 @@ public class UserCreationActivity extends AppCompatActivity {
         return null;
     }
 
-    private void goToHome(Class activity) {
-        Intent intent = new Intent(this, activity);
+    private void goToNotOwnerHome() {
+        Intent intent = new Intent(this, NotOwnerHomeActivity.class);
         intent.putExtra("user", user);
         finish();
         startActivity(intent);
     }
 
+    private void goToOwnerHome() {
+        Intent intent = new Intent(this, OwnerHomeActivity.class);
+        intent.putExtra("user", owner);
+        startActivity(intent);
+        finish();
+    }
 }

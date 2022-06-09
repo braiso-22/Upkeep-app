@@ -76,6 +76,7 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), UserCreationActivity.class);
         intent.putExtra("userType", getUserType(user));
         intent.putExtra("user", user);
+        intent.putExtra("owner", user);
         startActivity(intent);
         getActivity().finish();
     }

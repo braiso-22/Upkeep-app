@@ -19,6 +19,7 @@ import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.users.Manager;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.creation.UserCreationActivity;
+import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.UserAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.utils.UserTypes;
@@ -26,14 +27,16 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ManagerListFragment extends Fragment {
     ViewModel vm;
-
+    User user;
     // constructor
     public ManagerListFragment() {
         // Required empty public constructor
     }
+
 
     // onViewCreated
     @Override
@@ -46,6 +49,7 @@ public class ManagerListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         vm = new ViewModel(this.getActivity().getApplication());
+        this.user = ((OwnerHomeActivity) this.getParentFragment().requireActivity()).owner;
         RecyclerView recycler = this.getView().findViewById(R.id.managerRecyclerView);
         inflateRecycler(recycler);
 
@@ -104,7 +108,9 @@ public class ManagerListFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), UserCreationActivity.class);
         intent.putExtra("userType", UserTypes.MANAGER);
         intent.putExtra("user", user);
+        intent.putExtra("owner",this.user);
         startActivity(intent);
+        this.getActivity().finish();
     }
 
 }

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
+import com.braiso_22.upkeep_app.model.vo.users.User;
 
 public class UsersListFragment extends Fragment {
 
@@ -33,6 +34,7 @@ public class UsersListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         SwitchCompat switchCompat = view.findViewById(R.id.switch1);
         FragmentManager manager = this.getChildFragmentManager();
+
 
         switchCompat.setOnClickListener(new View.OnClickListener() {
             @Override

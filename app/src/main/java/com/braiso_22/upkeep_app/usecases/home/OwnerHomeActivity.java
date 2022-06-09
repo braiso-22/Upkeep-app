@@ -20,7 +20,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class OwnerHomeActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
     BottomNavigationView bottomNavigationView;
     Fragment lastFragment;
-    Owner owner;
+    public Owner owner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
