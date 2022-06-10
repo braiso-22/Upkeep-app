@@ -11,22 +11,18 @@ import android.widget.Toast;
 import com.braiso_22.upkeep_app.databinding.ActivityNotOwnerLoginBinding;
 import com.braiso_22.upkeep_app.model.vo.users.Manager;
 import com.braiso_22.upkeep_app.model.vo.users.Operator;
-import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.home.NotOwnerHomeActivity;
-import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.utils.Encrypter;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class NotOwnerLoginActivity extends AppCompatActivity {
     ActivityNotOwnerLoginBinding binding;
     ViewModel viewModel;
     User user;
+    boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,39 +101,27 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NotOwnerHomeActivity.class);
         viewModel.getManagerByLogin(binding.loginNotOwnerEmailInput.getText().toString())
                 .observe(this, manager -> {
-                    if (user == null) {
-                        user = manager;
-
-                    } else {
-                        intent.putExtra("user", user);
-                        SharedPreferences sharedPreferences = getSharedPreferences("savedUser", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("savedUser", user.getLogin());
-                        editor.apply();
-                        startActivity(intent);
-                        finish();
-                    }
-
+                    finishAndMove(intent);
 
                 });
         viewModel.getOperatorByLogin(binding.loginNotOwnerEmailInput.getText().toString())
                 .observe(this, operator -> {
-                    int counter = 0;
-
-                    if (user == null) {
-                        user = operator;
-                    } else if (counter == 0) {
-                        counter++;
-                        if (counter == 1) {
-                            intent.putExtra("user", user);
-                            SharedPreferences sharedPreferences = getSharedPreferences("savedUser", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("savedUser", user.getLogin());
-                            editor.apply();
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
+                    finishAndMove(intent);
                 });
+    }
+
+    private void finishAndMove(Intent intent) {
+        if (!flag && user != null) {
+            flag = true;
+            finish();
+            intent.putExtra("user", user);
+            SharedPreferences sharedPreferences = getSharedPreferences("savedUser", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("savedUser", user.getLogin());
+            editor.apply();
+            startActivity(intent);
+        } else {
+            return;
+        }
     }
 }

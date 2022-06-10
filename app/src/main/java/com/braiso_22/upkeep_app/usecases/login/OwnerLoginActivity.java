@@ -95,20 +95,16 @@ public class OwnerLoginActivity extends AppCompatActivity {
         viewModel.getOwnerByLogin(binding.loginOwnerEmailInput.getText().toString())
                 .observe(this, owner -> {
                     user = owner;
-                    int counter = 0;
                     if (user != null) {
-                        counter++;
-                        if (counter == 1) {
-                            intent.putExtra("user", user);
-                            SharedPreferences sharedPreferences = getSharedPreferences("savedUser", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("savedUser", user.getLogin());
-                            editor.apply();
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
+                        finish();
+                        intent.putExtra("user", user);
+                        SharedPreferences sharedPreferences = getSharedPreferences("savedUser", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("savedUser", user.getLogin());
+                        editor.apply();
+                        startActivity(intent);
 
+                    }
                 });
     }
 }

@@ -30,9 +30,6 @@ public class UserCreationActivity extends AppCompatActivity {
     Bundle extras;
     User user;
     User owner;
-    List<Operator> operators = new ArrayList<>();
-    List<Manager> managers = new ArrayList<>();
-    List<Owner> owners = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
