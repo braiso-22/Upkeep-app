@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
+import com.braiso_22.upkeep_app.model.vo.Component;
 import com.braiso_22.upkeep_app.model.vo.Upkeep;
 import com.braiso_22.upkeep_app.usecases.creation.UpkeepCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.UpkeepAdapter;
@@ -22,6 +23,7 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class UpkeepListFragment extends Fragment {
     ViewModel vm;
+    Component component;
 
     public UpkeepListFragment() {
         // Required empty public constructor
@@ -61,25 +63,45 @@ public class UpkeepListFragment extends Fragment {
      * @param recyclerView
      */
     private void inflateRecycler(RecyclerView recyclerView) {
-        vm.getAllUpkeeps().observe(this.getActivity(), upkeeps -> {
-            recyclerView.setAdapter(new UpkeepAdapter(upkeeps, this.getActivity(), new UpkeepAdapter.OnUpkeepClickListener() {
-                @Override
-                public void onUpkeepClick(Upkeep upkeep) {
-                    goToTaskList(upkeep);
-                }
+        if (component == null) {
+            vm.getAllUpkeeps().observe(this.getActivity(), upkeeps -> {
+                if(getActivity()!=null)
+                recyclerView.setAdapter(new UpkeepAdapter(upkeeps, this.getActivity(), new UpkeepAdapter.OnUpkeepClickListener() {
+                    @Override
+                    public void onUpkeepClick(Upkeep upkeep) {
+                        goToTaskList(upkeep);
+                    }
 
-                @Override
-                public void onUpkeepLongClick(Upkeep upkeep, View view) {
-                    showPopupMenu(upkeep, view);
-                }
-            }));
+                    @Override
+                    public void onUpkeepLongClick(Upkeep upkeep, View view) {
+                        showPopupMenu(upkeep, view);
+                    }
+                }));
 
-        });
+            });
+        } else {
+            vm.getUpkeepByComponent(component.getId()).observe(this.getActivity(), upkeeps -> {
+                if(getActivity()!=null)
+                recyclerView.setAdapter(new UpkeepAdapter(upkeeps, this.getActivity(), new UpkeepAdapter.OnUpkeepClickListener() {
+                    @Override
+                    public void onUpkeepClick(Upkeep upkeep) {
+                        goToTaskList(upkeep);
+                    }
+
+                    @Override
+                    public void onUpkeepLongClick(Upkeep upkeep, View view) {
+                        showPopupMenu(upkeep, view);
+                    }
+                }));
+
+            });
+        }
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
 
     public void goToTaskList(Upkeep upkeep) {
         TaskListFragment taskListFragment = new TaskListFragment();
+        taskListFragment.setUpkeep(upkeep);
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, taskListFragment).addToBackStack(null).commit();
     }
 
@@ -101,11 +123,15 @@ public class UpkeepListFragment extends Fragment {
         popup.show();
 
     }
-    private  void goToUpkeepEdit(Upkeep upkeep){
+
+    private void goToUpkeepEdit(Upkeep upkeep) {
         Intent intent = new Intent(this.getActivity(), UpkeepCreationActivity.class);
         intent.putExtra("upkeep", upkeep);
         startActivity(intent);
     }
 
+    public void setComponent(Component component) {
+        this.component = component;
+    }
 
 }

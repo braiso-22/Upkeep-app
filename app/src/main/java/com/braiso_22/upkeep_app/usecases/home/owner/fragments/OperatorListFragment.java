@@ -108,5 +108,8 @@ public class OperatorListFragment extends Fragment {
         startActivity(intent);
         this.getActivity().finish();
     }
+    public void setOwner(User owner) {
+        this.user = owner;
+    }
 
 }

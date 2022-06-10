@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Fleet;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.usecases.creation.FleetCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.FleetAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
@@ -25,6 +26,7 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 public class FleetsListFragment extends Fragment {
 
     ViewModel vm;
+    Owner owner;
 
     public FleetsListFragment() {
         // Required empty public constructor
@@ -63,27 +65,44 @@ public class FleetsListFragment extends Fragment {
      * @param recycler
      */
     private void inflateRecycler(RecyclerView recycler) {
+        if (owner == null) {
+            vm.getAllFleets().observe(this.getActivity(), fleets -> {
+                if (getActivity() != null)
+                    recycler.setAdapter(new FleetAdapter(fleets, this.getActivity(), new FleetAdapter.OnFleetClickListener() {
+                        @Override
+                        public void onFleetClick(Fleet fleet) {
+                            goToBoatList(fleet);
+                        }
 
-        vm.getAllFleets().observe(this.getActivity(), fleets -> {
-            recycler.setAdapter(new FleetAdapter(fleets, this.getActivity(), new FleetAdapter.OnFleetClickListener() {
-                @Override
-                public void onFleetClick(Fleet fleet) {
-                    goToBoatList(fleet);
-                }
+                        @Override
+                        public void onFleetLongClick(Fleet fleet, View view) {
+                            showPopup(fleet, view);
+                        }
+                    }));
+            });
+        } else {
+            vm.getFleetsByOwner(owner.getId()).observe(this.getActivity(), fleets -> {
+                if (getActivity() != null)
+                    recycler.setAdapter(new FleetAdapter(fleets, this.getActivity(), new FleetAdapter.OnFleetClickListener() {
+                        @Override
+                        public void onFleetClick(Fleet fleet) {
+                            goToBoatList(fleet);
+                        }
 
-                @Override
-                public void onFleetLongClick(Fleet fleet, View view) {
-                    showPopup(fleet,view);
-                }
-            }));
-        });
+                        @Override
+                        public void onFleetLongClick(Fleet fleet, View view) {
+                            showPopup(fleet, view);
+                        }
+                    }));
+            });
+        }
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
 
     private void goToBoatList(Fleet fleet) {
         BoatsListFragment fragment = new BoatsListFragment();
-        //fragment.setFleet(fleet);
+        fragment.setFleet(fleet);
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
     }
 
@@ -108,6 +127,10 @@ public class FleetsListFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), FleetCreationActivity.class);
         intent.putExtra("fleet", fleet);
         startActivity(intent);
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
 

@@ -44,7 +44,9 @@ public class NotOwnerHomeActivity extends AppCompatActivity implements Navigatio
                     ft.replace(R.id.fragmentContainerView, lastFragment);
                     lastFragment = null;
                 } else {
-                    ft.replace(R.id.fragmentContainerView, new ComponentListFragment());
+                    ComponentListFragment componentListFragment = new ComponentListFragment();
+                    componentListFragment.setUser(user);
+                    ft.replace(R.id.fragmentContainerView,componentListFragment);
                     ft.disallowAddToBackStack();
                 }
                 break;

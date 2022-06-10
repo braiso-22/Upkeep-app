@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Store;
+import com.braiso_22.upkeep_app.model.vo.Task;
 import com.braiso_22.upkeep_app.usecases.creation.StoreCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.StoreAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
@@ -23,6 +24,7 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class StoreListFragment extends Fragment {
     ViewModel vm;
+    Task task;
 
     // Empty Constructor
     public StoreListFragment() {
@@ -62,21 +64,41 @@ public class StoreListFragment extends Fragment {
      * @param recycler
      */
     private void inflateRecycler(RecyclerView recycler) {
-        vm.getAllStores().observe(this.getActivity(), stores -> {
-            recycler.setAdapter(new StoreAdapter(this.getActivity(), stores, new StoreAdapter.OnStoreClickListener() {
-                @Override
-                public void onStoreClick(Store store) {
+        if (task == null) {
+            vm.getAllStores().observe(this.getActivity(), stores -> {
+                if(getActivity()!=null)
+                recycler.setAdapter(new StoreAdapter(this.getActivity(), stores, new StoreAdapter.OnStoreClickListener() {
+                    @Override
+                    public void onStoreClick(Store store) {
 
-                }
+                    }
 
-                @Override
-                public void onStoreLongClick(Store store, View view) {
-                    showPopupMenu(store, view);
-                }
-            }));
-        });
+                    @Override
+                    public void onStoreLongClick(Store store, View view) {
+                        showPopupMenu(store, view);
+                    }
+                }));
+            });
+        } else {
+            vm.getStoreByTask(task.getId()).observe(this.getActivity(), stores -> {
+                if(getActivity()!=null)
+                recycler.setAdapter(new StoreAdapter(this.getActivity(), stores, new StoreAdapter.OnStoreClickListener() {
+                    @Override
+                    public void onStoreClick(Store store) {
 
-        recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+                    }
+
+                    @Override
+                    public void onStoreLongClick(Store store, View view) {
+                        showPopupMenu(store, view);
+                    }
+                }));
+            });
+        }
+
+        recycler.setLayoutManager(new
+
+                LinearLayoutManager(this.getActivity()));
     }
 
     private void menuOnClick(Toolbar toolbar) {
@@ -110,6 +132,9 @@ public class StoreListFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), StoreCreationActivity.class);
         intent.putExtra("store", store);
         startActivity(intent);
+    }
+    public void setTask(Task task) {
+        this.task = task;
     }
 
 }

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Boat;
+import com.braiso_22.upkeep_app.model.vo.Fleet;
 import com.braiso_22.upkeep_app.usecases.creation.BoatCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.BoatAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
@@ -24,6 +25,7 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class BoatsListFragment extends Fragment {
     ViewModel vm;
+    Fleet fleet;
 
     public BoatsListFragment() {
         // Required empty public constructor
@@ -56,19 +58,37 @@ public class BoatsListFragment extends Fragment {
     }
 
     private void inflateRecycler(RecyclerView recycler) {
-        vm.getAllBoats().observe(this.getActivity(), boats -> {
-            recycler.setAdapter(new BoatAdapter(boats, this.getActivity(), new BoatAdapter.OnBoatClickListener() {
-                @Override
-                public void onBoatClick(Boat boat) {
-                    goToServicesList(boat);
-                }
+        if (fleet == null) {
+            vm.getAllBoats().observe(this.getActivity(), boats -> {
+                if (getActivity() != null)
+                    recycler.setAdapter(new BoatAdapter(boats, this.getActivity(), new BoatAdapter.OnBoatClickListener() {
+                        @Override
+                        public void onBoatClick(Boat boat) {
+                            goToServicesList(boat);
+                        }
 
-                @Override
-                public void onBoatLongClick(Boat boat, View view) {
-                    showPopupMenu(boat, view);
-                }
-            }));
-        });
+                        @Override
+                        public void onBoatLongClick(Boat boat, View view) {
+                            showPopupMenu(boat, view);
+                        }
+                    }));
+            });
+        } else {
+            vm.getBoatByFleet(fleet.getId()).observe(this.getActivity(), boats -> {
+                if (getActivity() != null)
+                    recycler.setAdapter(new BoatAdapter(boats, this.getActivity(), new BoatAdapter.OnBoatClickListener() {
+                        @Override
+                        public void onBoatClick(Boat boat) {
+                            goToServicesList(boat);
+                        }
+
+                        @Override
+                        public void onBoatLongClick(Boat boat, View view) {
+                            showPopupMenu(boat, view);
+                        }
+                    }));
+            });
+        }
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
@@ -99,6 +119,11 @@ public class BoatsListFragment extends Fragment {
     // method to change the fragment to services list fragment
     public void goToServicesList(Boat boat) {
         ServicesListFragment fragment = new ServicesListFragment();
+        fragment.setBoat(boat);
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
+    }
+
+    public void setFleet(Fleet fleet) {
+        this.fleet = fleet;
     }
 }

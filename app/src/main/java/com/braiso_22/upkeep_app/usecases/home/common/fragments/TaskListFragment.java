@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Task;
+import com.braiso_22.upkeep_app.model.vo.Upkeep;
 import com.braiso_22.upkeep_app.usecases.creation.TaskCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.TaskAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
@@ -23,6 +24,7 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class TaskListFragment extends Fragment {
     ViewModel vm;
+    Upkeep upkeep;
 
     // Constructor
     public TaskListFragment() {
@@ -64,24 +66,43 @@ public class TaskListFragment extends Fragment {
      * @param recyclerView
      */
     private void inflateRecycler(RecyclerView recyclerView) {
-        vm.getAllTasks().observe(this.getActivity(), tasks -> {
-            recyclerView.setAdapter(new TaskAdapter(tasks, this.getActivity(), new TaskAdapter.OnTaskClickListener() {
-                @Override
-                public void onTaskClick(Task task) {
-                    goToStore(task);
-                }
+        if (upkeep == null) {
+            vm.getAllTasks().observe(this.getActivity(), tasks -> {
+                if(getActivity()!=null)
+                recyclerView.setAdapter(new TaskAdapter(tasks, this.getActivity(), new TaskAdapter.OnTaskClickListener() {
+                    @Override
+                    public void onTaskClick(Task task) {
+                        goToStore(task);
+                    }
 
-                @Override
-                public void onTaskLongClick(Task task, View view) {
-                    showPopupMenu(task, view);
-                }
-            }));
-        });
+                    @Override
+                    public void onTaskLongClick(Task task, View view) {
+                        showPopupMenu(task, view);
+                    }
+                }));
+            });
+        } else {
+            vm.getTaskByUpkeep(upkeep.getId()).observe(this.getActivity(), tasks -> {
+                if(getActivity()!=null)
+                recyclerView.setAdapter(new TaskAdapter(tasks, this.getActivity(), new TaskAdapter.OnTaskClickListener() {
+                    @Override
+                    public void onTaskClick(Task task) {
+                        goToStore(task);
+                    }
+
+                    @Override
+                    public void onTaskLongClick(Task task, View view) {
+                        showPopupMenu(task, view);
+                    }
+                }));
+            });
+        }
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
 
     private void goToStore(Task task) {
         StoreListFragment storeListFragment = new StoreListFragment();
+        storeListFragment.setTask(task);
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, storeListFragment).addToBackStack(null).commit();
     }
 
@@ -94,7 +115,7 @@ public class TaskListFragment extends Fragment {
                     vm.deleteTask(task);
                     return true;
                 case R.id.editOption:
-                        goToTaskEdit(task);
+                    goToTaskEdit(task);
                     return true;
                 default:
                     return false;
@@ -102,10 +123,15 @@ public class TaskListFragment extends Fragment {
         });
         popup.show();
     }
+
     private void goToTaskEdit(Task task) {
         Intent intent = new Intent(this.getActivity(), TaskCreationActivity.class);
         intent.putExtra("task", task);
         startActivity(intent);
+    }
+
+    public void setUpkeep(Upkeep upkeep) {
+        this.upkeep = upkeep;
     }
 
 }

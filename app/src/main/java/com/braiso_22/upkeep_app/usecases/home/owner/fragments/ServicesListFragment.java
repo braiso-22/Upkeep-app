@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
+import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.model.vo.Service;
 import com.braiso_22.upkeep_app.usecases.creation.ServiceCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.fragments.ComponentListFragment;
@@ -25,6 +26,7 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class ServicesListFragment extends Fragment {
     ViewModel vm;
+    Boat boat;
 
     public ServicesListFragment() {
         // Required empty public constructor
@@ -57,19 +59,38 @@ public class ServicesListFragment extends Fragment {
     }
 
     private void inflateRecycler(RecyclerView recycler) {
-        vm.getAllServices().observe(this.getActivity(), services -> {
-            recycler.setAdapter(new ServiceAdapter(services, this.getActivity(), new ServiceAdapter.OnServiceClickListener() {
-                @Override
-                public void onServiceClick(Service service) {
-                    goToComponentList(service);
-                }
+        if (boat == null) {
+            vm.getAllServices().observe(this.getActivity(), services -> {
+                if (getActivity() != null)
+                    recycler.setAdapter(new ServiceAdapter(services, this.getActivity(), new ServiceAdapter.OnServiceClickListener() {
+                        @Override
+                        public void onServiceClick(Service service) {
+                            goToComponentList(service);
+                        }
 
-                @Override
-                public void onServiceLongClick(Service service, View view) {
-                    showPopupMenu(service, view);
-                }
-            }));
-        });
+                        @Override
+                        public void onServiceLongClick(Service service, View view) {
+                            showPopupMenu(service, view);
+                        }
+                    }));
+
+            });
+        } else {
+            vm.getServiceByBoat(boat.getId()).observe(this.getActivity(), services -> {
+                if (getActivity() != null)
+                    recycler.setAdapter(new ServiceAdapter(services, this.getActivity(), new ServiceAdapter.OnServiceClickListener() {
+                        @Override
+                        public void onServiceClick(Service service) {
+                            goToComponentList(service);
+                        }
+
+                        @Override
+                        public void onServiceLongClick(Service service, View view) {
+                            showPopupMenu(service, view);
+                        }
+                    }));
+            });
+        }
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
@@ -77,6 +98,7 @@ public class ServicesListFragment extends Fragment {
 
     private void goToComponentList(Service service) {
         ComponentListFragment fragment = new ComponentListFragment();
+        fragment.setService(service);
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).addToBackStack(null).commit();
     }
 
@@ -101,6 +123,10 @@ public class ServicesListFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), ServiceCreationActivity.class);
         intent.putExtra("service", service);
         startActivity(intent);
+    }
+
+    public void setBoat(Boat boat) {
+        this.boat = boat;
     }
 
 

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.users.Manager;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.creation.UserCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
@@ -32,6 +33,7 @@ import java.util.Objects;
 public class ManagerListFragment extends Fragment {
     ViewModel vm;
     User user;
+    Owner owner;
     // constructor
     public ManagerListFragment() {
         // Required empty public constructor
@@ -49,7 +51,6 @@ public class ManagerListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         vm = new ViewModel(this.getActivity().getApplication());
-        this.user = ((OwnerHomeActivity) this.getParentFragment().requireActivity()).owner;
         RecyclerView recycler = this.getView().findViewById(R.id.managerRecyclerView);
         inflateRecycler(recycler);
 
@@ -108,9 +109,12 @@ public class ManagerListFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), UserCreationActivity.class);
         intent.putExtra("userType", UserTypes.MANAGER);
         intent.putExtra("user", user);
-        intent.putExtra("owner",this.user);
+        intent.putExtra("owner",owner);
         startActivity(intent);
         this.getActivity().finish();
+    }
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
 }

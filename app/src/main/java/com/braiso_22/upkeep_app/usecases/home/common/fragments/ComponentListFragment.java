@@ -17,14 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Component;
 import com.braiso_22.upkeep_app.model.vo.Service;
+import com.braiso_22.upkeep_app.model.vo.users.Manager;
+import com.braiso_22.upkeep_app.model.vo.users.Operator;
+import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.creation.ComponentCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.ComponentAdapter;
-import com.braiso_22.upkeep_app.usecases.home.owner.adapters.ServiceAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class ComponentListFragment extends Fragment {
     ViewModel vm;
+    Service service;
+    User user;
 
     // Empty Constructor
     public ComponentListFragment() {
@@ -64,25 +68,62 @@ public class ComponentListFragment extends Fragment {
      * @param recycler
      */
     private void inflateRecycler(RecyclerView recycler) {
-        vm.getAllComponents().observe(this.getActivity(), components -> {
-            recycler.setAdapter(new ComponentAdapter(components, this.getActivity(), new ComponentAdapter.OnComponentClickListener() {
-                @Override
-                public void onComponentClick(Component component) {
-                    goToUpkeepList(component);
-                }
+        if (service == null && user == null) {
+            vm.getAllComponents().observe(this.getActivity(), components -> {
+                if (getActivity() != null)
+                    recycler.setAdapter(new ComponentAdapter(components, this.getActivity(), new ComponentAdapter.OnComponentClickListener() {
+                        @Override
+                        public void onComponentClick(Component component) {
+                            goToUpkeepList(component);
+                        }
 
-                @Override
-                public void onComponentLongClick(Component component, View view) {
-                    showPopupMenu(component, view);
-                }
-            }));
-        });
+                        @Override
+                        public void onComponentLongClick(Component component, View view) {
+                            showPopupMenu(component, view);
+                        }
+                    }));
+            });
+        } else if (service != null) {
+            vm.getComponentByService(service.getId()).observe(this.getActivity(), components -> {
+                if (getActivity() != null)
+                    recycler.setAdapter(new ComponentAdapter(components, this.getActivity(), new ComponentAdapter.OnComponentClickListener() {
+                        @Override
+                        public void onComponentClick(Component component) {
+                            goToUpkeepList(component);
+                        }
+
+                        @Override
+                        public void onComponentLongClick(Component component, View view) {
+                            showPopupMenu(component, view);
+                        }
+                    }));
+            });
+        } else {
+            int serviceId = 0;
+            if (user instanceof Manager) serviceId = ((Manager) user).getService();
+            else if (user instanceof Operator) serviceId = ((Operator) user).getService();
+            vm.getComponentByService(serviceId).observe(this.getActivity(), components -> {
+                if (getActivity() != null)
+                    recycler.setAdapter(new ComponentAdapter(components, this.getActivity(), new ComponentAdapter.OnComponentClickListener() {
+                        @Override
+                        public void onComponentClick(Component component) {
+                            goToUpkeepList(component);
+                        }
+
+                        @Override
+                        public void onComponentLongClick(Component component, View view) {
+                            showPopupMenu(component, view);
+                        }
+                    }));
+            });
+        }
 
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
 
     private void goToUpkeepList(Component component) {
         UpkeepListFragment upkeepListFragment = new UpkeepListFragment();
+        upkeepListFragment.setComponent(component);
         this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, upkeepListFragment).addToBackStack(null).commit();
     }
 
@@ -109,6 +150,14 @@ public class ComponentListFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), ComponentCreationActivity.class);
         intent.putExtra("component", component);
         startActivity(intent);
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

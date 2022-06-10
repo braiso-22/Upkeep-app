@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.users.Owner;
+import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.home.owner.fragments.FleetsListFragment;
 import com.braiso_22.upkeep_app.usecases.home.owner.fragments.UsersListFragment;
 import com.braiso_22.upkeep_app.usecases.profile.ProfileFragment;
@@ -26,9 +27,17 @@ public class OwnerHomeActivity extends AppCompatActivity implements NavigationBa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_home);
+
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(this);
         this.owner = (Owner) getIntent().getSerializableExtra("user");
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        FleetsListFragment fragment = new FleetsListFragment();
+        fragment.setOwner(this.owner);
+        ft.setReorderingAllowed(true);
+        ft.add(R.id.fragmentContainerView, fragment, null);
+        ft.commit();
     }
 
     @Override
@@ -41,15 +50,18 @@ public class OwnerHomeActivity extends AppCompatActivity implements NavigationBa
                         !(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) instanceof ProfileFragment)) {
                     lastFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
                 }
-
-                ft.replace(R.id.fragmentContainerView, new UsersListFragment());
+                UsersListFragment fragment = new UsersListFragment();
+                fragment.setOwner(this.owner);
+                ft.replace(R.id.fragmentContainerView, fragment);
                 break;
             case R.id.actual_table:
                 if (lastFragment != null && !lastFragment.equals(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView))) {
                     ft.replace(R.id.fragmentContainerView, lastFragment);
                     lastFragment = null;
                 } else {
-                    ft.replace(R.id.fragmentContainerView, new FleetsListFragment());
+                    FleetsListFragment fleetsListFragment = new FleetsListFragment();
+                    fleetsListFragment.setOwner(this.owner);
+                    ft.replace(R.id.fragmentContainerView, fleetsListFragment);
                     ft.disallowAddToBackStack();
                 }
                 break;

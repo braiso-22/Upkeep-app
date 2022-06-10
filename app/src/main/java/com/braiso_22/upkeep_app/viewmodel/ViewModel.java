@@ -64,6 +64,10 @@ public class ViewModel extends AndroidViewModel {
         return allFleets;
     }
 
+    public LiveData<List<Fleet>> getFleetsByOwner(int id) {
+        return repository.getFleetByOwner(id);
+    }
+
     public void insert(Fleet fleet) {
         repository.insert(fleet);
     }

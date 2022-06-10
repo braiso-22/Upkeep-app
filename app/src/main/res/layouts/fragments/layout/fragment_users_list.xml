@@ -21,7 +21,6 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/usersListFragmentContainer"
-        android:name="com.braiso_22.upkeep_app.usecases.home.owner.fragments.ManagerListFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

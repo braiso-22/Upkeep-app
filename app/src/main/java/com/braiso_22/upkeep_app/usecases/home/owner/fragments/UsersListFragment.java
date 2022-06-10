@@ -14,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 
 public class UsersListFragment extends Fragment {
+
+    Owner owner;
 
     public UsersListFragment() {
         // Required empty public constructor
@@ -34,7 +37,12 @@ public class UsersListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         SwitchCompat switchCompat = view.findViewById(R.id.switch1);
         FragmentManager manager = this.getChildFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
 
+        ft.setReorderingAllowed(true);
+        ManagerListFragment fragment = new ManagerListFragment();
+        fragment.setOwner(owner);
+        ft.add(R.id.usersListFragmentContainer, fragment).commit();
 
         switchCompat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,12 +50,20 @@ public class UsersListFragment extends Fragment {
                 boolean operatorChecked = ((SwitchCompat) v).isChecked();
                 FragmentTransaction ft = manager.beginTransaction();
 
-                Fragment fragment = operatorChecked ?
-                        new OperatorListFragment() : new ManagerListFragment();
-
-                ft.replace(R.id.usersListFragmentContainer, fragment)
-                        .commit();
+                Fragment fragment;
+                if (operatorChecked) {
+                    fragment = new OperatorListFragment();
+                    ((OperatorListFragment) fragment).setOwner(owner);
+                } else {
+                    fragment = new ManagerListFragment();
+                    ((ManagerListFragment) fragment).setOwner(owner);
+                }
+                ft.replace(R.id.usersListFragmentContainer, fragment).commit();
             }
         });
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }
