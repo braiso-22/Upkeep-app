@@ -10,6 +10,8 @@ public class Manager extends User {
 
     @NotNull
     private int service;
+    @NotNull
+    private int owner;
 
     @Ignore
     public Manager() {
@@ -17,15 +19,18 @@ public class Manager extends User {
 
     @Ignore
     public Manager(int id, @NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
-                   @NotNull String surnames, @NotNull String email, @NotNull int service) {
+                   @NotNull String surnames, @NotNull String email, @NotNull int service, @NotNull int owner) {
         super(id, login, code, identification, name, surnames, email);
         this.service = service;
+        this.owner = owner;
     }
 
-    public Manager(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull int service) {
+    public Manager(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull int service, @NotNull int owner) {
         super(login, code, identification, name, surnames, email);
         this.service = service;
+        this.owner = owner;
     }
+
     @Ignore
     public Manager(@NotNull String login, @NotNull String password) {
         super(login, password);
@@ -37,6 +42,14 @@ public class Manager extends User {
 
     public void setService(int service) {
         this.service = service;
+    }
+
+    public int getOwner() {
+        return owner;
+    }
+
+    public void setOwner(int owner) {
+        this.owner = owner;
     }
 
     @Override

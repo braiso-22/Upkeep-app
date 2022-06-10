@@ -12,6 +12,8 @@ public class Operator extends User {
 
     @NotNull
     private int service;
+    @NotNull
+    private int owner;
 
     @Ignore
     public Operator() {
@@ -19,14 +21,16 @@ public class Operator extends User {
 
     @Ignore
     public Operator(int id, @NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
-                    @NotNull String surnames, @NotNull String email, @NotNull int service) {
+                    @NotNull String surnames, @NotNull String email, @NotNull int service, @NotNull int owner) {
         super(id, login, code, identification, name, surnames, email);
         this.service = service;
+        this.owner = owner;
     }
 
-    public Operator(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull int service) {
+    public Operator(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull int service, @NotNull int owner) {
         super(login, code, identification, name, surnames, email);
         this.service = service;
+        this.owner = owner;
     }
 
     @Ignore
@@ -40,6 +44,14 @@ public class Operator extends User {
 
     public void setService(int service) {
         this.service = service;
+    }
+
+    public int getOwner() {
+        return owner;
+    }
+
+    public void setOwner(int owner) {
+        this.owner = owner;
     }
 
     @Override
