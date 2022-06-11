@@ -111,6 +111,12 @@ public class UpkeepsRepository {
         });
     }
 
+    public void deleteFleetByOwner(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            fleetDao.deleteByOwner(id);
+        });
+    }
+
     public void update(Fleet fleet) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             fleetDao.update(fleet);
@@ -139,6 +145,11 @@ public class UpkeepsRepository {
     public void deleteBoat(int id) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             boatDao.deleteById(id);
+        });
+    }
+    public void deleteBoatByFleet(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            boatDao.deleteByFleet(id);
         });
     }
 
@@ -170,6 +181,12 @@ public class UpkeepsRepository {
     public void deleteService(int id) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             serviceDao.deleteById(id);
+        });
+    }
+
+    public void deleteServiceByBoat(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            serviceDao.deleteByBoat(id);
         });
     }
 
@@ -238,6 +255,12 @@ public class UpkeepsRepository {
         });
     }
 
+    public void deleteComponentByService(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            componentDao.deleteByService(id);
+        });
+    }
+
     public void update(Component component) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             componentDao.update(component);
@@ -266,6 +289,12 @@ public class UpkeepsRepository {
     public void deleteUpkeep(int id) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             upkeepDao.deleteById(id);
+        });
+    }
+
+    public void deleteUpkeepByComponent(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            upkeepDao.deleteByComponent(id);
         });
     }
 
@@ -301,6 +330,11 @@ public class UpkeepsRepository {
     public void deleteTask(int id) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             taskDao.deleteById(id);
+        });
+    }
+    public void deleteTaskByUpkeep(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            taskDao.deleteByUpkeep(id);
         });
     }
 
@@ -366,6 +400,11 @@ public class UpkeepsRepository {
     public void deleteStore(int id) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
             storeDao.deleteById(id);
+        });
+    }
+    public void deleteStoreByTask(int id) {
+        UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            storeDao.deleteByTask(id);
         });
     }
 
