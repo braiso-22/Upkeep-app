@@ -14,6 +14,7 @@ import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.home.common.fragments.ComponentListFragment;
 import com.braiso_22.upkeep_app.usecases.home.owner.fragments.FleetsListFragment;
 import com.braiso_22.upkeep_app.usecases.home.owner.fragments.UsersListFragment;
+import com.braiso_22.upkeep_app.usecases.pendingtasks.PendingTasksFragment;
 import com.braiso_22.upkeep_app.usecases.profile.ProfileFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -30,6 +31,12 @@ public class NotOwnerHomeActivity extends AppCompatActivity implements Navigatio
         setContentView(binding.getRoot());
         binding.bottomNavigationView.setOnItemSelectedListener(this);
         this.user = (User) getIntent().getSerializableExtra("user");
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.setReorderingAllowed(true);
+        ft.add(R.id.fragmentContainerView, new PendingTasksFragment(), null);
+        ft.commit();
+
     }
 
     @Override
@@ -38,6 +45,11 @@ public class NotOwnerHomeActivity extends AppCompatActivity implements Navigatio
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         switch (id) {
             case R.id.recent:
+                if (!(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) instanceof UsersListFragment) &&
+                        !(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) instanceof ProfileFragment)) {
+                    lastFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+                }
+                ft.replace(R.id.fragmentContainerView, new PendingTasksFragment());
                 break;
             case R.id.actual_table:
                 if (lastFragment != null && !lastFragment.equals(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView))) {

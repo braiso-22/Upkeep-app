@@ -99,5 +99,7 @@
     <string name="id">Id</string>
     <string name="lore_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget nunc eget nunc ornare aliquet. Nulla facilisi. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget nunc eget nunc ornare aliquet. Nulla facilisi. Nulla facilisi.</string>
     <string name="usertype">UserType</string>
-    "
+    <string name="pending_tasks">Pending tasks</string>
+    <string name="without_pending_tasks">Without pending tasks</string>
+
 </resources>
