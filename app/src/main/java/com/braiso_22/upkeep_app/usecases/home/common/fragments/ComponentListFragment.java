@@ -1,5 +1,6 @@
 package com.braiso_22.upkeep_app.usecases.home.common.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -53,16 +54,7 @@ public class ComponentListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                if(!(getActivity() instanceof OwnerHomeActivity)){
-                    Owner owner = ((OwnerHomeActivity)getActivity()).owner;
-                    if(owner==null){
-                        vm.deleteAllComponents();
-                    }else{
-                        vm.deleteComponentByService(service);
-                    }
-                }else{
-                    vm.deleteComponentByService(service);
-                }
+                vm.deleteComponentByService(service);
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override

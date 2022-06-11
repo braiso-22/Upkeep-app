@@ -49,12 +49,7 @@ public class ServicesListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                Owner owner = ((OwnerHomeActivity)getActivity()).owner;
-                if(owner==null){
-                    vm.deleteAllServices();
-                }else{
-                    vm.deleteServiceByBoat(boat);
-                }
+                vm.deleteServiceByBoat(boat);
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override

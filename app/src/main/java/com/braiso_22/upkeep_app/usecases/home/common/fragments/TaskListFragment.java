@@ -51,16 +51,7 @@ public class TaskListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                if(!(getActivity() instanceof OwnerHomeActivity)){
-                    Owner owner = ((OwnerHomeActivity)getActivity()).owner;
-                    if(owner==null){
-                        vm.deleteAllTasks();
-                    }else{
-                        vm.deleteTaskByUpkeep(upkeep);
-                    }
-                }else{
-                    vm.deleteTaskByUpkeep(upkeep);
-                }
+                vm.deleteTaskByUpkeep(upkeep);
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override
@@ -79,33 +70,33 @@ public class TaskListFragment extends Fragment {
     private void inflateRecycler(RecyclerView recyclerView) {
         if (upkeep == null) {
             vm.getAllTasks().observe(this.getActivity(), tasks -> {
-                if(getActivity()!=null)
-                recyclerView.setAdapter(new TaskAdapter(tasks, this.getActivity(), new TaskAdapter.OnTaskClickListener() {
-                    @Override
-                    public void onTaskClick(Task task) {
-                        goToStore(task);
-                    }
+                if (getActivity() != null)
+                    recyclerView.setAdapter(new TaskAdapter(tasks, this.getActivity(), new TaskAdapter.OnTaskClickListener() {
+                        @Override
+                        public void onTaskClick(Task task) {
+                            goToStore(task);
+                        }
 
-                    @Override
-                    public void onTaskLongClick(Task task, View view) {
-                        showPopupMenu(task, view);
-                    }
-                }));
+                        @Override
+                        public void onTaskLongClick(Task task, View view) {
+                            showPopupMenu(task, view);
+                        }
+                    }));
             });
         } else {
             vm.getTaskByUpkeep(upkeep.getId()).observe(this.getActivity(), tasks -> {
-                if(getActivity()!=null)
-                recyclerView.setAdapter(new TaskAdapter(tasks, this.getActivity(), new TaskAdapter.OnTaskClickListener() {
-                    @Override
-                    public void onTaskClick(Task task) {
-                        goToStore(task);
-                    }
+                if (getActivity() != null)
+                    recyclerView.setAdapter(new TaskAdapter(tasks, this.getActivity(), new TaskAdapter.OnTaskClickListener() {
+                        @Override
+                        public void onTaskClick(Task task) {
+                            goToStore(task);
+                        }
 
-                    @Override
-                    public void onTaskLongClick(Task task, View view) {
-                        showPopupMenu(task, view);
-                    }
-                }));
+                        @Override
+                        public void onTaskLongClick(Task task, View view) {
+                            showPopupMenu(task, view);
+                        }
+                    }));
             });
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));

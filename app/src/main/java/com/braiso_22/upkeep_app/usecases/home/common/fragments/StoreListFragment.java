@@ -49,16 +49,7 @@ public class StoreListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                if (!(getActivity() instanceof OwnerHomeActivity)) {
-                    Owner owner = ((OwnerHomeActivity) getActivity()).owner;
-                    if (owner == null) {
-                        vm.deleteAllStores();
-                    } else {
-                        vm.deleteStoreByTask(task);
-                    }
-                } else {
-                    vm.deleteStoreByTask(task);
-                }
+                vm.deleteStoreByTask(task);
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override

@@ -48,16 +48,7 @@ public class UpkeepListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                if(!(getActivity() instanceof OwnerHomeActivity)){
-                    Owner owner = ((OwnerHomeActivity)getActivity()).owner;
-                    if(owner==null){
-                        vm.deleteAllUpkeeps();
-                    }else{
-                        vm.deleteUpkeepByComponent(component);
-                    }
-                }else{
-                    vm.deleteUpkeepByComponent(component);
-                }
+                vm.deleteUpkeepByComponent(component);
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override
@@ -76,34 +67,34 @@ public class UpkeepListFragment extends Fragment {
     private void inflateRecycler(RecyclerView recyclerView) {
         if (component == null) {
             vm.getAllUpkeeps().observe(this.getActivity(), upkeeps -> {
-                if(getActivity()!=null)
-                recyclerView.setAdapter(new UpkeepAdapter(upkeeps, this.getActivity(), new UpkeepAdapter.OnUpkeepClickListener() {
-                    @Override
-                    public void onUpkeepClick(Upkeep upkeep) {
-                        goToTaskList(upkeep);
-                    }
+                if (getActivity() != null)
+                    recyclerView.setAdapter(new UpkeepAdapter(upkeeps, this.getActivity(), new UpkeepAdapter.OnUpkeepClickListener() {
+                        @Override
+                        public void onUpkeepClick(Upkeep upkeep) {
+                            goToTaskList(upkeep);
+                        }
 
-                    @Override
-                    public void onUpkeepLongClick(Upkeep upkeep, View view) {
-                        showPopupMenu(upkeep, view);
-                    }
-                }));
+                        @Override
+                        public void onUpkeepLongClick(Upkeep upkeep, View view) {
+                            showPopupMenu(upkeep, view);
+                        }
+                    }));
 
             });
         } else {
             vm.getUpkeepByComponent(component.getId()).observe(this.getActivity(), upkeeps -> {
-                if(getActivity()!=null)
-                recyclerView.setAdapter(new UpkeepAdapter(upkeeps, this.getActivity(), new UpkeepAdapter.OnUpkeepClickListener() {
-                    @Override
-                    public void onUpkeepClick(Upkeep upkeep) {
-                        goToTaskList(upkeep);
-                    }
+                if (getActivity() != null)
+                    recyclerView.setAdapter(new UpkeepAdapter(upkeeps, this.getActivity(), new UpkeepAdapter.OnUpkeepClickListener() {
+                        @Override
+                        public void onUpkeepClick(Upkeep upkeep) {
+                            goToTaskList(upkeep);
+                        }
 
-                    @Override
-                    public void onUpkeepLongClick(Upkeep upkeep, View view) {
-                        showPopupMenu(upkeep, view);
-                    }
-                }));
+                        @Override
+                        public void onUpkeepLongClick(Upkeep upkeep, View view) {
+                            showPopupMenu(upkeep, view);
+                        }
+                    }));
 
             });
         }
