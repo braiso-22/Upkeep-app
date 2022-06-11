@@ -22,6 +22,9 @@ public interface BoatDao {
     @Query("DELETE FROM boat WHERE id = :id")
     void deleteById(int id);
 
+    @Query("DELETE FROM boat WHERE fleet = :fleetId")
+    void deleteByFleet(int fleetId);
+
     @Query("SELECT * FROM boat")
     LiveData<List<Boat>> getAll();
 

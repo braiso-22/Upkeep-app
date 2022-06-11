@@ -23,6 +23,9 @@ public interface ComponentDao {
     @Query("DELETE FROM component where id = :id")
     void deleteById(int id);
 
+    @Query("DELETE FROM component where service = :serviceId")
+    void deleteByService(int serviceId);
+
     @Query("SELECT * FROM component")
     LiveData<List<Component>> getAll();
 

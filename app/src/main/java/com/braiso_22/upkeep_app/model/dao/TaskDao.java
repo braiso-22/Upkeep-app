@@ -23,6 +23,9 @@ public interface TaskDao {
     @Query("DELETE FROM task where id = :id")
     void deleteById(int id);
 
+    @Query("DELETE FROM task where upkeep = :upkeepId")
+    void deleteByUpkeep(int upkeepId);
+
     @Query("SELECT * FROM task")
     LiveData<List<Task>> getAll();
 
