@@ -36,20 +36,6 @@
         android:hint="@string/time"
         android:importantForAutofill="no" />
 
-    <EditText
-        android:id="@+id/upkeepComponentEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="@string/component"
-        android:inputType="number"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/upkeepTimeEditText"
-        app:layout_constraintStart_toStartOf="@+id/upkeepTimeEditText"
-        app:layout_constraintTop_toBottomOf="@+id/upkeepTimeEditText"
-        android:importantForAutofill="no" />
-
     <Button
         android:id="@+id/cancelUpkeepCreationButton"
         android:layout_width="wrap_content"
@@ -59,7 +45,7 @@
         android:text="@android:string/cancel"
         app:layout_constraintEnd_toStartOf="@+id/createUpkeepCreationButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upkeepComponentEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/upkeepTimeEditText" />
 
     <Button
         android:id="@+id/createUpkeepCreationButton"

@@ -22,20 +22,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:autofillHints="name" />
 
-    <EditText
-        android:id="@+id/fleetOwnerEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="@string/owner"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/fleetNameEditText"
-        app:layout_constraintStart_toStartOf="@+id/fleetNameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/fleetNameEditText"
-        android:importantForAutofill="no" />
-
     <Button
         android:id="@+id/cancelFleetCreationButton"
         android:layout_width="wrap_content"
@@ -44,7 +30,7 @@
         android:text="@android:string/cancel"
         app:layout_constraintEnd_toStartOf="@+id/createFleetCreationButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fleetOwnerEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/fleetNameEditText" />
 
     <Button
         android:id="@+id/createFleetCreationButton"

@@ -55,6 +55,7 @@ public class ServicesListFragment extends Fragment {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), ServiceCreationActivity.class);
+                intent.putExtra("boat", boat);
                 startActivity(intent);
             }
         });
@@ -124,6 +125,7 @@ public class ServicesListFragment extends Fragment {
     private void goToServiceCreation(Service service) {
         Intent intent = new Intent(this.getActivity(), ServiceCreationActivity.class);
         intent.putExtra("service", service);
+        intent.putExtra("boat", boat);
         startActivity(intent);
     }
 

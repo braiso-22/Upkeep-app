@@ -9,16 +9,18 @@ import android.widget.Toast;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Boat;
+import com.braiso_22.upkeep_app.model.vo.Fleet;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class BoatCreationActivity extends AppCompatActivity {
 
-    private EditText name, registration, code, fleet;
+    private EditText name, registration, code;
     private Button create, cancel;
     private ViewModel vm;
     private Bundle bundle;
     private Boat boat;
+    Fleet fleet = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +36,22 @@ public class BoatCreationActivity extends AppCompatActivity {
         name = findViewById(R.id.boatNameEditText);
         registration = findViewById(R.id.boatRegistrationEditText);
         code = findViewById(R.id.boatCodeEditText);
-        fleet = findViewById(R.id.boatFleetEditText);
         create = findViewById(R.id.createBoatCreationButton);
         cancel = findViewById(R.id.cancelBoatCreationButton);
-        if (bundle != null) {
+        if (bundle.containsKey("boat")) {
             boat = (Boat) bundle.getSerializable("boat");
             name.setText(boat.getName());
             registration.setText(boat.getRegistration());
             code.setText(boat.getCode());
-            fleet.setText(String.valueOf(boat.getFleet()));
         }
+        fleet = (Fleet) bundle.getSerializable("fleet");
 
     }
 
     private void onClickButtons() {
         create.setOnClickListener(v -> {
-            if (!TextUtils.areFieldsEmpty(name, registration, code, fleet) && TextUtils.checkNumeric(fleet)) {
-                if (bundle == null) {
+            if (!TextUtils.areFieldsEmpty(name, registration, code)) {
+                if (!bundle.containsKey("boat")) {
                     insertBoat();
                 } else {
                     updateBoat();
@@ -66,9 +67,8 @@ public class BoatCreationActivity extends AppCompatActivity {
         String code = this.code.getText().toString();
         String name = this.name.getText().toString();
         String registration = this.registration.getText().toString();
-        int fleet = Integer.parseInt(this.fleet.getText().toString());
 
-        Boat boat = new Boat(code, name, registration, fleet);
+        Boat boat = new Boat(code, name, registration, fleet.getId());
         vm.insert(boat);
         finish();
     }
@@ -77,9 +77,8 @@ public class BoatCreationActivity extends AppCompatActivity {
         String code = this.code.getText().toString();
         String name = this.name.getText().toString();
         String registration = this.registration.getText().toString();
-        int fleet = Integer.parseInt(this.fleet.getText().toString());
 
-        Boat boat = new Boat(this.boat.getId(), code, name, registration, fleet);
+        Boat boat = new Boat(this.boat.getId(), code, name, registration, this.boat.getFleet());
         vm.update(boat);
         finish();
     }

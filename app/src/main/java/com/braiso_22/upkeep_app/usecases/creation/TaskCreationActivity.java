@@ -9,16 +9,18 @@ import android.widget.Toast;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Task;
+import com.braiso_22.upkeep_app.model.vo.Upkeep;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class TaskCreationActivity extends AppCompatActivity {
 
-    EditText length, name, description, upkeep, operator;
+    EditText length, name, description, operator;
     Button cancel, create;
     ViewModel vm;
     Bundle bundle;
     Task task;
+    Upkeep upkeep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,26 +36,25 @@ public class TaskCreationActivity extends AppCompatActivity {
         length = findViewById(R.id.taskLengthEditText);
         name = findViewById(R.id.taskNameEditText);
         description = findViewById(R.id.taskDescriptionEditText);
-        upkeep = findViewById(R.id.taskUpkeepEditText);
         operator = findViewById(R.id.taskOperatorEditText);
         cancel = findViewById(R.id.cancelTaskCreationButton);
         create = findViewById(R.id.createTaskCreationButton);
-        if (bundle != null) {
+        if (bundle.containsKey("task")) {
             task = (Task) bundle.getSerializable("task");
             length.setText(String.valueOf(task.getLength()));
             name.setText(task.getName());
             description.setText(task.getDescription());
-            upkeep.setText(String.valueOf(task.getUpkeep()));
             operator.setText(String.valueOf(task.getOperator()));
         }
+        upkeep = (Upkeep) bundle.getSerializable("upkeep");
     }
 
     private void onClickButtons() {
         cancel.setOnClickListener(v -> finish());
         create.setOnClickListener(v -> {
-            if (!TextUtils.areFieldsEmpty(length, name, description, upkeep, operator) &&
-                    TextUtils.checkNumeric(length, upkeep, operator)) {
-                if (bundle == null) {
+            if (!TextUtils.areFieldsEmpty(length, name, description, operator) &&
+                    TextUtils.checkNumeric(length, operator)) {
+                if (!bundle.containsKey("task")) {
                     insertTask();
                 } else {
                     updateTask();
@@ -69,7 +70,7 @@ public class TaskCreationActivity extends AppCompatActivity {
         Task task = new Task(Integer.parseInt(length.getText().toString()),
                 name.getText().toString(),
                 description.getText().toString(),
-                Integer.parseInt(upkeep.getText().toString()),
+                upkeep.getId(),
                 Integer.parseInt(operator.getText().toString()));
         vm.insert(task);
         finish();
@@ -79,10 +80,10 @@ public class TaskCreationActivity extends AppCompatActivity {
         String length = this.length.getText().toString();
         String name = this.name.getText().toString();
         String description = this.description.getText().toString();
-        String upkeep = this.upkeep.getText().toString();
+        int upkeep = this.task.getUpkeep();
         String operator = this.operator.getText().toString();
 
-        vm.update(new Task(task.getId(), Integer.parseInt(length), name, description, Integer.parseInt(upkeep), Integer.parseInt(operator)));
+        vm.update(new Task(task.getId(), Integer.parseInt(length), name, description, upkeep, Integer.parseInt(operator)));
         finish();
     }
 

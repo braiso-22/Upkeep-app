@@ -52,33 +52,19 @@
         android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/taskUpkeepEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="number"
-        android:minHeight="48dp"
-        android:hint="@string/upkeep"
-        app:layout_constraintEnd_toEndOf="@+id/taskDescriptionEditText"
-        app:layout_constraintStart_toStartOf="@+id/taskDescriptionEditText"
-        app:layout_constraintTop_toBottomOf="@+id/taskDescriptionEditText"
-        android:importantForAutofill="no" />
-
-    <EditText
         android:id="@+id/taskOperatorEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/operator"
+        android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="@+id/taskUpkeepEditText"
-        app:layout_constraintStart_toStartOf="@+id/taskUpkeepEditText"
-        app:layout_constraintTop_toBottomOf="@+id/taskUpkeepEditText"
-        android:importantForAutofill="no" />
+        app:layout_constraintEnd_toEndOf="@+id/taskDescriptionEditText"
+        app:layout_constraintStart_toStartOf="@+id/taskDescriptionEditText"
+        app:layout_constraintTop_toBottomOf="@+id/taskDescriptionEditText" />
 
     <Button
         android:id="@+id/cancelTaskCreationButton"

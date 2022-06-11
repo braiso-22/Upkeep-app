@@ -15,11 +15,12 @@ import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class StoreCreationActivity extends AppCompatActivity {
 
-    EditText code, name, brand, model, serialNumber, observations, numStock, minStock, task;
+    EditText code, name, brand, model, serialNumber, observations, numStock, minStock;
     Button cancel, create;
     ViewModel vm;
     Bundle bundle;
     Store store;
+    Task task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +41,9 @@ public class StoreCreationActivity extends AppCompatActivity {
         observations = findViewById(R.id.storeObservationsEditText);
         numStock = findViewById(R.id.storeNumStockEditText);
         minStock = findViewById(R.id.storeMinStockEditText);
-        task = findViewById(R.id.storeTaskEditText);
         cancel = findViewById(R.id.cancelStoreCreationButton);
         create = findViewById(R.id.createStoreCreationButton);
-        if (bundle != null) {
+        if (bundle.containsKey("store")) {
             store = (Store) bundle.getSerializable("store");
             code.setText(store.getCode());
             name.setText(store.getName());
@@ -53,16 +53,16 @@ public class StoreCreationActivity extends AppCompatActivity {
             observations.setText(store.getObservations());
             numStock.setText(String.valueOf(store.getNumStock()));
             minStock.setText(String.valueOf(store.getMinStock()));
-            task.setText(String.valueOf(store.getTask()));
         }
+        task = (Task) bundle.getSerializable("task");
     }
 
     private void onClickButtons() {
         cancel.setOnClickListener(v -> finish());
         create.setOnClickListener(v -> {
             if (!TextUtils.areFieldsEmpty(code, name, brand, model, serialNumber, observations,
-                    numStock, minStock, task) && TextUtils.checkNumeric(numStock, minStock, task)) {
-                if (bundle == null) {
+                    numStock, minStock) && TextUtils.checkNumeric(numStock, minStock)) {
+                if (!bundle.containsKey("store")) {
                     insertStore();
                 } else {
                     updateStore();
@@ -82,7 +82,7 @@ public class StoreCreationActivity extends AppCompatActivity {
                 observations.getText().toString(),
                 Integer.parseInt(numStock.getText().toString()),
                 Integer.parseInt(minStock.getText().toString()),
-                Integer.parseInt(task.getText().toString()));
+                task.getId());
         vm.insert(store);
         finish();
     }
@@ -96,7 +96,7 @@ public class StoreCreationActivity extends AppCompatActivity {
         String observations = this.observations.getText().toString();
         int numStock = Integer.parseInt(this.numStock.getText().toString());
         int minStock = Integer.parseInt(this.minStock.getText().toString());
-        int task = Integer.parseInt(this.task.getText().toString());
+        int task = store.getTask();
         vm.update(new Store(store.getId(), code, name, brand, model, serialNumber, observations, numStock, minStock, task));
         finish();
     }

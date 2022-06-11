@@ -55,6 +55,7 @@ public class StoreListFragment extends Fragment {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), StoreCreationActivity.class);
+                intent.putExtra("task", task);
                 startActivity(intent);
             }
         });
@@ -133,6 +134,7 @@ public class StoreListFragment extends Fragment {
     private void goToStoreEdit(Store store) {
         Intent intent = new Intent(this.getActivity(), StoreCreationActivity.class);
         intent.putExtra("store", store);
+        intent.putExtra("task", task);
         startActivity(intent);
     }
 

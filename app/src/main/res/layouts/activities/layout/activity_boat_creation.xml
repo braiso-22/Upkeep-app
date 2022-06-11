@@ -51,20 +51,6 @@
         app:layout_constraintStart_toStartOf="@+id/boatNameEditText"
         app:layout_constraintTop_toBottomOf="@+id/boatNameEditText" />
 
-    <EditText
-        android:id="@+id/boatFleetEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="@string/fleet"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/boatRegistrationEditText"
-        app:layout_constraintStart_toStartOf="@+id/boatRegistrationEditText"
-        app:layout_constraintTop_toBottomOf="@+id/boatRegistrationEditText" />
-
     <Button
         android:id="@+id/cancelBoatCreationButton"
         android:layout_width="wrap_content"
@@ -74,7 +60,7 @@
         android:text="@android:string/cancel"
         app:layout_constraintEnd_toStartOf="@+id/createBoatCreationButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boatFleetEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/boatRegistrationEditText" />
 
     <Button
         android:id="@+id/createBoatCreationButton"

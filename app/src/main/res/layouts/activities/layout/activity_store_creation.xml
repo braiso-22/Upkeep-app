@@ -140,19 +140,6 @@
                 app:layout_constraintStart_toStartOf="@+id/storeCodeEditText"
                 app:layout_constraintTop_toBottomOf="@+id/storeCodeEditText" />
 
-            <EditText
-                android:id="@+id/storeTaskEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:ems="10"
-                android:hint="@string/tasks"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:minHeight="48dp"
-                app:layout_constraintEnd_toEndOf="@+id/storeMinStockEditText"
-                app:layout_constraintStart_toStartOf="@+id/storeMinStockEditText"
-                app:layout_constraintTop_toBottomOf="@+id/storeMinStockEditText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

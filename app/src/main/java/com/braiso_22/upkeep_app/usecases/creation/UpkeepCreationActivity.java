@@ -10,17 +10,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.braiso_22.upkeep_app.R;
+import com.braiso_22.upkeep_app.model.vo.Component;
 import com.braiso_22.upkeep_app.model.vo.Upkeep;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class UpkeepCreationActivity extends AppCompatActivity {
 
-    EditText date, time, component;
+    EditText date, time;
     Button cancel, create;
     ViewModel vm;
     Bundle bundle;
     Upkeep upkeep;
+    Component component;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -36,24 +38,23 @@ public class UpkeepCreationActivity extends AppCompatActivity {
     private void initViews() {
         date = findViewById(R.id.upkeepDateEditText);
         time = findViewById(R.id.upkeepTimeEditText);
-        component = findViewById(R.id.upkeepComponentEditText);
         cancel = findViewById(R.id.cancelUpkeepCreationButton);
         create = findViewById(R.id.createUpkeepCreationButton);
-        if (bundle != null) {
+        if (bundle.containsKey("upkeep")) {
             upkeep = (Upkeep) bundle.getSerializable("upkeep");
             date.setText(upkeep.getDate());
             time.setText(upkeep.getHour());
-            component.setText(String.valueOf( upkeep.getComponent()));
         }
+        component = (Component) bundle.getSerializable("component");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void onClickButtons() {
         cancel.setOnClickListener(v -> finish());
         create.setOnClickListener(v -> {
-            if (!TextUtils.areFieldsEmpty(date, time, component) &&
-                    TextUtils.isDate(date) && TextUtils.isTime(time)) {
-                if (bundle == null) {
+            if (!TextUtils.areFieldsEmpty(date, time) && TextUtils.isDate(date)
+                    && TextUtils.isTime(time)) {
+                if (!bundle.containsKey("upkeep")) {
                     insertUpkeep();
                 } else {
                     updateUpkeep();
@@ -67,8 +68,7 @@ public class UpkeepCreationActivity extends AppCompatActivity {
     private void insertUpkeep() {
         String date = this.date.getText().toString();
         String time = this.time.getText().toString();
-        int component = Integer.valueOf(this.component.getText().toString());
-        Upkeep upkeep = new Upkeep(date, time, component);
+        Upkeep upkeep = new Upkeep(date, time, component.getId());
         vm.insert(upkeep);
         finish();
     }
@@ -76,9 +76,7 @@ public class UpkeepCreationActivity extends AppCompatActivity {
     private void updateUpkeep() {
         String date = this.date.getText().toString();
         String time = this.time.getText().toString();
-        int component = Integer.valueOf(this.component.getText().toString());
-
-        vm.update(new Upkeep(upkeep.getId(), date, time, component));
+        vm.update(new Upkeep(upkeep.getId(), date, time, upkeep.getComponent()));
         finish();
     }
 }

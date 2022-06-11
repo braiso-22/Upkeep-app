@@ -54,6 +54,7 @@ public class UpkeepListFragment extends Fragment {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), UpkeepCreationActivity.class);
+                intent.putExtra("component", component);
                 startActivity(intent);
             }
         });
@@ -129,6 +130,7 @@ public class UpkeepListFragment extends Fragment {
     private void goToUpkeepEdit(Upkeep upkeep) {
         Intent intent = new Intent(this.getActivity(), UpkeepCreationActivity.class);
         intent.putExtra("upkeep", upkeep);
+        intent.putExtra("component", component);
         startActivity(intent);
     }
 

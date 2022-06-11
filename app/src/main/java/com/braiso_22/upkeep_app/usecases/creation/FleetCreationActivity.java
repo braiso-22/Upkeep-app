@@ -9,16 +9,18 @@ import android.widget.Toast;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Fleet;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class FleetCreationActivity extends AppCompatActivity {
 
-    private EditText name, owner;
+    private EditText name;
     private Button create, cancel;
     private ViewModel vm;
     Bundle bundle;
     Fleet fleet = null;
+    Owner owner = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +34,19 @@ public class FleetCreationActivity extends AppCompatActivity {
 
     private void initViews() {
         name = findViewById(R.id.fleetNameEditText);
-        owner = findViewById(R.id.fleetOwnerEditText);
         create = findViewById(R.id.createFleetCreationButton);
         cancel = findViewById(R.id.cancelFleetCreationButton);
-        if (bundle != null) {
+        if (bundle.containsKey("fleet")) {
             fleet = (Fleet) bundle.getSerializable("fleet");
             name.setText(fleet.getName());
-            owner.setText(String.valueOf(fleet.getOwner()));
         }
+        owner = (Owner) bundle.getSerializable("owner");
     }
 
     private void onClickButtons() {
         create.setOnClickListener(v -> {
-            if (!TextUtils.areFieldsEmpty(name, owner) && TextUtils.checkNumeric(owner)) {
-                if (bundle == null) {
+            if (!TextUtils.areFieldsEmpty(name)) {
+                if (!bundle.containsKey("fleet")) {
                     insertFleet();
                 } else {
                     updateFleet();
@@ -59,15 +60,15 @@ public class FleetCreationActivity extends AppCompatActivity {
 
     private void insertFleet() {
         String name = this.name.getText().toString();
-        int owner = Integer.parseInt(this.owner.getText().toString());
-        Fleet fleet = new Fleet(name, owner);
+        int ownerId = owner != null ? owner.getId() : 1;
+        Fleet fleet = new Fleet(name, ownerId);
         vm.insert(fleet);
         finish();
     }
-    private void updateFleet(){
+
+    private void updateFleet() {
         String name = this.name.getText().toString();
-        int owner = Integer.parseInt(this.owner.getText().toString());
-        Fleet fleet = new Fleet(this.fleet.getId(),name, owner);
+        Fleet fleet = new Fleet(this.fleet.getId(), name, this.fleet.getOwner());
         vm.update(fleet);
         finish();
     }

@@ -9,16 +9,18 @@ import android.widget.Toast;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Component;
+import com.braiso_22.upkeep_app.model.vo.Service;
 import com.braiso_22.upkeep_app.utils.TextUtils;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 public class ComponentCreationActivity extends AppCompatActivity {
 
-    EditText code, name, brand, model, serialNumber, observations, service;
+    EditText code, name, brand, model, serialNumber, observations;
     Button cancel, create;
     ViewModel vm;
     Bundle bundle;
     Component component;
+    Service service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,9 @@ public class ComponentCreationActivity extends AppCompatActivity {
         model = findViewById(R.id.componentModelEditText);
         serialNumber = findViewById(R.id.componentSerialNumberEditText);
         observations = findViewById(R.id.componentObservationsEditText);
-        service = findViewById(R.id.componentServiceEditText);
         cancel = findViewById(R.id.cancelComponentCreationButton);
         create = findViewById(R.id.createComponentCreationButton);
-        if (bundle != null) {
+        if (bundle.containsKey("component")) {
             component = (Component) bundle.getSerializable("component");
             code.setText(component.getCode());
             name.setText(component.getName());
@@ -48,15 +49,15 @@ public class ComponentCreationActivity extends AppCompatActivity {
             model.setText(component.getModel());
             serialNumber.setText(component.getSerialNumber());
             observations.setText(component.getObservations());
-            service.setText(String.valueOf(component.getService()));
         }
+        service = (Service) bundle.getSerializable("service");
     }
 
     private void onClickButtons() {
         cancel.setOnClickListener(v -> finish());
         create.setOnClickListener(v -> {
-            if (!TextUtils.areFieldsEmpty(name, brand, code, model, serialNumber, observations, service) && TextUtils.checkNumeric(service)) {
-                if (bundle == null) {
+            if (!TextUtils.areFieldsEmpty(name, brand, code, model, serialNumber, observations)) {
+                if (!bundle.containsKey("component")) {
                     insertComponent();
                 } else {
                     updateComponent();
@@ -74,9 +75,8 @@ public class ComponentCreationActivity extends AppCompatActivity {
         String model = this.model.getText().toString();
         String serialNumber = this.serialNumber.getText().toString();
         String observations = this.observations.getText().toString();
-        int service = Integer.valueOf(this.service.getText().toString());
 
-        vm.insert(new Component(code, name, brand, model, serialNumber, observations, service));
+        vm.insert(new Component(code, name, brand, model, serialNumber, observations, service.getId()));
         finish();
     }
 
@@ -87,9 +87,8 @@ public class ComponentCreationActivity extends AppCompatActivity {
         String model = this.model.getText().toString();
         String serialNumber = this.serialNumber.getText().toString();
         String observations = this.observations.getText().toString();
-        int service = Integer.valueOf(this.service.getText().toString());
 
-        vm.update(new Component(component.getId(), code, name, brand, model, serialNumber, observations, service));
+        vm.update(new Component(component.getId(), code, name, brand, model, serialNumber, observations, component.getService()));
         finish();
     }
 }

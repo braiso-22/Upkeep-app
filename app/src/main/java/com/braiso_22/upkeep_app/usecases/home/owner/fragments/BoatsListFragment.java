@@ -59,6 +59,7 @@ public class BoatsListFragment extends Fragment {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), BoatCreationActivity.class);
+                intent.putExtra("fleet", fleet);
                 startActivity(intent);
             }
         });
@@ -120,6 +121,7 @@ public class BoatsListFragment extends Fragment {
     private void goToBoatCreation(Boat boat) {
         Intent intent = new Intent(this.getActivity(), BoatCreationActivity.class);
         intent.putExtra("boat", boat);
+        intent.putExtra("fleet", fleet);
         startActivity(intent);
     }
 

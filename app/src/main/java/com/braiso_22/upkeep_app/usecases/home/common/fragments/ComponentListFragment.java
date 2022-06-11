@@ -60,6 +60,7 @@ public class ComponentListFragment extends Fragment {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), ComponentCreationActivity.class);
+                intent.putExtra("service", service);
                 startActivity(intent);
             }
         });
@@ -152,6 +153,7 @@ public class ComponentListFragment extends Fragment {
     private void goToComponentCreation(Component component) {
         Intent intent = new Intent(this.getActivity(), ComponentCreationActivity.class);
         intent.putExtra("component", component);
+        intent.putExtra("service", service);
         startActivity(intent);
     }
 

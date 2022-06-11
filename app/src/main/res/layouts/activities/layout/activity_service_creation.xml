@@ -36,20 +36,6 @@
         app:layout_constraintStart_toStartOf="@+id/serviceCodeEditText"
         app:layout_constraintTop_toBottomOf="@+id/serviceCodeEditText" />
 
-    <EditText
-        android:id="@+id/serviceBoatEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="@string/boat"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/serviceNameEditText"
-        app:layout_constraintStart_toStartOf="@+id/serviceNameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/serviceNameEditText" />
-
     <Button
         android:id="@+id/cancelServiceCreationButton"
         android:layout_width="wrap_content"
@@ -59,7 +45,7 @@
         android:text="@android:string/cancel"
         app:layout_constraintEnd_toStartOf="@+id/createServiceCreationButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serviceBoatEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/serviceNameEditText" />
 
     <Button
         android:id="@+id/createServiceCreationButton"

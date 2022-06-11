@@ -57,6 +57,7 @@ public class TaskListFragment extends Fragment {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), TaskCreationActivity.class);
+                intent.putExtra("upkeep", upkeep);
                 startActivity(intent);
             }
         });
@@ -129,6 +130,7 @@ public class TaskListFragment extends Fragment {
     private void goToTaskEdit(Task task) {
         Intent intent = new Intent(this.getActivity(), TaskCreationActivity.class);
         intent.putExtra("task", task);
+        intent.putExtra("upkeep", upkeep);
         startActivity(intent);
     }
 

@@ -54,6 +54,7 @@ public class FleetsListFragment extends Fragment {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), FleetCreationActivity.class);
+                intent.putExtra("owner", owner);
                 startActivity(intent);
             }
         });
@@ -126,6 +127,7 @@ public class FleetsListFragment extends Fragment {
     private void goToFleetEdit(Fleet fleet) {
         Intent intent = new Intent(this.getActivity(), FleetCreationActivity.class);
         intent.putExtra("fleet", fleet);
+        intent.putExtra("owner", owner);
         startActivity(intent);
     }
 
