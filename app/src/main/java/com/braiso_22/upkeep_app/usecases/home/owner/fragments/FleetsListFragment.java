@@ -48,7 +48,11 @@ public class FleetsListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                vm.deleteAllFleets();
+                if(owner==null){
+                    vm.deleteAllFleets();
+                }else{
+                    vm.deleteFleetByOwner(owner);
+                }
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override
@@ -65,7 +69,7 @@ public class FleetsListFragment extends Fragment {
      * @param recycler
      */
     private void inflateRecycler(RecyclerView recycler) {
-        if (owner == null) {
+        if (owner==null) {
             vm.getAllFleets().observe(this.getActivity(), fleets -> {
                 if (getActivity() != null)
                     recycler.setAdapter(new FleetAdapter(fleets, this.getActivity(), new FleetAdapter.OnFleetClickListener() {

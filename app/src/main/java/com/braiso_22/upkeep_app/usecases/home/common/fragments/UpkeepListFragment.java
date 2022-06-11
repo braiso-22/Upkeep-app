@@ -16,7 +16,9 @@ import android.view.ViewGroup;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Component;
 import com.braiso_22.upkeep_app.model.vo.Upkeep;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.usecases.creation.UpkeepCreationActivity;
+import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.UpkeepAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -46,7 +48,16 @@ public class UpkeepListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                vm.deleteAllUpkeeps();
+                if(!(getActivity() instanceof OwnerHomeActivity)){
+                    Owner owner = ((OwnerHomeActivity)getActivity()).owner;
+                    if(owner==null){
+                        vm.deleteAllUpkeeps();
+                    }else{
+                        vm.deleteUpkeepByComponent(component);
+                    }
+                }else{
+                    vm.deleteUpkeepByComponent(component);
+                }
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override

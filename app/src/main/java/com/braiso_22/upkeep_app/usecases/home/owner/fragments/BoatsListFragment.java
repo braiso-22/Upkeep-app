@@ -18,7 +18,9 @@ import android.view.ViewGroup;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Boat;
 import com.braiso_22.upkeep_app.model.vo.Fleet;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.usecases.creation.BoatCreationActivity;
+import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.usecases.home.owner.adapters.BoatAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -46,7 +48,12 @@ public class BoatsListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                vm.deleteAllBoats();
+                Owner owner = ((OwnerHomeActivity)getActivity()).owner;
+                if(owner==null){
+                    vm.deleteAllBoats();
+                }else{
+                    vm.deleteBoatByFleet(fleet);
+                }
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override

@@ -19,8 +19,10 @@ import com.braiso_22.upkeep_app.model.vo.Component;
 import com.braiso_22.upkeep_app.model.vo.Service;
 import com.braiso_22.upkeep_app.model.vo.users.Manager;
 import com.braiso_22.upkeep_app.model.vo.users.Operator;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.creation.ComponentCreationActivity;
+import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.ComponentAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -51,7 +53,16 @@ public class ComponentListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                vm.deleteAllComponents();
+                if(!(getActivity() instanceof OwnerHomeActivity)){
+                    Owner owner = ((OwnerHomeActivity)getActivity()).owner;
+                    if(owner==null){
+                        vm.deleteAllComponents();
+                    }else{
+                        vm.deleteComponentByService(service);
+                    }
+                }else{
+                    vm.deleteComponentByService(service);
+                }
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override

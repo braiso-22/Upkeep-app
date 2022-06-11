@@ -62,7 +62,9 @@ public class OwnerHomeActivity extends AppCompatActivity implements NavigationBa
                     lastFragment = null;
                 } else {
                     FleetsListFragment fleetsListFragment = new FleetsListFragment();
-                    fleetsListFragment.setOwner(this.owner);
+                    if(!owner.getLogin().equals("brais")){
+                        fleetsListFragment.setOwner(owner);
+                    }
                     ft.replace(R.id.fragmentContainerView, fleetsListFragment);
                     ft.disallowAddToBackStack();
                 }

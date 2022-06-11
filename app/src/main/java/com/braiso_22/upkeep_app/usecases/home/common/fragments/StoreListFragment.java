@@ -16,7 +16,9 @@ import android.view.ViewGroup;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Store;
 import com.braiso_22.upkeep_app.model.vo.Task;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.usecases.creation.StoreCreationActivity;
+import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.StoreAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -47,7 +49,16 @@ public class StoreListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                vm.deleteAllStores();
+                if (!(getActivity() instanceof OwnerHomeActivity)) {
+                    Owner owner = ((OwnerHomeActivity) getActivity()).owner;
+                    if (owner == null) {
+                        vm.deleteAllStores();
+                    } else {
+                        vm.deleteStoreByTask(task);
+                    }
+                } else {
+                    vm.deleteStoreByTask(task);
+                }
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override
@@ -66,33 +77,33 @@ public class StoreListFragment extends Fragment {
     private void inflateRecycler(RecyclerView recycler) {
         if (task == null) {
             vm.getAllStores().observe(this.getActivity(), stores -> {
-                if(getActivity()!=null)
-                recycler.setAdapter(new StoreAdapter(this.getActivity(), stores, new StoreAdapter.OnStoreClickListener() {
-                    @Override
-                    public void onStoreClick(Store store) {
+                if (getActivity() != null)
+                    recycler.setAdapter(new StoreAdapter(this.getActivity(), stores, new StoreAdapter.OnStoreClickListener() {
+                        @Override
+                        public void onStoreClick(Store store) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onStoreLongClick(Store store, View view) {
-                        showPopupMenu(store, view);
-                    }
-                }));
+                        @Override
+                        public void onStoreLongClick(Store store, View view) {
+                            showPopupMenu(store, view);
+                        }
+                    }));
             });
         } else {
             vm.getStoreByTask(task.getId()).observe(this.getActivity(), stores -> {
-                if(getActivity()!=null)
-                recycler.setAdapter(new StoreAdapter(this.getActivity(), stores, new StoreAdapter.OnStoreClickListener() {
-                    @Override
-                    public void onStoreClick(Store store) {
+                if (getActivity() != null)
+                    recycler.setAdapter(new StoreAdapter(this.getActivity(), stores, new StoreAdapter.OnStoreClickListener() {
+                        @Override
+                        public void onStoreClick(Store store) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onStoreLongClick(Store store, View view) {
-                        showPopupMenu(store, view);
-                    }
-                }));
+                        @Override
+                        public void onStoreLongClick(Store store, View view) {
+                            showPopupMenu(store, view);
+                        }
+                    }));
             });
         }
 
@@ -133,6 +144,7 @@ public class StoreListFragment extends Fragment {
         intent.putExtra("store", store);
         startActivity(intent);
     }
+
     public void setTask(Task task) {
         this.task = task;
     }

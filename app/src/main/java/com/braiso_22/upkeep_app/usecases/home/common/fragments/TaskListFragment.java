@@ -17,7 +17,9 @@ import android.widget.AdapterView;
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.Task;
 import com.braiso_22.upkeep_app.model.vo.Upkeep;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.usecases.creation.TaskCreationActivity;
+import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.usecases.home.common.adapters.TaskAdapter;
 import com.braiso_22.upkeep_app.utils.CRUDToolbarMenu;
 import com.braiso_22.upkeep_app.viewmodel.ViewModel;
@@ -49,7 +51,16 @@ public class TaskListFragment extends Fragment {
         CRUDToolbarMenu.menuOnClick(toolbar, new CRUDToolbarMenu.DeleteMethod() {
             @Override
             public void delete() {
-                vm.deleteAllTasks();
+                if(!(getActivity() instanceof OwnerHomeActivity)){
+                    Owner owner = ((OwnerHomeActivity)getActivity()).owner;
+                    if(owner==null){
+                        vm.deleteAllTasks();
+                    }else{
+                        vm.deleteTaskByUpkeep(upkeep);
+                    }
+                }else{
+                    vm.deleteTaskByUpkeep(upkeep);
+                }
             }
         }, new CRUDToolbarMenu.CreateMethod() {
             @Override
