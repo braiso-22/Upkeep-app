@@ -32,8 +32,8 @@ import java.util.Objects;
 
 public class ManagerListFragment extends Fragment {
     ViewModel vm;
-    User user;
     Owner owner;
+
     // constructor
     public ManagerListFragment() {
         // Required empty public constructor
@@ -65,36 +65,59 @@ public class ManagerListFragment extends Fragment {
             public void create() {
                 Intent intent = new Intent(getActivity(), UserCreationActivity.class);
                 intent.putExtra("userType", UserTypes.MANAGER);
+                intent.putExtra("owner", owner);
                 startActivity(intent);
+                finish();
+            }
+            private void finish() {
+                getActivity().finish();
             }
         });
 
     }
 
     private void inflateRecycler(RecyclerView recycler) {
-        vm.getAllManagers().observe(this.getActivity(), managers -> {
-            List<User> users = new ArrayList<>(managers);
-            recycler.setAdapter(new UserAdapter(users, this.getActivity(), new UserAdapter.OnUserClickListener() {
-                @Override
-                public void onUserClick(User manager) {
+        if (owner != null && !owner.getLogin().equals("brais")) {
+            vm.getManagerByOwner(owner.getId()).observe(this.getActivity(), operators -> {
+                List<User> users = new ArrayList<>(operators);
+                recycler.setAdapter(new UserAdapter(users, this.getActivity(), new UserAdapter.OnUserClickListener() {
+                    @Override
+                    public void onUserClick(User operator) {
 
-                }
+                    }
 
-                @Override
-                public void onUserLongClick(User manager, View view) {
-                    showPopupMenu(manager, view);
-                }
-            }));
-        });
+                    @Override
+                    public void onUserLongClick(User operator, View view) {
+                        showPopupMenu(operator, view);
+                    }
+                }));
+            });
+        } else {
+            vm.getAllManagers().observe(this.getActivity(), operators -> {
+                List<User> users = new ArrayList<>(operators);
+                recycler.setAdapter(new UserAdapter(users, this.getActivity(), new UserAdapter.OnUserClickListener() {
+                    @Override
+                    public void onUserClick(User operator) {
+
+                    }
+
+                    @Override
+                    public void onUserLongClick(User operator, View view) {
+                        showPopupMenu(operator, view);
+                    }
+                }));
+            });
+        }
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
+
     private void showPopupMenu(User manager, View view) {
         PopupMenu popup = new PopupMenu(this.getActivity(), view);
         popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
         popup.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.deleteOneOption:
-                    vm.deleteManager(((Manager)manager));
+                    vm.deleteManager(((Manager) manager));
                     return true;
                 case R.id.editOption:
                     goToUserEdit(manager);
@@ -105,14 +128,16 @@ public class ManagerListFragment extends Fragment {
         });
         popup.show();
     }
+
     private void goToUserEdit(User user) {
         Intent intent = new Intent(this.getActivity(), UserCreationActivity.class);
         intent.putExtra("userType", UserTypes.MANAGER);
         intent.putExtra("user", user);
-        intent.putExtra("owner",owner);
+        intent.putExtra("owner", owner);
         startActivity(intent);
         this.getActivity().finish();
     }
+
     public void setOwner(Owner owner) {
         this.owner = owner;
     }

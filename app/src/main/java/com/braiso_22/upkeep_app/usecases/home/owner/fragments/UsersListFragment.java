@@ -42,6 +42,7 @@ public class UsersListFragment extends Fragment {
         ft.setReorderingAllowed(true);
         ManagerListFragment fragment = new ManagerListFragment();
         fragment.setOwner(owner);
+
         ft.add(R.id.usersListFragmentContainer, fragment).commit();
 
         switchCompat.setOnClickListener(new View.OnClickListener() {

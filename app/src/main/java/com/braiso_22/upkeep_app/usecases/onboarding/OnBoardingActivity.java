@@ -6,6 +6,7 @@ import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
 import com.braiso_22.upkeep_app.usecases.login.NotOwnerLoginActivity;
 import com.braiso_22.upkeep_app.usecases.login.OwnerLoginActivity;
+import com.braiso_22.upkeep_app.viewmodel.ViewModel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,11 +19,13 @@ public class OnBoardingActivity extends AppCompatActivity {
     public Button ownerButton;
     public Button employeeButton;
     public Button adminButton;
+    private ViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding);
+        viewModel = new ViewModel(getApplication());
         setButtons();
     }
 
@@ -52,7 +55,16 @@ public class OnBoardingActivity extends AppCompatActivity {
         adminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                goToOwnerWithAdmin();
+            }
+        });
+    }
+
+    private void goToOwnerWithAdmin() {
+        viewModel.getOwnerByLogin("brais").observe(this, owner -> {
+            if (owner != null) {
                 Intent intent = new Intent(OnBoardingActivity.this, OwnerHomeActivity.class);
+                intent.putExtra("user", owner);
                 startActivity(intent);
                 finish();
             }

@@ -34,7 +34,9 @@ public class OwnerHomeActivity extends AppCompatActivity implements NavigationBa
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         FleetsListFragment fragment = new FleetsListFragment();
-        fragment.setOwner(this.owner);
+        if(!owner.getLogin().equals("brais")){
+            fragment.setOwner(owner);
+        }
         ft.setReorderingAllowed(true);
         ft.add(R.id.fragmentContainerView, fragment, null);
         ft.commit();

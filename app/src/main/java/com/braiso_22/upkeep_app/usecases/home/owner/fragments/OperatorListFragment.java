@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.braiso_22.upkeep_app.R;
 import com.braiso_22.upkeep_app.model.vo.users.Operator;
+import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.creation.UserCreationActivity;
 import com.braiso_22.upkeep_app.usecases.home.OwnerHomeActivity;
@@ -31,6 +32,8 @@ import java.util.List;
 public class OperatorListFragment extends Fragment {
     ViewModel vm;
     User user;
+    Owner owner;
+
     // constructor
     public OperatorListFragment() {
         // Required empty public constructor
@@ -57,32 +60,53 @@ public class OperatorListFragment extends Fragment {
             public void delete() {
                 vm.deleteAllOperators();
             }
-        }, new CRUDToolbarMenu.CreateMethod(){
+        }, new CRUDToolbarMenu.CreateMethod() {
             @Override
             public void create() {
                 Intent intent = new Intent(getActivity(), UserCreationActivity.class);
                 intent.putExtra("userType", UserTypes.OPERATOR);
+                intent.putExtra("owner", owner);
                 startActivity(intent);
             }
         });
     }
 
     private void inflateRecycler(RecyclerView recycler) {
-        vm.getAllOperators().observe(this.getActivity(), operators -> {
-            List<User> users = new ArrayList<>(operators);
-            recycler.setAdapter(new UserAdapter(users, this.getActivity(), new UserAdapter.OnUserClickListener() {
-                @Override
-                public void onUserClick(User operator) {
+        if (owner != null && !owner.getLogin().equals("brais")) {
+            vm.getOperatorByOwner(owner.getId()).observe(this.getActivity(), operators -> {
+                List<User> users = new ArrayList<>(operators);
+                recycler.setAdapter(new UserAdapter(users, this.getActivity(), new UserAdapter.OnUserClickListener() {
+                    @Override
+                    public void onUserClick(User operator) {
 
-                }
-                @Override
-                public void onUserLongClick(User operator, View view){
-                    showPopupMenu(operator, view);
-                }
-            }));
-        });
+                    }
+
+                    @Override
+                    public void onUserLongClick(User operator, View view) {
+                        showPopupMenu(operator, view);
+                    }
+                }));
+            });
+        } else {
+            vm.getAllOperators().observe(this.getActivity(), operators -> {
+                List<User> users = new ArrayList<>(operators);
+                recycler.setAdapter(new UserAdapter(users, this.getActivity(), new UserAdapter.OnUserClickListener() {
+                    @Override
+                    public void onUserClick(User operator) {
+
+                    }
+
+                    @Override
+                    public void onUserLongClick(User operator, View view) {
+                        showPopupMenu(operator, view);
+                    }
+                }));
+            });
+        }
+
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
+
     private void showPopupMenu(User operator, View view) {
         PopupMenu popup = new PopupMenu(this.getActivity(), view);
         popup.getMenuInflater().inflate(R.menu.crud_options2_menu, popup.getMenu());
@@ -100,16 +124,19 @@ public class OperatorListFragment extends Fragment {
         });
         popup.show();
     }
+
     private void goToUserEdit(User user) {
         Intent intent = new Intent(this.getActivity(), UserCreationActivity.class);
         intent.putExtra("userType", UserTypes.OPERATOR);
         intent.putExtra("user", user);
-        intent.putExtra("owner",this.user);
+        intent.putExtra("owner", this.user);
         startActivity(intent);
         this.getActivity().finish();
     }
-    public void setOwner(User owner) {
-        this.user = owner;
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
+
 
 }
