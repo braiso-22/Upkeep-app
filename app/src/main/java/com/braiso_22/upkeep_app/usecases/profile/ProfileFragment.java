@@ -19,22 +19,15 @@ import com.braiso_22.upkeep_app.model.vo.users.Owner;
 import com.braiso_22.upkeep_app.model.vo.users.User;
 import com.braiso_22.upkeep_app.usecases.creation.UserCreationActivity;
 import com.braiso_22.upkeep_app.utils.UserTypes;
-import com.braiso_22.upkeep_app.viewmodel.ViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProfileFragment extends Fragment {
 
     FragmentProfileBinding binding;
     User user;
+    Owner owner;
 
     public ProfileFragment() {
-    }
-
-    public ProfileFragment(User user) {
-        this.user = user;
     }
 
     @Override
@@ -46,7 +39,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setUser(user);
+
+
+        setUserViewData(user);
         binding.toolbar2.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.action_edit:
@@ -65,7 +60,7 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    private void setUser(User user) {
+    private void setUserViewData(User user) {
         binding.userNameTextView.setText(user.getName());
         binding.userSurnameTextView.setText(user.getSurnames());
         binding.userEmailTextView.setText(user.getEmail());
@@ -76,7 +71,8 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), UserCreationActivity.class);
         intent.putExtra("userType", getUserType(user));
         intent.putExtra("user", user);
-        intent.putExtra("owner", user);
+        intent.putExtra("owner", owner);
+
         startActivity(intent);
         getActivity().finish();
     }
@@ -91,5 +87,13 @@ public class ProfileFragment extends Fragment {
         } else {
             return UserTypes.ADMIN;
         }
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }

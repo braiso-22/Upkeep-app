@@ -55,7 +55,9 @@ public class NotOwnerHomeActivity extends AppCompatActivity implements Navigatio
                         !(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) instanceof ProfileFragment)) {
                     lastFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
                 }
-                ft.replace(R.id.fragmentContainerView, new ProfileFragment(user));
+                ProfileFragment profileFragment = new ProfileFragment();
+                profileFragment.setUser(user);
+                ft.replace(R.id.fragmentContainerView, profileFragment);
                 break;
         }
         ft.commit();

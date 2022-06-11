@@ -29,7 +29,7 @@ public class UserCreationActivity extends AppCompatActivity {
     UserTypes userType;
     Bundle extras;
     User user;
-    User owner;
+    Owner owner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,6 @@ public class UserCreationActivity extends AppCompatActivity {
                 } else {
                     insertUser();
                 }
-
             } else {
                 Toast.makeText(this, getResources().getText(R.string.wrong_data), Toast.LENGTH_LONG).show();
             }
@@ -111,14 +110,17 @@ public class UserCreationActivity extends AppCompatActivity {
         User user = getUserWithType();
         user.setId(this.user.getId());
         user.setPassword(this.user.getPassword());
-        this.user = user;
+
         if (user instanceof Manager) {
+            ((Manager) user).setOwner(((Manager) this.user).getOwner());
             vm.update((Manager) user);
         } else if (user instanceof Operator) {
+            ((Operator) user).setOwner(((Operator) this.user).getId());
             vm.update((Operator) user);
         } else {
             vm.update((Owner) user);
         }
+        this.user = user;
         if (owner != null) {
             goToOwnerHome();
         } else {
@@ -159,7 +161,7 @@ public class UserCreationActivity extends AppCompatActivity {
 
     private void goToOwnerHome() {
         Intent intent = new Intent(this, OwnerHomeActivity.class);
-        intent.putExtra("user", owner);
+        intent.putExtra("user", user);
         startActivity(intent);
         finish();
     }

@@ -72,7 +72,10 @@ public class OwnerHomeActivity extends AppCompatActivity implements NavigationBa
                         !(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) instanceof ProfileFragment)) {
                     lastFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
                 }
-                ft.replace(R.id.fragmentContainerView, new ProfileFragment(owner));
+                ProfileFragment profileFragment = new ProfileFragment();
+                profileFragment.setOwner(this.owner);
+                profileFragment.setUser(this.owner);
+                ft.replace(R.id.fragmentContainerView, profileFragment);
         }
         ft.commit();
         return true;
