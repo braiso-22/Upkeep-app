@@ -134,11 +134,14 @@ public class UserCreationActivity extends AppCompatActivity {
         String identification = binding.userIdentificationEditText.getText().toString();
         String code = binding.userCodeEditText.getText().toString();
         int service = Integer.valueOf(binding.userServiceEditText.getText().toString());
+        int ownerId;
         switch (userType) {
             case MANAGER:
-                return new Manager(login, code, identification, name, surnames, email, service);
+                ownerId = owner == null ? ((Manager) user).getOwner() : owner.getId();
+                return new Manager(login, code, identification, name, surnames, email, service, ownerId);
             case OPERATOR:
-                return new Operator(login, code, identification, name, surnames, email, service);
+                ownerId = owner == null ? ((Operator) user).getOwner() : owner.getId();
+                return new Operator(login, code, identification, name, surnames, email, service, ownerId);
             case OWNER:
                 return new Owner(login, code, identification, name, surnames, email);
             default:
