@@ -139,6 +139,9 @@ public class ViewModel extends AndroidViewModel {
     public LiveData<Manager> getManagerByLogin(String login) {
         return repository.getManagerByLogin(login);
     }
+    public LiveData<List<Manager>> getManagerByOwner(int owner) {
+        return repository.getManagerByOwner(owner);
+    }
 
     public void insert(Manager manager) {
         repository.insert(manager);
@@ -238,6 +241,9 @@ public class ViewModel extends AndroidViewModel {
 
     public LiveData<Operator> getOperatorByLogin(String login) {
         return repository.getOperatorByLogin(login);
+    }
+    public LiveData<List<Operator>> getOperatorByOwner(int owner) {
+        return repository.getOperatorByOwner(owner);
     }
 
     public void insert(Operator operator) {

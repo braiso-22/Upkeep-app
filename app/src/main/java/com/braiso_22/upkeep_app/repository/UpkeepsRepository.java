@@ -186,6 +186,9 @@ public class UpkeepsRepository {
     public LiveData<Manager> getManagerByLogin(String login) {
         return managerDao.getByLogin(login);
     }
+    public LiveData<List<Manager>> getManagerByOwner(int id) {
+        return managerDao.getByOwner(id);
+    }
 
     public void insert(Manager manager) {
         UpkeepsRoomDatabase.databaseWriteExecutor.execute(() -> {
@@ -313,6 +316,9 @@ public class UpkeepsRepository {
 
     public LiveData<Operator> getOperatorByLogin(String login) {
         return operatorDao.getByLogin(login);
+    }
+    public LiveData<List<Operator>> getOperatorByOwner(int id) {
+        return operatorDao.getByOwner(id);
     }
 
     public void insert(Operator operator) {

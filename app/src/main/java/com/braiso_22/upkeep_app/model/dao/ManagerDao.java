@@ -32,6 +32,9 @@ public interface ManagerDao {
     @Query("SELECT * FROM manager WHERE login = :login")
     LiveData<Manager> getByLogin(String login);
 
+    @Query("SELECT * FROM manager WHERE owner = :owner")
+    LiveData<List<Manager>> getByOwner(int owner);
+
     @Update
     void update(Manager manager);
 }

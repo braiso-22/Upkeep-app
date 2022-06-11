@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.braiso_22.upkeep_app.model.vo.Boat;
+import com.braiso_22.upkeep_app.model.vo.users.Manager;
 import com.braiso_22.upkeep_app.model.vo.users.Operator;
 
 import java.util.List;
@@ -31,6 +32,9 @@ public interface OperatorDao {
 
     @Query("SELECT * FROM operator WHERE login = :login")
     LiveData<Operator> getByLogin(String login);
+
+    @Query("SELECT * FROM operator WHERE owner = :owner")
+    LiveData<List<Operator>> getByOwner(int owner);
 
     @Update
     void update(Operator operator);

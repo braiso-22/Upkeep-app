@@ -103,7 +103,7 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 ManagerDao managerDao = INSTANCE.managerDao();
                 managerDao.deleteAll();
 
-                Manager manager = new Manager("adrian", "1", "54157612F", "Adrian", "Fernadez", "adrianfv07@gmail.com", 1);
+                Manager manager = new Manager("adrian", "1", "54157612F", "Adrian", "Fernadez", "adrianfv07@gmail.com", 1,1);
                 managerDao.insert(manager);
 
                 // Component
@@ -126,7 +126,7 @@ public abstract class UpkeepsRoomDatabase extends RoomDatabase {
                 operatorDao.deleteAll();
 
                 Operator operator = new Operator("brais1", "1", "54347643K", "Brais",
-                        "Fernandez", "braisfv22@gmail.com", 1);
+                        "Fernandez", "braisfv22@gmail.com", 1,1);
                 operatorDao.insert(operator);
 
                 // Task
