@@ -161,7 +161,7 @@ public class UserCreationActivity extends AppCompatActivity {
 
     private void goToOwnerHome() {
         Intent intent = new Intent(this, OwnerHomeActivity.class);
-        intent.putExtra("user", user);
+        intent.putExtra("user", owner);
         startActivity(intent);
         finish();
     }
