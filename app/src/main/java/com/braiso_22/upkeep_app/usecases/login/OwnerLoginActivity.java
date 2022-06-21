@@ -47,7 +47,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
                 return;
             }
             try {
-                String cipheredPassword = Encrypter.encrypt(binding.loginOwnerPasswordInput.getText().toString());
+                String cipheredPassword = Encrypter.encrypt(binding.loginOwnerPasswordInput.getText().toString().trim());
                 Owner user = new Owner(binding.loginOwnerEmailInput.getText().toString(),
                         cipheredPassword);
                 if (isUserRegistered(user)) {
@@ -68,7 +68,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
                 return;
             }
             try {
-                String cipheredPassword = Encrypter.encrypt(binding.loginOwnerPasswordInput.getText().toString());
+                String cipheredPassword = Encrypter.encrypt(binding.loginOwnerPasswordInput.getText().toString().trim());
                 if (checkPassword(cipheredPassword)) {
                     goToHome();
                 } else {

@@ -54,12 +54,22 @@ public abstract class User implements Serializable {
         this.email = email;
     }
     @Ignore
+    public User(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name,
+                @NotNull String surnames, @NotNull String email, @NotNull String password) {
+        this.login = login;
+        this.code = code;
+        this.identification = identification;
+        this.name = name;
+        this.surnames = surnames;
+        this.email = email;
+        this.password = password;
+    }
+
+    @Ignore
     public User(String login, String password) {
         this.login = login;
         this.password = password;
     }
-
-
 
 
     public void setId(int id) {

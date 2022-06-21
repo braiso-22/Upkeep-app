@@ -57,7 +57,7 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
                 return;
             }
             try {
-                String cipheredPassword = Encrypter.encrypt(binding.loginNotOwnerPasswordInput.getText().toString());
+                String cipheredPassword = Encrypter.encrypt(binding.loginNotOwnerPasswordInput.getText().toString().trim());
                 user.setPassword(cipheredPassword);
                 if (user instanceof Manager) {
                     viewModel.update((Manager) user);
@@ -76,7 +76,7 @@ public class NotOwnerLoginActivity extends AppCompatActivity {
             }
             String encryptedPassword = "";
             try {
-                encryptedPassword = Encrypter.encrypt(binding.loginNotOwnerPasswordInput.getText().toString());
+                encryptedPassword = Encrypter.encrypt(binding.loginNotOwnerPasswordInput.getText().toString().trim());
                 if (!checkPassword(encryptedPassword)) {
                     Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
                     return;

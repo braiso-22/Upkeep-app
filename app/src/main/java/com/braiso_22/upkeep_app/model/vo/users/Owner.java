@@ -20,9 +20,15 @@ public class Owner extends User {
     public Owner(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email) {
         super(login, code, identification, name, surnames, email);
     }
+
+    @Ignore
+    public Owner(@NotNull String login, @NotNull String code, @NotNull String identification, @NotNull String name, @NotNull String surnames, @NotNull String email, @NotNull String password) {
+        super(login, code, identification, name, surnames, email, password);
+    }
+
     @Ignore
     public Owner(String login, String password) {
-        super(login,password);
+        super(login, password);
     }
 
     @Override
